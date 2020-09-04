@@ -1,0 +1,1 @@
+cscript.exe "C:\Users\Kittus\Desktop\url.vbs"
