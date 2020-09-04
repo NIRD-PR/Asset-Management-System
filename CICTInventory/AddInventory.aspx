@@ -67,7 +67,7 @@
 </div>
 <div class="col-xs-3">
 <label>Warranty Expiry Date</label>
-<asp:TextBox ID="txt_WarrantyDate" runat="server" CssClass="form-control" MaxLength="10" placeholder="DD/MM/YYYY"></asp:TextBox><br />
+<asp:TextBox ID="txt_WarrantyDate" runat="server" CssClass="form-control" MaxLength="10" TextMode="Date"></asp:TextBox><br />
 </div>
 <div class="col-xs-3">
 <label>Vendor</label>
@@ -81,7 +81,7 @@
 </div>
 <div class="col-xs-3">
 <label>Purchase Date</label>
-<asp:TextBox ID="txt_PurchaseDate" runat="server" CssClass="form-control" MaxLength="10" placeholder="DD/MM/YYYY"></asp:TextBox><br />
+<asp:TextBox ID="txt_PurchaseDate" runat="server" CssClass="form-control" MaxLength="10" TextMode="Date"></asp:TextBox><br />
 </div>
 <div class="col-xs-3">
 <label><br /></label><br />
