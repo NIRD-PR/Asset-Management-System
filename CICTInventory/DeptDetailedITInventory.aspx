@@ -33,7 +33,7 @@
 <h5> NIRDPR - CICT Inventory  Details </h5>
 </center>
 <table width="100%" style="table-layout:fixed; font-family:Tahoma; font-size:12px;">
-<tr><td align="left" width="50%">No. of Items Listed : <asp:Label ID="lbl_ItemCount" runat="server"></asp:Label></td><td align="right" width="50%">Printed Date : <asp:Label ID="lbl_Dated" runat="server"></asp:Label></td></tr>
+<tr><td align="left" width="50%"><asp:Label ID="lbl_ItemCount" runat="server"></asp:Label></td><td align="right" width="50%">Printed Date : <asp:Label ID="lbl_Dated" runat="server"></asp:Label></td></tr>
 </table>
 <asp:DataList ID="dl_Inventory" runat="server" RepeatColumns="1">
 <ItemTemplate>

@@ -53,7 +53,7 @@ public partial class CICTInventory_ConsoliInventory : System.Web.UI.Page
             rptr_Inventory.DataSource = dt;
             rptr_Inventory.DataBind();
             lbl_Count.Text = "No.of Items Listed :" + dt.Rows.Count.ToString();
-            lbl_ItemCount.Text = "No.of Items Listed :" + dt.Rows.Count.ToString();
+            lbl_ItemCount.Text = "No.of Items Listed : " + dt.Rows.Count.ToString();
             lbl_Dated.Text = DateTime.Now.ToString();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
