@@ -21,7 +21,7 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             getOldNew();
             getWarrenty();
             getAllItemTypes();
-
+            getAllItemsinInventory();
             if (Request.QueryString["st"] != null)
             {
                 hdn_IID.Value = Request.QueryString["st"].ToString();
@@ -231,6 +231,22 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             }
             else
             {
+                rptr_InventoryData.DataSource = dt;
+                rptr_InventoryData.DataBind();
+                lbl_Count.Text = "No.of Items Listed :" + dt.Rows.Count.ToString();
+            }
+        }
+        else
+        {
+            objPRReq.OID = oid;
+            objPRReq.Status = "Active";
+            PRResp r = objPRIBC.getAllItemInventory(objPRReq);
+            DataTable dt = r.GetTable;
+            if (dt.Rows.Count > 0)
+            {
+                lbl_Date.Text = DateTime.Now.ToString();
+                lbl_ItemName.Text = "All items";
+                dt.DefaultView.Sort = "SerialNo Asc";
                 rptr_InventoryData.DataSource = dt;
                 rptr_InventoryData.DataBind();
                 lbl_Count.Text = "No.of Items Listed :" + dt.Rows.Count.ToString();
