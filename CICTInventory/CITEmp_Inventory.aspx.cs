@@ -15,6 +15,7 @@ public partial class Inventory_CITInventory : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         getAdminUser();
+        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "ChosenDropDown", "ChosenDropDown();", true);
         if (!IsPostBack)
         {
             getEmpType();
@@ -64,7 +65,6 @@ public partial class Inventory_CITInventory : System.Web.UI.Page
             objPRReq.EmpGroup = ddl_EmpType.SelectedItem.Text.Trim();
             objPRReq.OID = oid;
             objPRReq.Status = "Active";
-            objPRReq.Name = txt_Name.Text.Trim().Replace("'", "");
             if (ddl_EmpType.SelectedItem.Text != "Project Staff")
             {
                 PRResp r = objPRIBC.SearchEmpNamebyGroup(objPRReq);
@@ -129,6 +129,7 @@ public partial class Inventory_CITInventory : System.Web.UI.Page
                     lbl_Dept.Text = dt.Rows[0]["DeptID"].ToString();
                     lbl_EmpID.Text = dt.Rows[0]["EmpID"].ToString();
                      lbl_Name.Text = dt.Rows[0]["Name"].ToString() + "(" + lbl_EmpID.Text + ")";
+                    Label2.Text = dt.Rows[0]["Name"].ToString();
                     lbl_Design.Text = dt.Rows[0]["Design"].ToString();
                     hdn_DID.Value = dt.Rows[0]["DID"].ToString();
                     hdn_Email.Value = dt.Rows[0]["Email"].ToString();

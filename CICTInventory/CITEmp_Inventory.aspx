@@ -15,11 +15,21 @@
         }, 500);
         return false;
     }
+</script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" />
+
+    <script type="text/javascript">
+        function ChosenDropDown() {
+            $("#<%=ddl_EmpType.ClientID%>").chosen(); 
+            $("#<%=ddl_EmpName.ClientID%>").chosen();
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
-<asp:UpdatePanel ID="up" runat="server">
-<ContentTemplate>
+<%--<asp:UpdatePanel ID="up" runat="server">--%>
+<%--<ContentTemplate>--%>
 <div class="content-page">
 <div class="content">
 <div class="container">
@@ -31,13 +41,16 @@
 <div class="row">
 <div class="col-xs-2"><asp:HiddenField ID="HiddenField1" runat="server" />
 <label>Select Emp Type <asp:Label ID="lbl_EmpType" runat="server" CssClass="lblr"></asp:Label></label>
-<asp:DropDownList ID="ddl_EmpType" runat="server" CssClass="form-control" ></asp:DropDownList><br />
+<asp:DropDownList ID="ddl_EmpType" runat="server" CssClass="form-control" AutoPostBack="true" 
+        onselectedindexchanged="txt_Name_TextChanged"></asp:DropDownList><br />
 </div>
 <div class="col-xs-3"><asp:HiddenField ID="HiddenField2" runat="server" />
 <label>Select EmpName <asp:Label ID="lbl_EmpName" runat="server" CssClass="lblr"></asp:Label></label>
-<asp:TextBox ID="txt_Name" runat="server" CssClass="form-control" AutoPostBack="true" 
-        ontextchanged="txt_Name_TextChanged"></asp:TextBox><asp:DropDownList ID="ddl_EmpName" runat="server" CssClass="form-control" AutoPostBack="true" 
+<%--<asp:TextBox ID="txt_Name" runat="server" CssClass="form-control" AutoPostBack="true" 
+        ontextchanged="txt_Name_TextChanged"></asp:TextBox>--%>
+    <asp:DropDownList ID="ddl_EmpName" runat="server" CssClass="form-control" AutoPostBack="true" 
         onselectedindexchanged="ddl_EmpName_SelectedIndexChanged"></asp:DropDownList><br />
+    
 </div>
 <div class="col-xs-7">
 <table width="100%" style="table-layout:fixed;width:100%;">
@@ -128,7 +141,7 @@
 </div>
 </div>
 </div>
-</ContentTemplate>
-</asp:UpdatePanel>
+<%--</ContentTemplate>--%>
+<%--</asp:UpdatePanel>--%>
 </asp:Content>
 
