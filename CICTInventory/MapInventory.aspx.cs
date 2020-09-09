@@ -15,7 +15,8 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
          getAdminUser();
-         if (!IsPostBack)
+        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "ChosenDropDown", "ChosenDropDown();", true);
+        if (!IsPostBack)
          {
              getAllItemTypes();
              getEmpType();
@@ -87,7 +88,7 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
     }
     protected void ddl_ItemType_SelectedIndexChanged(object sender, EventArgs e)
     {
-        //getSerialNos();
+        getSerialNos();
     }
     public void getSerialNos()
     {
@@ -180,7 +181,6 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
             objPRReq.EmpGroup = ddl_EmpType.SelectedItem.Text.Trim();
             objPRReq.OID = oid;
             objPRReq.Status = "Active";
-            objPRReq.Name = txt_Name.Text.Trim().Replace("'", "");
             if (ddl_EmpType.SelectedItem.Text != "Project Staff" && ddl_EmpType.SelectedItem.Text != "Others")
             {
                 PRResp r = objPRIBC.SearchEmpNamebyGroup(objPRReq);
@@ -469,7 +469,6 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
             objPRReq.OID = oid;
             objPRReq.Status = "Active";
             objPRReq.ITID = int.Parse(ddl_ItemType.SelectedValue.ToString());
-            objPRReq.SerialNo = txt_SNo.Text.Trim();
             PRResp r = objPRIBC.getAllMappedInventory_ITID_SNo(objPRReq);
             DataTable dt = r.GetTable;
             if (dt.Rows.Count > 0)
