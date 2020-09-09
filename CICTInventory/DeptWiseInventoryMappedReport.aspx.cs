@@ -15,6 +15,7 @@ public partial class CICTInventory_DeptWiseInventoryMappedReport : System.Web.UI
     protected void Page_Load(object sender, EventArgs e)
     {
         getAdminUser();
+        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "ChosenDropDown", "ChosenDropDown();", true);
         if (!IsPostBack)
         {
             getITemType();

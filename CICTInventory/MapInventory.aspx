@@ -20,6 +20,7 @@
             $("#<%=ddl_EmpName.ClientID%>").chosen();
             $("#<%=ddl_ItemType.ClientID%>").chosen(); 
             $("#<%=ddl_SerialNo.ClientID%>").chosen();
+            $("#<%=ddl_ItemTypes.ClientID%>").chosen();
         }
     </script>
 </asp:Content>
@@ -89,7 +90,7 @@
         CssClass="btn btn-success" Text="MAP Item" onclick="btn_Submit_Click" /></div>
 </div>
 </div>
-<div class="panel panel-color panel-info">
+<div class="panel panel-color panel-info" style="margin-bottom:300px">
 <div class="panel-heading" class="pull-left"><h3 class="panel-title">Emp Wise Mapped IT Inventory <asp:Label ID="lbl_Count" runat="server" CssClass="pull-right">0</asp:Label></h3></div>
 <div class="panel-body">
 <div class="col-xs-12">
