@@ -194,10 +194,15 @@ public partial class Inventory_CITInventory : System.Web.UI.Page
                 double year = (ts).Days / 365;
                 lblage.Text = year.ToString();
             }
+            else
+            {
+                dl_EmpDetails.DataSource = null;
+                dl_EmpDetails.DataBind();
+            }
             PRResp r = objPRIBC.getAllMappedInventory_EmpID(objPRReq);
             DataTable dt = r.GetTable;
-            if (dt.Rows.Count > 0)
-            {
+            //if (dt.Rows.Count > 0)
+            //{
                 rptr_Items.DataSource = dt;
                 rptr_Items.DataBind();
                 //Label lblName =rptr_Items.FindControl("lbl_Name") as Label;
@@ -220,7 +225,7 @@ public partial class Inventory_CITInventory : System.Web.UI.Page
                         dl.DataBind();
                     }
                 }
-            }
+            //}
         }
     }   
 }
