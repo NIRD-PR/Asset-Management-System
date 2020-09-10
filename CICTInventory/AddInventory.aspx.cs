@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using NIRDPR.RK.PRReferences;
 using System.Data;
+using System.Globalization;
+
 public partial class CICTInventory_AddInventory : System.Web.UI.Page
 {
     PRReq objPRReq = new PRReq();
@@ -58,7 +60,6 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
     {
         objPRReq.IID = int.Parse(hdn_IID.Value);
         objPRReq.OID = oid;
-        objPRReq.Status = "Active";
         PRResp r = objPRIBC.getItemInventory_IID(objPRReq);
         DataTable dt = r.GetTable;
         if (dt.Rows.Count > 0)
@@ -93,7 +94,23 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             {
                 ddl_Warranty.SelectedIndex = 1;
             }
-
+            string status = dt.Rows[0]["Status"].ToString();
+            if (status == "Abandoned")
+            {
+                ddl_status.SelectedIndex = 3;
+            }
+            else if (status == "Inactive")
+            {
+                ddl_status.SelectedIndex = 2;
+            }
+            else if( status == "In Use") 
+            {
+                ddl_status.SelectedIndex = 1;
+            }
+            else
+            {
+                ddl_status.SelectedIndex = 0;
+            }
             btn_Submit.Text = "Update";
         }
     }
@@ -134,7 +151,7 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             objPRReq.Dated = DateTime.Now;
             objPRReq.UID = int.Parse(Session["UserID"].ToString());
             objPRReq.UName = name;
-            objPRReq.Status = "Active";
+            objPRReq.Status = ddl_status.SelectedItem.Text;
             objPRReq.OID = oid;
             if (ddl_ItemType.SelectedIndex > 0)
             {
@@ -215,7 +232,7 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
                 else
                 {
                     objPRIBC.AddItemInventory(objPRReq);
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Item Type Updated Successfully..!!!'); window.open('../CIT_ADDInv/{0}','_self');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Item Type Added Successfully..!!!'); window.open('../CIT_ADDInv/{0}','_self');", true);
                 }
             }
             else
@@ -236,7 +253,6 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
         if (ddl_ItemTypes.SelectedIndex > 0)
         {
             objPRReq.OID = oid;
-            objPRReq.Status = "Active";
             objPRReq.ITID = int.Parse(ddl_ItemTypes.SelectedValue.ToString());
             PRResp r = objPRIBC.getAllItemInventory_ITID(objPRReq);
             DataTable dt = r.GetTable;
@@ -259,7 +275,6 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
         else
         {
             objPRReq.OID = oid;
-            objPRReq.Status = "Active";
             PRResp r = objPRIBC.getAllItemInventory(objPRReq);
             DataTable dt = r.GetTable;
             if (dt.Rows.Count > 0)

@@ -75,7 +75,7 @@
 </div>
 <div class="col-xs-3">
 <label>Warranty Expiry Date</label>
-<asp:TextBox ID="txt_WarrantyDate" runat="server" CssClass="form-control" MaxLength="10" TextMode="Date"></asp:TextBox><br />
+<asp:TextBox ID="txt_WarrantyDate" runat="server" CssClass="form-control" MaxLength="10"></asp:TextBox><br />
 </div>
 <div class="col-xs-3">
 <label>Vendor</label>
@@ -89,7 +89,16 @@
 </div>
 <div class="col-xs-3">
 <label>Purchase Date</label>
-<asp:TextBox ID="txt_PurchaseDate" runat="server" CssClass="form-control" MaxLength="10" TextMode="Date"></asp:TextBox><br />
+<asp:TextBox ID="txt_PurchaseDate" runat="server" CssClass="form-control" MaxLength="10"></asp:TextBox><br />
+</div>
+<div class="col-xs-3">
+<label>Status</label>
+<asp:DropDownList ID="ddl_status" runat="server" CssClass="form-control">
+        <asp:ListItem Selected="True">Active</asp:ListItem>  
+        <asp:ListItem>In Use</asp:ListItem>  
+        <asp:ListItem>Inactive</asp:ListItem>  
+        <asp:ListItem>Abandoned</asp:ListItem>  
+</asp:DropDownList>  
 </div>
 <div class="col-xs-3">
 <label><br /></label><br />
@@ -119,8 +128,9 @@
 <th width="10%">Item Name</th>
 <th width="10%">Manufacture</th>
 <th width="10%">Model</th>
-<th width="15%">Serial No</th>
-<th width="10%">Warrenty</th>
+<th width="10%">Serial No</th>
+<th width="5%">Status</th>
+<th width="10%">Warranty</th>
 <th width="10%" colspan="2">Actions</th>
 </tr>
 </thead>
@@ -131,7 +141,8 @@
 <td width="10%"><%#Eval("ItemType")%></td>
 <td width="10%"><%#Eval("Manufacturer")%></td>
 <td width="10%"><%#Eval("Model")%></td>
-<td width="15%"><%#Eval("SerialNo")%></td>
+<td width="10%"><%#Eval("SerialNo")%></td>
+<td width="5%"><%#Eval("Status")%></td>
 <td width="10%"><%#Eval("Warranty")%></td>
 <td width="5%" class="actions" align='center'>
 <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Edit" CommandArgument='<%#Eval("IID")%>' ToolTip="Edit"><i class="fa fa-pencil" style="font-size:large; color:Black;"></i></asp:LinkButton>
@@ -148,7 +159,8 @@
 <td width="10%"><%#Eval("ItemType")%></td>
 <td width="10%"><%#Eval("Manufacturer")%></td>
 <td width="10%"><%#Eval("Model")%></td>
-<td width="15%"><%#Eval("SerialNo")%></td>
+<td width="10%"><%#Eval("SerialNo")%></td>
+<td width="5%"><%#Eval("Status")%></td>
 <td width="10%"><%#Eval("Warranty")%></td>
 <td width="5%" class="actions" align='center'>
 <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Edit" CommandArgument='<%#Eval("IID")%>' ToolTip="Edit"><i class="fa fa-pencil" style="font-size:large; color:Black;"></i></asp:LinkButton>

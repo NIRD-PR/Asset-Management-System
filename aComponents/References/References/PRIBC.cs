@@ -5410,25 +5410,25 @@ namespace NIRDPR.RK.PRReferences
         }
         public PRResp getAllItemInventory(PRReq objPRReq)
         {
-            string s = "select * from CIT_tbl_ItemInventory where Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' ";
+            string s = "select * from CIT_tbl_ItemInventory where OID='" + objPRReq.OID + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
         public PRResp getAllItemInventory_ITID(PRReq objPRReq)
         {
-            string s = "select * from CIT_tbl_ItemInventory where Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and ITID='" + objPRReq.ITID + "' ";
+            string s = "select * from CIT_tbl_ItemInventory where OID='" + objPRReq.OID + "' and ITID='" + objPRReq.ITID + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
         public PRResp getItemInventory_IID(PRReq objPRReq)
         {
-            string s = "select * from CIT_tbl_ItemInventory where Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and IID='" + objPRReq.IID + "' ";
+            string s = "select * from CIT_tbl_ItemInventory where OID='" + objPRReq.OID + "' and IID='" + objPRReq.IID + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
         public PRResp getItemInventory_SerialNo(PRReq objPRReq)
         {
-            string s = "select * from CIT_tbl_ItemInventory where SerialNo='" + objPRReq.SerialNo + "' and ITID='" + objPRReq.ITID + "' and OID='" + objPRReq.OID + "' and Status='" + objPRReq.Status + "' ";
+            string s = "select * from CIT_tbl_ItemInventory where SerialNo='" + objPRReq.SerialNo + "' and ITID='" + objPRReq.ITID + "' and OID='" + objPRReq.OID + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
@@ -5447,7 +5447,7 @@ namespace NIRDPR.RK.PRReferences
         }
         public PRResp EditItemInventory_SerialNo(PRReq objPRReq)
         {
-            string update = "update CIT_tbl_ItemInventory set ItemName='" + objPRReq.ItemName + "',ItemType='" + objPRReq.ItemType + "',Model='" + objPRReq.ModelType + "',SerialNo='" + objPRReq.SerialNo + "',Manufacturer='" + objPRReq.Manufacturer + "',ComputerNumber='" + objPRReq.ComputerNo + "',Warranty='" + objPRReq.Warranty + "',WarrantyDate='" + objPRReq.WarrantyDate + "',Vendor='" + objPRReq.Vendor + "',DOP='" + objPRReq.DOP + "' where OID='" + objPRReq.OID + "' and IID='" + objPRReq.IID + "' and Status='" + objPRReq.Status + "' ";
+            string update = "update CIT_tbl_ItemInventory set ItemName='" + objPRReq.ItemName + "',ItemType='" + objPRReq.ItemType + "',Model='" + objPRReq.ModelType + "',SerialNo='" + objPRReq.SerialNo + "',Manufacturer='" + objPRReq.Manufacturer + "',ComputerNumber='" + objPRReq.ComputerNo + "',Warranty='" + objPRReq.Warranty + "',WarrantyDate='" + objPRReq.WarrantyDate + "',Vendor='" + objPRReq.Vendor + "',DOP='" + objPRReq.DOP + "',ITID='" + objPRReq.ITID + "',Status='" + objPRReq.Status + "' where OID='" + objPRReq.OID + "' and IID='" + objPRReq.IID + "' ";
             objPRResp.Count = Connections.ProcessQuery(update);
             return objPRResp;
         }
