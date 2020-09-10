@@ -63,8 +63,16 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
         DataTable dt = r.GetTable;
         if (dt.Rows.Count > 0)
         {
-            lbl_ItemType.Text = dt.Rows[0]["ItemName"].ToString();
-            lbl_OldNew.Text = dt.Rows[0]["ItemType"].ToString();
+            ddl_ItemType.SelectedIndex = int.Parse(dt.Rows[0]["ITID"].ToString());
+            string ItemType = dt.Rows[0]["ItemType"].ToString();
+            if (ItemType == "New")
+            {
+                ddl_NewOld.SelectedIndex = 2;
+            }
+            else
+            {
+                ddl_NewOld.SelectedIndex = 1;
+            }
             txt_Model.Text = dt.Rows[0]["Model"].ToString();
             txt_ComputerNo.Text = dt.Rows[0]["ComputerNumber"].ToString();
             txt_Manufacturer.Text = dt.Rows[0]["Manufacturer"].ToString();
@@ -72,7 +80,19 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             txt_PurchaseDate.Text = dt.Rows[0]["DOP"].ToString();
             txt_Vendor.Text = dt.Rows[0]["Vendor"].ToString();
             txt_WarrantyDate.Text = dt.Rows[0]["WarrantyDate"].ToString();
-            lbl_Warranty.Text = dt.Rows[0]["Warranty"].ToString();
+            string warranty = dt.Rows[0]["Warranty"].ToString();
+            if(warranty == "No Warranty / No AMC")
+            {
+                ddl_Warranty.SelectedIndex = 3;
+            }
+            else if (warranty == "AMC")
+            {
+                ddl_Warranty.SelectedIndex = 2;
+            }
+            else
+            {
+                ddl_Warranty.SelectedIndex = 1;
+            }
 
             btn_Submit.Text = "Update";
         }

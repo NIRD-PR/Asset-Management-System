@@ -70,7 +70,7 @@
 <asp:TextBox ID="txt_Manufacturer" runat="server" CssClass="form-control" onkeyup="ToUpper(this)" placeholder="Manufacturer"></asp:TextBox><br />
 </div>
 <div class="col-xs-3">
-<label>Warrenty &nbsp;<label class="lblr">*</label><asp:Label ID="lbl_Warranty" runat="server" CssClass="lblr"></asp:Label></label>
+<label>Warranty &nbsp;<label class="lblr">*</label><asp:Label ID="lbl_Warranty" runat="server" CssClass="lblr"></asp:Label></label>
 <asp:DropDownList ID="ddl_Warranty" runat="server" CssClass="form-control"></asp:DropDownList><br />
 </div>
 <div class="col-xs-3">
