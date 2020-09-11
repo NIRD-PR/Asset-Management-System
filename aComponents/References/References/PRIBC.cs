@@ -5420,6 +5420,18 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
+        public PRResp getAvailableItemInventory(PRReq objPRReq)
+        {
+            string s = "select * from CIT_tbl_ItemInventory where OID='" + objPRReq.OID + "' and Status='Active' ";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
+        public PRResp getAvailableItemInventory_ITID(PRReq objPRReq)
+        {
+            string s = "select * from CIT_tbl_ItemInventory where OID='" + objPRReq.OID + "' and ITID='" + objPRReq.ITID + "' and Status='Active' ";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
         public PRResp getItemInventory_IID(PRReq objPRReq)
         {
             string s = "select * from CIT_tbl_ItemInventory where OID='" + objPRReq.OID + "' and IID='" + objPRReq.IID + "' ";

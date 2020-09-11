@@ -90,7 +90,7 @@
         CssClass="btn btn-success" Text="MAP Item" onclick="btn_Submit_Click" /></div>
 </div>
 </div>
-<div class="panel panel-color panel-info" style="margin-bottom:300px">
+<%--<div class="panel panel-color panel-info" style="margin-bottom:300px">
 <div class="panel-heading" class="pull-left"><h3 class="panel-title">Emp Wise Mapped IT Inventory <asp:Label ID="lbl_Count" runat="server" CssClass="pull-right">0</asp:Label></h3></div>
 <div class="panel-body">
 <div class="col-xs-12">
@@ -169,6 +169,62 @@
 </table>
 </AlternatingItemTemplate>
 </asp:Repeater>
+</div>
+</div>
+</div>--%>
+<div class="panel panel-color panel-info" style="margin-bottom:200px">
+<div class="panel-heading" class="pull-left"><h3 class="panel-title">List of Available Items &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:LinkButton ID="LinkButton1" runat="server" CssClass="middle btn btn-primary" OnClientClick = "return PrintPanel();"><i class="fa fa-print"></i></asp:LinkButton>  &nbsp; <asp:Label ID="lbl_Count" runat="server" CssClass="pull-right">0</asp:Label></h3></div>
+<div class="panel-body">
+<div class="col-xs-12">
+<table width="100%" class="table-responsive" style="table-layout:fixed;">
+<tr><td width="40%" align="right">Select Type :</td><td width="60%">
+    <asp:DropDownList ID="ddl_ItemTypes" runat="server" CssClass="form-control" Width="250px" AutoPostBack="true" EnableViewState="true"
+        onselectedindexchanged="ddl_ItemTypes_SelectedIndexChanged"></asp:DropDownList></td></tr>
+</table>
+<asp:Panel ID="pnl_print" runat="server">
+<center><img src="../assets/images/title.png" height="80" width="400"  alt=""/>
+<p style="font-size:14px; margin-top:-3px;">CICT Inventory Stock of <asp:Label ID="lbl_ItemName" runat="server"></asp:Label>  as on <asp:Label ID="lbl_Date" runat="server"></asp:Label></p>
+</center>
+<asp:Repeater ID="rptr_InventoryData" runat="server">
+<HeaderTemplate>
+<table width="100%" border="1" class="table" style="table-layout:fixed; font-size:12px; line-height:30px; font-family:Tahoma; vertical-align:middle; border-collapse: collapse; margin:0;">
+<thead><tr>
+<th width="5%">SNO</th>
+<th width="10%">Item Name</th>
+<th width="10%">Manufacture</th>
+<th width="10%">Model</th>
+<th width="10%">Serial No</th>
+<th width="5%">Status</th>
+<th width="10%">Warranty</th>
+</tr>
+</thead>
+</HeaderTemplate>
+<ItemTemplate>
+<tbody><tr>
+<td width="5%" align='center'><%#Container.ItemIndex+1 %></td>
+<td width="10%"><%#Eval("ItemType")%></td>
+<td width="10%"><%#Eval("Manufacturer")%></td>
+<td width="10%"><%#Eval("Model")%></td>
+<td width="10%"><%#Eval("SerialNo")%></td>
+<td width="5%"><%#Eval("Status")%></td>
+<td width="10%"><%#Eval("Warranty")%></td>
+</tr>
+</tbody>
+</ItemTemplate>
+<AlternatingItemTemplate>
+<tr style="background:#F0F4FF;">
+<td width="5%" align='center'><%#Container.ItemIndex+1 %></td>
+<td width="10%"><%#Eval("ItemType")%></td>
+<td width="10%"><%#Eval("Manufacturer")%></td>
+<td width="10%"><%#Eval("Model")%></td>
+<td width="10%"><%#Eval("SerialNo")%></td>
+<td width="5%"><%#Eval("Status")%></td>
+<td width="10%"><%#Eval("Warranty")%></td>
+</tr>
+
+</AlternatingItemTemplate>
+</asp:Repeater>
+</asp:Panel>
 </div>
 </div>
 </div>

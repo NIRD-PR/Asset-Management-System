@@ -19,14 +19,16 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
         if (!IsPostBack)
          {
              getAllItemTypes();
+             getAllItemsinInventory();
              getEmpType();
              if (Request.QueryString["st"] != null)
              {
                  hdn_MIID.Value = Request.QueryString["st"].ToString();
                  Update();
              }
-             getItemTypes();
-         }
+            //getItemTypes();
+            getItemTypes();
+        }
     }
     public void getAdminUser()
     {
@@ -318,75 +320,75 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
             }
         }
     }
-    protected void ddl_ItemTypes_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        getAll_MappedItemsinInventory();
-    }
-    public void getAll_MappedItemsinInventory()
-    {
-        if (ddl_ItemTypes.SelectedIndex > 0)
-        {
-            objPRReq.OID = oid;
-            objPRReq.Status = "Active";
-            objPRReq.ITID = int.Parse(ddl_ItemTypes.SelectedValue.ToString());
-            PRResp r = objPRIBC.getAllMappedInventory_ITID(objPRReq);
-            DataTable dt = r.GetTable;
-            if (dt.Rows.Count > 0)
-            {
-                rptr_InventoryData.DataSource = dt;
-                rptr_InventoryData.DataBind();
-                lbl_Count.Text = "No.of Items Listed :" + dt.Rows.Count.ToString();
-            }
-            else
-            {
-                rptr_InventoryData.DataSource = dt;
-                rptr_InventoryData.DataBind();
-                lbl_Count.Text = "No.of Items Listed :" + dt.Rows.Count.ToString();
-            }
-        }
-    }
-    public void getItemTypes()
-    {
-        objPRReq.Status = "Active";
-        objPRReq.OID = oid;
-        PRResp r = objPRIBC.getItemTypes(objPRReq);
-        DataTable dt = r.GetTable;
-        if (dt.Rows.Count > 0)
-        {
-            ddl_ItemTypes.DataSource = dt;
-            ddl_ItemTypes.DataTextField = "ItemType";
-            ddl_ItemTypes.DataValueField = "ITID";
-            ddl_ItemTypes.DataBind();
-            ddl_ItemTypes.Items.Insert(0, "Select Type");
-        }
-    }
+    //protected void ddl_ItemTypes_SelectedIndexChanged(object sender, EventArgs e)
+    //{
+    //    getAll_MappedItemsinInventory();
+    //}
+    //public void getAll_MappedItemsinInventory()
+    //{
+    //    if (ddl_ItemTypes.SelectedIndex > 0)
+    //    {
+    //        objPRReq.OID = oid;
+    //        objPRReq.Status = "Active";
+    //        objPRReq.ITID = int.Parse(ddl_ItemTypes.SelectedValue.ToString());
+    //        PRResp r = objPRIBC.getAllMappedInventory_ITID(objPRReq);
+    //        DataTable dt = r.GetTable;
+    //        if (dt.Rows.Count > 0)
+    //        {
+    //            rptr_InventoryData.DataSource = dt;
+    //            rptr_InventoryData.DataBind();
+    //            lbl_Count.Text = "No.of Items Listed :" + dt.Rows.Count.ToString();
+    //        }
+    //        else
+    //        {
+    //            rptr_InventoryData.DataSource = dt;
+    //            rptr_InventoryData.DataBind();
+    //            lbl_Count.Text = "No.of Items Listed :" + dt.Rows.Count.ToString();
+    //        }
+    //    }
+    //}
+    //public void getItemTypes()
+    //{
+    //    objPRReq.Status = "Active";
+    //    objPRReq.OID = oid;
+    //    PRResp r = objPRIBC.getItemTypes(objPRReq);
+    //    DataTable dt = r.GetTable;
+    //    if (dt.Rows.Count > 0)
+    //    {
+    //        ddl_ItemTypes.DataSource = dt;
+    //        ddl_ItemTypes.DataTextField = "ItemType";
+    //        ddl_ItemTypes.DataValueField = "ITID";
+    //        ddl_ItemTypes.DataBind();
+    //        ddl_ItemTypes.Items.Insert(0, "Select Type");
+    //    }
+    //}
 
-    protected void rptr_InventoryData_ItemCommand(object source, RepeaterCommandEventArgs e)
-    {
-        if (e.CommandName == "Edit")
-        {
-            Response.Redirect("../CIT_MAPInv/{0}?st=" + e.CommandArgument.ToString());
-        }
+    //protected void rptr_InventoryData_ItemCommand(object source, RepeaterCommandEventArgs e)
+    //{
+    //    if (e.CommandName == "Edit")
+    //    {
+    //        Response.Redirect("../CIT_MAPInv/{0}?st=" + e.CommandArgument.ToString());
+    //    }
 
-        if (e.CommandName == "Delete")
-        {
-            objPRReq.OID = oid;
-            objPRReq.MIID = int.Parse(e.CommandArgument.ToString());
-            objPRIBC.DelMappedITInvetoryItem(objPRReq);
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Item Deleted Successfully..!!!'); window.open('../CIT_MAPInv/{0}','_self');", true);
-        }
+    //    if (e.CommandName == "Delete")
+    //    {
+    //        objPRReq.OID = oid;
+    //        objPRReq.MIID = int.Parse(e.CommandArgument.ToString());
+    //        objPRIBC.DelMappedITInvetoryItem(objPRReq);
+    //        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Item Deleted Successfully..!!!'); window.open('../CIT_MAPInv/{0}','_self');", true);
+    //    }
 
-        if (e.CommandName == "Release")
-        {
-            objPRReq.Status = "Active";
-            objPRReq.OID = oid;
-            objPRReq.MIID = int.Parse(e.CommandArgument.ToString());
-            objPRReq.Flag1 = 0;
-            objPRIBC.ReleaseMappedItem_EmpID(objPRReq);
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Item Released Successfully..!!!'); window.open('../CIT_MAPInv/{0}','_self');", true);
+    //    if (e.CommandName == "Release")
+    //    {
+    //        objPRReq.Status = "Active";
+    //        objPRReq.OID = oid;
+    //        objPRReq.MIID = int.Parse(e.CommandArgument.ToString());
+    //        objPRReq.Flag1 = 0;
+    //        objPRIBC.ReleaseMappedItem_EmpID(objPRReq);
+    //        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Item Released Successfully..!!!'); window.open('../CIT_MAPInv/{0}','_self');", true);
            
-        }
-    }
+    //    }
+    //}
     protected void btn_Submit_Click(object sender, EventArgs e)
     {
         if (ddl_ItemType.SelectedIndex > 0)
@@ -492,5 +494,64 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
     protected void txt_Name_TextChanged(object sender, EventArgs e)
     {
         getEmpNames();
+    }
+    public void getItemTypes()
+    {
+        objPRReq.Status = "Active";
+        objPRReq.OID = oid;
+        PRResp r = objPRIBC.getItemTypes(objPRReq);
+        DataTable dt = r.GetTable;
+        if (dt.Rows.Count > 0)
+        {
+            ddl_ItemTypes.DataSource = dt;
+            ddl_ItemTypes.DataTextField = "ItemType";
+            ddl_ItemTypes.DataValueField = "ITID";
+            ddl_ItemTypes.DataBind();
+            ddl_ItemTypes.Items.Insert(0, "Select Type");
+        }
+    }
+    protected void ddl_ItemTypes_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        getAllItemsinInventory();
+    }
+    public void getAllItemsinInventory()
+    {
+        if (ddl_ItemTypes.SelectedIndex > 0)
+        {
+            objPRReq.OID = oid;
+            objPRReq.ITID = int.Parse(ddl_ItemTypes.SelectedValue.ToString());
+            PRResp r = objPRIBC.getAvailableItemInventory_ITID(objPRReq);
+            DataTable dt = r.GetTable;
+            if (dt.Rows.Count > 0)
+            {
+                lbl_Date.Text = DateTime.Now.ToString();
+                lbl_ItemName.Text = ddl_ItemTypes.SelectedItem.Text.Trim() + "'s ";
+                dt.DefaultView.Sort = "SerialNo Asc";
+                rptr_InventoryData.DataSource = dt;
+                rptr_InventoryData.DataBind();
+                lbl_Count.Text = "No.of Items Listed :" + dt.Rows.Count.ToString();
+            }
+            else
+            {
+                rptr_InventoryData.DataSource = dt;
+                rptr_InventoryData.DataBind();
+                lbl_Count.Text = "No.of Items Listed :" + dt.Rows.Count.ToString();
+            }
+        }
+        else
+        {
+            objPRReq.OID = oid;
+            PRResp r = objPRIBC.getAvailableItemInventory(objPRReq);
+            DataTable dt = r.GetTable;
+            if (dt.Rows.Count > 0)
+            {
+                lbl_Date.Text = DateTime.Now.ToString();
+                lbl_ItemName.Text = "All items";
+                dt.DefaultView.Sort = "SerialNo Asc";
+                rptr_InventoryData.DataSource = dt;
+                rptr_InventoryData.DataBind();
+                lbl_Count.Text = "No.of Items Listed :" + dt.Rows.Count.ToString();
+            }
+        }
     }
 }
