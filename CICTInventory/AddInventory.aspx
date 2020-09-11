@@ -32,6 +32,7 @@
     <script type="text/javascript">
         function ChosenDropDown() {
             $("#<%=ddl_ItemTypes.ClientID%>").chosen();
+            $("#<%=ddl_ItemType.ClientID%>").chosen();
         }
     </script>
 </asp:Content>

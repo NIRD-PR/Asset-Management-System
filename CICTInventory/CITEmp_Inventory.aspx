@@ -7,12 +7,19 @@
         var printWindow = window.open('', '', 'height=400,width=800');
         printWindow.document.write('<html><head><title>NIRDPR-Stores</title>');
         printWindow.document.write('</head><body >');
+        var elements = document.getElementsByClassName("rm");
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].style.visibility = "hidden";
+        }
         printWindow.document.write(panel.innerHTML);
         printWindow.document.write('</body></html>');
         printWindow.document.close();
         setTimeout(function () {
             printWindow.print();
         }, 500);
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].style.visibility = "visible";
+        }
         return false;
     }
 </script>
@@ -96,24 +103,34 @@
 <table width="100%" style="font-family:Tahoma;">
 <tr><td colspan="5"><b><%#Container.ItemIndex+1 %>. <%#Eval("ItemName")%></b> :</td></tr>
 <tr><td colspan="5">
-<asp:DataList ID="dl_CITData" runat="server" Width="100%">
+<asp:DataList ID="dl_CITData" OnItemCommand="rptr_InventoryData_ItemCommand" runat="server" Width="100%">
 <HeaderTemplate>
 
 </HeaderTemplate>
 <ItemTemplate>
 <table width="100%" class="table" border="1px" style="table-layout:fixed; font-family:Tahoma; font-size:12px; font-weight:bold; line-height:18px; vertical-align:baseline; border-collapse: collapse; margin:0;">
 <tr style="font-weight:bold; font-size:0.8em; color:#257A08; vertical-align:middle; text-align:center;">
-<td width="20%">Manufacturer</td>
+<td width="15%">Manufacturer</td>
 <td width="15%">Model</td>
 <td width="15%">SerialNo</td>
-<td width="25%">Warranty</td>
-<td width="25%">Office No.</td>
+<td width="20%">Warranty</td>
+<td width="25%">Computer No.</td>
+<td width="10%" colspan="3" class="rm" >Edit/Del/Release</td>
 </tr>
-<tr><td width="20%" align="center" style="vertical-align:middle;text-align:center; "><%#Eval("Manufacturer")%></td>
+<tr><td width="15%" align="center" style="vertical-align:middle;text-align:center; "><%#Eval("Manufacturer")%></td>
 <td width="15%" style="vertical-align:middle; font-size:0.9em;"><%#Eval("Model")%></td>
 <td width="15%" style="vertical-align:middle; font-size:0.9em; text-align:center;"><%#Eval("SerialNo")%></td>
-<td width="25%" style="vertical-align:middle; font-size:0.9em; text-align:center;"><%#Eval("Warranty")%></td>
+<td width="20%" style="vertical-align:middle; font-size:0.9em; text-align:center;"><%#Eval("Warranty")%></td>
 <td width="25%" style="vertical-align:middle; font-size:0.9em; text-align:center;"><%#Eval("ComputerNumber")%></td>
+<td width="3%" class="actions rm" align='center'>
+<asp:LinkButton ID="LinkButton1" runat="server" CommandName="Edit" CommandArgument='<%#Eval("MIID")%>' ToolTip="Edit" ><i class="fa fa-pencil" style="font-size:large; color:Black;"></i></asp:LinkButton>
+</td>
+<td width="3%" class="actions rm" align='center' id="a3">
+<asp:LinkButton ID="lbl_Del" runat="server" CommandName="Delete" CommandArgument='<%#Eval("MIID")%>' OnClientClick= "return confirm('Are you Sure To Delete?');" ToolTip="Delete"><i class="fa fa-trash" style="font-size:large; color:Red;"></i></asp:LinkButton>
+</td>
+<td width="3%" class="actions rm" align='center' id="a4">
+<asp:LinkButton ID="LinkButton2" runat="server" CommandName="Release" CommandArgument='<%#Eval("MIID")%>' OnClientClick= "return confirm('Are you Sure To Release?');" ToolTip="Delete"><i class="fa fa-unlock" style="font-size:large; color:Green;"></i></asp:LinkButton>
+</td>
 </table>
  </ItemTemplate>
 </asp:DataList>
