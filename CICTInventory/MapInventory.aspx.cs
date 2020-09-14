@@ -69,6 +69,11 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
             objPRReq.EmpID = double.Parse(dt.Rows[0]["EmpID"].ToString());
             PRResp r2 = objPRIBC.getEmpDetails_EmpID(objPRReq);
             DataTable dt2 = r2.GetTable;
+            if(dt2.Rows.Count < 1)
+            {
+                r2 = objPRIBC.getPSEmpDetails_EmpID(objPRReq);
+                dt2 = r2.GetTable;
+            }
             ddl_EmpType.SelectedIndex = int.Parse(dt2.Rows[0]["EGID"].ToString());
             getEmpNames();
             ddl_EmpName.SelectedValue = dt2.Rows[0]["EmpID"].ToString();
