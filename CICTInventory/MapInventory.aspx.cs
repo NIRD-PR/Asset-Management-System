@@ -65,7 +65,7 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
             objPRReq.SerialNo = dt.Rows[0]["SerialNo"].ToString();
             PRResp r1 = objPRIBC.getItemInventory_SerialNo(objPRReq);
             DataTable dt1 = r1.GetTable;
-            ddl_SerialNo.SelectedIndex = int.Parse(dt1.Rows[0]["IID"].ToString());
+            ddl_SerialNo.SelectedValue = dt1.Rows[0]["IID"].ToString();
             objPRReq.EmpID = double.Parse(dt.Rows[0]["EmpID"].ToString());
             PRResp r2 = objPRIBC.getEmpDetails_EmpID(objPRReq);
             DataTable dt2 = r2.GetTable;
