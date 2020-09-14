@@ -59,12 +59,28 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
         DataTable dt = r.GetTable;
         if (dt.Rows.Count > 0)
         {
-            lbl_SerialNo.Text = dt.Rows[0]["SerialNo"].ToString();
-            lbl_ItemType.Text = dt.Rows[0]["ItemName"].ToString();
-            lbl_EmpName.Text = dt.Rows[0]["Name"].ToString();
-            lbl_Warranty.Text = dt.Rows[0]["Warranty"].ToString();
-            lbl_Manufacturer.Text = dt.Rows[0]["Manufacturer"].ToString();
-            lbl_Model.Text = dt.Rows[0]["Model"].ToString();
+            ddl_ItemType.SelectedIndex = int.Parse(dt.Rows[0]["ITID"].ToString());
+            getSerialNos();
+            objPRReq.ITID = int.Parse(dt.Rows[0]["ITID"].ToString());
+            objPRReq.SerialNo = dt.Rows[0]["SerialNo"].ToString();
+            PRResp r1 = objPRIBC.getItemInventory_SerialNo(objPRReq);
+            DataTable dt1 = r1.GetTable;
+            ddl_SerialNo.SelectedIndex = int.Parse(dt1.Rows[0]["IID"].ToString());
+            objPRReq.EmpID = double.Parse(dt.Rows[0]["EmpID"].ToString());
+            PRResp r2 = objPRIBC.getEmpDetails_EmpID(objPRReq);
+            DataTable dt2 = r2.GetTable;
+            ddl_EmpType.SelectedIndex = int.Parse(dt2.Rows[0]["EGID"].ToString());
+            getEmpNames();
+            ddl_EmpName.SelectedValue = dt2.Rows[0]["EmpID"].ToString();
+            getEmpDetails();
+            getSerialNoDetails();
+
+            //lbl_SerialNo.Text = dt.Rows[0]["SerialNo"].ToString();
+            //lbl_ItemType.Text = dt.Rows[0]["ItemName"].ToString();
+            //lbl_EmpName.Text = dt.Rows[0]["Name"].ToString();
+            //lbl_Warranty.Text = dt.Rows[0]["Warranty"].ToString();
+            //lbl_Manufacturer.Text = dt.Rows[0]["Manufacturer"].ToString();
+            //lbl_Model.Text = dt.Rows[0]["Model"].ToString();
 
             btn_Submit.Text = "Update";
         }
