@@ -5729,6 +5729,12 @@ namespace NIRDPR.RK.PRReferences
             return objPRResp;
         }
 
+        public PRResp getAllMappedInventory_SerialNo(PRReq objPRReq)
+        {
+            string s = "select * from CIT_tbl_InventoryMapping where OID='" + objPRReq.OID + "' and Status='" + objPRReq.Status + "' and SerialNo='" + objPRReq.SerialNo + "' order by MIID desc ";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
         // CIT Supporting Staff Registration
         public PRResp RegisterCITSupporintStaff(PRReq objPRReq)
         {

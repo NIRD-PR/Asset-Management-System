@@ -42,9 +42,9 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Connections, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="PRReferences, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Desktop\ITInventory code to BITs Students\ITInventory-source\aComponents\Connections\Connections\bin\Debug\Connections.dll</HintPath>
+      <HintPath>aComponents\References\References\bin\Debug\PRReferences.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -475,13 +475,19 @@
     <Content Include="CICTInventory\CICTETicketsStatus.aspx" />
     <Content Include="CICTInventory\CICTETicketsStatus.aspx.cs" />
     <Content Include="CICTInventory\CICTETickets_AllbyDates.aspx" />
-    <Content Include="CICTInventory\CICTETickets_AllbyDates.aspx.cs" />
+    <Content Include="CICTInventory\CICTETickets_AllbyDates.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="CICTInventory\CICTETickets_AllbyDatesEmp.aspx" />
-    <Content Include="CICTInventory\CICTETickets_AllbyDatesEmp.aspx.cs" />
+    <Content Include="CICTInventory\CICTETickets_AllbyDatesEmp.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="CICTInventory\CICTETickets_HoldStatus.aspx" />
     <Content Include="CICTInventory\CICTETickets_HoldStatus.aspx.cs" />
     <Content Include="CICTInventory\CITEmp_Inventory.aspx" />
-    <Content Include="CICTInventory\CITEmp_Inventory.aspx.cs" />
+    <Content Include="CICTInventory\CITEmp_Inventory.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="CICTInventory\CITSupportingStaff.aspx" />
     <Content Include="CICTInventory\CITSupportingStaff.aspx.cs" />
     <Content Include="CICTInventory\ConsoliInventory.aspx" />
@@ -491,7 +497,9 @@
     <Content Include="CICTInventory\DeptDetailedITInventory.aspx" />
     <Content Include="CICTInventory\DeptDetailedITInventory.aspx.cs" />
     <Content Include="CICTInventory\DeptWiseInventoryMappedReport.aspx" />
-    <Content Include="CICTInventory\DeptWiseInventoryMappedReport.aspx.cs" />
+    <Content Include="CICTInventory\DeptWiseInventoryMappedReport.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="CICTInventory\DeptWiseInventoryMappedReport_All.aspx" />
     <Content Include="CICTInventory\DeptWiseInventoryMappedReport_All.aspx.cs" />
     <Content Include="CICTInventory\DetailedITInventory.aspx" />
@@ -506,17 +514,22 @@
     <Content Include="CICTInventory\Floors.aspx.cs" />
     <Content Include="CICTInventory\Halls.aspx" />
     <Content Include="CICTInventory\Halls.aspx.cs" />
-    <Content Include="CICTInventory\Inventory.master.cs" />
+    <Content Include="CICTInventory\Inventory.master.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="CICTInventory\InventoryHome.aspx" />
     <Content Include="CICTInventory\InventoryHome.aspx.cs" />
     <Content Include="CICTInventory\InventoryHomeDemo.aspx" />
     <Content Include="CICTInventory\InventoryHomeDemo.aspx.cs" />
+    <Content Include="CICTInventory\ItemHistoryReport.aspx" />
     <Content Include="CICTInventory\ItemType.aspx" />
     <Content Include="CICTInventory\ItemType.aspx.cs" />
     <Content Include="CICTInventory\Location.aspx" />
     <Content Include="CICTInventory\Location.aspx.cs" />
     <Content Include="CICTInventory\MapInventory.aspx" />
-    <Content Include="CICTInventory\MapInventory.aspx.cs" />
+    <Content Include="CICTInventory\MapInventory.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="CICTInventory\RoomNos.aspx" />
     <Content Include="CICTInventory\RoomNos.aspx.cs" />
     <Content Include="CICTInventory\UpdateCITInventory_ExcelMapping.aspx" />
@@ -737,6 +750,12 @@
     <Content Include="websiteassets\js\wow.min.js" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CICTInventory\ItemHistoryReport.aspx.designer.vb">
+      <DependentUpon>ItemHistoryReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CICTInventory\ItemHistoryReport.aspx.vb">
+      <DependentUpon>ItemHistoryReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

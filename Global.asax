@@ -681,6 +681,7 @@
         routes.MapPageRoute("CIT_AllT/{UID}", "CIT_AllT/{UID}", "~/CICTInventory/CICTETickets_AllbyDates.aspx");
         routes.MapPageRoute("CIT_AllTSS/{UID}", "CIT_AllTSS/{UID}", "~/CICTInventory/CICTETickets_AllbyDatesEmp.aspx");
         routes.MapPageRoute("CIT_DSR/{UID}", "CIT_DSR/{UID}", "~/CICTInventory/DeptWiseInventoryMappedReport.aspx");
+        routes.MapPageRoute("CIT_IHR/{UID}", "CIT_IHR/{UID}", "~/CICTInventory/ItemHistoryReport.aspx");
         routes.MapPageRoute("CIT_Staff/{UID}", "CIT_Staff/{UID}", "~/CICTInventory/Emp_Active.aspx");
         routes.MapPageRoute("CIT_ExcelMapping/{UID}", "CIT_ExcelMapping/{UID}", "~/CICTInventory/UpdateCITInventory_ExcelMapping.aspx");
 
