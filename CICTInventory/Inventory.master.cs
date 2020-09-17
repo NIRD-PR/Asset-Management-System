@@ -30,6 +30,7 @@ public partial class Inventory : System.Web.UI.MasterPage
                 oid = int.Parse(dt.Rows[0]["OID"].ToString());
             }
             getNewTickets();
+            getPendingRequest();
         }
         else
         {
@@ -61,6 +62,20 @@ public partial class Inventory : System.Web.UI.MasterPage
         if (dt.Rows.Count > 0)
         {
             lbl_NewTickets.Text = dt.Rows[0]["count"].ToString();
+        }
+    }
+    public void getPendingRequest()
+    {
+        objPRReq.OID = oid;
+        PRResp r = objPRIBC.getAllPendingAssetRequests(objPRReq);
+        DataTable dt = r.GetTable;
+        if (dt.Rows.Count > 0)
+        {
+            lbl_request.Text = dt.Rows.Count.ToString();
+        }
+        else
+        {
+            lbl_request.Visible = false;
         }
     }
 }

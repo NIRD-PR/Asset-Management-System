@@ -172,6 +172,9 @@
 </tr>
 
 </AlternatingItemTemplate>
+    <FooterTemplate>
+        </table>
+    </FooterTemplate>
 </asp:Repeater>
 </asp:Panel>
 </div>
