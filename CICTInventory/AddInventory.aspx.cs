@@ -103,7 +103,7 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             {
                 ddl_status.SelectedIndex = 2;
             }
-            else if( status == "In Use") 
+            else if( status == "Active") 
             {
                 ddl_status.SelectedIndex = 1;
             }
@@ -323,5 +323,21 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
     protected void ddl_ItemTypes_SelectedIndexChanged(object sender, EventArgs e)
     {
         getAllItemsinInventory();
+    }
+    public string GetColor(string a)
+    {
+        if (a == "Active")
+        {
+            return "text-warning";
+        }
+        if (a == "Inactive")
+        {
+            return "text-info";
+        }
+        if (a == "Abandoned")
+        {
+            return "text-danger";
+        }
+        return "text-success";
     }
 }

@@ -93,10 +93,10 @@
 <asp:TextBox ID="txt_PurchaseDate" runat="server" CssClass="form-control" MaxLength="10"></asp:TextBox><br />
 </div>
 <div class="col-xs-3">
-<label>Status</label>
+<label>Status</label>&nbsp;<span data-toggle="tooltip" data-placement="right" data-html="true" title="Idle - Free / Not in use <br> Active - In Use <br> Inactive - Can't be alotted currently <br> Abandoned - Decomissioned / Not usable"><i class="fa fa-info"></i></span>
 <asp:DropDownList ID="ddl_status" runat="server" CssClass="form-control">
-        <asp:ListItem Selected="True">Active</asp:ListItem>  
-        <asp:ListItem>In Use</asp:ListItem>  
+        <asp:ListItem Selected="True">Idle</asp:ListItem>  
+        <asp:ListItem>Active</asp:ListItem>  
         <asp:ListItem>Inactive</asp:ListItem>  
         <asp:ListItem>Abandoned</asp:ListItem>  
 </asp:DropDownList>  
@@ -137,13 +137,13 @@
 </thead>
 </HeaderTemplate>
 <ItemTemplate>
-<tbody><tr>
-<td width="5%" align='center'><%#Container.ItemIndex+1 %></td>
+<tbody><tr align="center">
+<td width="5%"><%#Container.ItemIndex+1 %></td>
 <td width="10%"><%#Eval("ItemType")%></td>
 <td width="10%"><%#Eval("Manufacturer")%></td>
 <td width="10%"><%#Eval("Model")%></td>
 <td width="10%"><%#Eval("SerialNo")%></td>
-<td width="5%"><%#Eval("Status")%></td>
+<td width="5%" ><asp:Label runat="server" CssClass='<%#GetColor(Eval("Status").ToString()) %>'> <%#Eval("Status")%></asp:Label></td>
 <td width="10%"><%#Eval("Warranty")%></td>
 <td width="5%" class="actions" align='center'>
 <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Edit" CommandArgument='<%#Eval("IID")%>' ToolTip="Edit"><i class="fa fa-pencil" style="font-size:large; color:Black;"></i></asp:LinkButton>
@@ -155,13 +155,13 @@
 </tbody>
 </ItemTemplate>
 <AlternatingItemTemplate>
-<tr style="background:#F0F4FF;">
-<td width="5%" align='center'><%#Container.ItemIndex+1 %></td>
+<tr style="background:#F0F4FF;" align="center">
+<td width="5%"><%#Container.ItemIndex+1 %></td>
 <td width="10%"><%#Eval("ItemType")%></td>
 <td width="10%"><%#Eval("Manufacturer")%></td>
 <td width="10%"><%#Eval("Model")%></td>
 <td width="10%"><%#Eval("SerialNo")%></td>
-<td width="5%"><%#Eval("Status")%></td>
+<td width="5%"><asp:Label runat="server" CssClass='<%#GetColor(Eval("Status").ToString()) %>'> <%#Eval("Status")%></asp:Label></td>
 <td width="10%"><%#Eval("Warranty")%></td>
 <td width="5%" class="actions" align='center'>
 <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Edit" CommandArgument='<%#Eval("IID")%>' ToolTip="Edit"><i class="fa fa-pencil" style="font-size:large; color:Black;"></i></asp:LinkButton>
