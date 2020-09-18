@@ -5757,6 +5757,13 @@ namespace NIRDPR.RK.PRReferences
             return objPRResp;
         }
 
+        public PRResp editRemark(PRReq objPRReq)
+        {
+            string s = "update CIT_tbl_Request set Remark ='" + objPRReq.Remarks + "' where RID ='" + objPRReq.RID + "' ";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
+
         // CIT Supporting Staff Registration
         public PRResp RegisterCITSupporintStaff(PRReq objPRReq)
         {

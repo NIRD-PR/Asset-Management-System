@@ -68,17 +68,14 @@ public partial class CICTInventory_AssetRequest : System.Web.UI.Page
             objPRReq.Status = "Approved";
             objPRReq.RID = int.Parse(e.CommandArgument.ToString());
             objPRIBC.changeRequest(objPRReq);
+            Response.Redirect(Request.RawUrl);
         }
-
-        if (e.CommandName == "Reject")
+        if(e.CommandName == "rid")
         {
-            objPRReq.Status = "Rejected";
-            TextBox t = e.Item.FindControl("txt_remark") as TextBox;
-            objPRReq.Remarks = t.Text.ToString();
-            objPRReq.RID = int.Parse(e.CommandArgument.ToString());
-            objPRIBC.changeRequest(objPRReq);
+            hdn_rid.Value = e.CommandArgument.ToString();
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "pop", "show();", true);
         }
-        Response.Redirect(Request.RawUrl);
+        
     }
 
     public string GetColor(string a)
@@ -92,5 +89,30 @@ public partial class CICTInventory_AssetRequest : System.Web.UI.Page
             return "text-danger";
         }
         return "text-success";
+    }
+
+    protected void btn_Submit_Click(object sender, EventArgs e)
+    {
+        objPRReq.Status = "Rejected";
+        objPRReq.Remarks = txt_remark.Text;
+        objPRReq.RID = int.Parse(hdn_rid.Value);
+        objPRIBC.changeRequest(objPRReq);
+        Response.Redirect(Request.RawUrl);
+    }
+
+    protected void rptr_req_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "rid")
+        {
+            hdn_rid1.Value = e.CommandArgument.ToString();
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "pop", "show1();", true);
+        }
+    }
+    protected void btn_Submit_Click1(object sender, EventArgs e)
+    {
+        objPRReq.Remarks = txt_remark1.Text;
+        objPRReq.RID = int.Parse(hdn_rid1.Value);
+        objPRIBC.editRemark(objPRReq);
+        Response.Redirect(Request.RawUrl);
     }
 }
