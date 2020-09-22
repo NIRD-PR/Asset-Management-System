@@ -68,10 +68,10 @@
 <td width="5%" align='center'>SNo</td>
 <td width="10%" align='center'>DeptID</td>
 <td width="10%" align='center'>EmpID</td>
-<td width="20%" align='center'>Name & Design</td>
+<td width="15%" align='center'>Name & Design</td>
 <td  width="10%" align='center'>Dept ID</td>
-<td width="15%" align='center'>Date</td>
-<td  width="15%" align='center'>Remarks</td>
+<td width="10%" align='center'>Date</td>
+<td width="10%" align='center'>Returned On</td>
 </tr>
 </thead>
 </HeaderTemplate>
@@ -80,10 +80,10 @@
 <td width="5%" align='center'><%#Container.ItemIndex+1%></td>
 <td width="10%" align="center"><%#Eval("DeptID")%></td>
 <td  width="10%" align="center"><%#Eval("EmpID")%></td>
-<td  width="20%" align="left"><%#Eval("Name")%> <br /> <%#Eval("Design")%></td>
+<td  width="15%" align="left"><%#Eval("Name")%> <br /> <%#Eval("Design")%></td>
 <td  width="10%" align="center"><%#Eval("DeptID")%></td>
-<td  width="15%" align="center"><%#Eval("Dated")%></td>
-<td  width="15%" align="center"></td>
+<td  width="10%" align="center"><%#Eval("Dated")%></td>
+<td  width="10%" align="center"><%#Eval("Returned")%></td>
 </tr>
 </tbody>
 </ItemTemplate>

@@ -66,7 +66,6 @@ public partial class CICTInventory_ItemHistoryReport : System.Web.UI.Page
         {
             objPRReq.ITID = int.Parse(ddl_ItemType.SelectedValue.ToString());
             objPRReq.OID = oid;
-            objPRReq.Status = "Active";
             PRResp r = objPRIBC.getItemInventory4SerialNo(objPRReq);
             DataTable dt = r.GetTable;
             if (dt.Rows.Count > 0)
@@ -130,6 +129,11 @@ public partial class CICTInventory_ItemHistoryReport : System.Web.UI.Page
         if (dt.Rows.Count > 0)
         {
             rptr_Inventory.DataSource = dt;
+            rptr_Inventory.DataBind();
+        }
+        else
+        {
+            rptr_Inventory.DataSource = null;
             rptr_Inventory.DataBind();
         }
     }

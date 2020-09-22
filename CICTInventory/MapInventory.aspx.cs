@@ -119,7 +119,6 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
         {
             objPRReq.ITID = int.Parse(ddl_ItemType.SelectedValue.ToString());
             objPRReq.OID = oid;
-            objPRReq.Status = "Active";
             PRResp r = objPRIBC.getItemInventory4SerialNo(objPRReq);
             DataTable dt = r.GetTable;
             if (dt.Rows.Count > 0)
@@ -147,7 +146,6 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
             objPRReq.ITID = int.Parse(ddl_ItemType.SelectedValue.ToString());
             objPRReq.SerialNo = ddl_SerialNo.SelectedItem.Text.Trim();
             objPRReq.OID = oid;
-            objPRReq.Status = "Active";
             PRResp r = objPRIBC.getItemInventory_SerialNo(objPRReq);
             DataTable dt = r.GetTable;
             if (dt.Rows.Count > 0)
@@ -537,6 +535,7 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
     }
     public void getAllItemsinInventory()
     {
+        objPRReq.Status = "Idle";
         if (ddl_ItemTypes.SelectedIndex > 0)
         {
             objPRReq.OID = oid;

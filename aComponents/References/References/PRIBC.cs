@@ -5422,13 +5422,13 @@ namespace NIRDPR.RK.PRReferences
         }
         public PRResp getAvailableItemInventory(PRReq objPRReq)
         {
-            string s = "select * from CIT_tbl_ItemInventory where OID='" + objPRReq.OID + "' and Status='Active' ";
+            string s = "select * from CIT_tbl_ItemInventory where OID='" + objPRReq.OID + "' and Status='" + objPRReq.Status + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
         public PRResp getAvailableItemInventory_ITID(PRReq objPRReq)
         {
-            string s = "select * from CIT_tbl_ItemInventory where OID='" + objPRReq.OID + "' and ITID='" + objPRReq.ITID + "' and Status='Active' ";
+            string s = "select * from CIT_tbl_ItemInventory where OID='" + objPRReq.OID + "' and ITID='" + objPRReq.ITID + "' and Status='" + objPRReq.Status + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
@@ -5447,7 +5447,7 @@ namespace NIRDPR.RK.PRReferences
 
         public PRResp getItemInventory4SerialNo(PRReq objPRReq)
         {
-            string s = "select distinct * from CIT_tbl_ItemInventory where ITID='" + objPRReq.ITID + "' and OID='" + objPRReq.OID + "' and Status='" + objPRReq.Status + "' ";
+            string s = "select distinct * from CIT_tbl_ItemInventory where ITID='" + objPRReq.ITID + "' and OID='" + objPRReq.OID + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
@@ -5663,6 +5663,8 @@ namespace NIRDPR.RK.PRReferences
         {
             string insert = "insert into CIT_tbl_InventoryMapping (OID,ITID,ItemName,Model,SerialNo,Manufacturer,ComputerNumber,Warranty,EmpID,Name,Design,Email,Mobile,DID,DeptID,Location,Status,Dated,UID,UName,Flag1) values('" + objPRReq.OID + "','" + objPRReq.ITID + "','" + objPRReq.ItemName + "','" + objPRReq.ModelType + "','" + objPRReq.SerialNo + "','" + objPRReq.Manufacturer + "','" + objPRReq.ComputerNo + "','" + objPRReq.Warranty + "','" + objPRReq.EmpID + "','" + objPRReq.Name + "','" + objPRReq.Design + "','" + objPRReq.Email + "','" + objPRReq.Mobile + "','" + objPRReq.DID + "','" + objPRReq.DeptID + "','" + objPRReq.Location + "','" + objPRReq.Status + "','" + objPRReq.Dated + "','" + objPRReq.UID + "','" + objPRReq.UName + "','" + objPRReq.Flag1 + "')";
             objPRResp.Count = Connections.ProcessQuery(insert);
+            string update = "update CIT_tbl_ItemInventory set Status = 'Active' where SerialNo = '" + objPRReq.SerialNo + "'";
+            objPRResp.Count = Connections.ProcessQuery(update);
             return objPRResp;
         }
 
@@ -5705,7 +5707,9 @@ namespace NIRDPR.RK.PRReferences
 
         public PRResp ReleaseMappedItem_EmpID(PRReq objPRReq)
         {
-            string update = "update CIT_tbl_InventoryMapping set Flag1='" + objPRReq.Flag1 + "' where OID='" + objPRReq.OID + "' and MIID='" + objPRReq.MIID + "' and Status='" + objPRReq.Status + "' ";
+            string update = "update CIT_tbl_InventoryMapping set Flag1='" + objPRReq.Flag1 + "' , Returned ='" + DateTime.Now + "' where OID='" + objPRReq.OID + "' and MIID='" + objPRReq.MIID + "' and Status='" + objPRReq.Status + "' ";
+            objPRResp.Count = Connections.ProcessQuery(update);
+            update = "update CIT_tbl_ItemInventory set Status = 'Idle' where SerialNo = (Select SerialNo from CIT_tbl_InventoryMapping where MIID ='" + objPRReq.MIID + "')";
             objPRResp.Count = Connections.ProcessQuery(update);
             return objPRResp;
         }

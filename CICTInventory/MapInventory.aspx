@@ -189,36 +189,42 @@
 <HeaderTemplate>
 <table width="100%" border="1" class="table" style="table-layout:fixed; font-size:12px; line-height:30px; font-family:Tahoma; vertical-align:middle; border-collapse: collapse; margin:0;">
 <thead><tr>
-<th width="5%">SNO</th>
+<th width="10%">SNO</th>
+<th width="10%">Item Type</th>
 <th width="10%">Item Name</th>
 <th width="10%">Manufacture</th>
-<th width="10%">Model</th>
-<th width="10%">Serial No</th>
-<th width="5%">Status</th>
+<th width="15%">Model</th>
+<th width="15%">Serial No</th>
+<th width="10%">Item No</th>
+<th width="10%">Status</th>
 <th width="10%">Warranty</th>
 </tr>
 </thead>
 </HeaderTemplate>
 <ItemTemplate>
-<tbody><tr>
-<td width="5%" align='center'><%#Container.ItemIndex+1 %></td>
+<tbody><tr  align='center'>
+<td width="10%"><%#Container.ItemIndex+1 %></td>
 <td width="10%"><%#Eval("ItemType")%></td>
+<td width="10%"><%#Eval("ItemName")%></td>
 <td width="10%"><%#Eval("Manufacturer")%></td>
-<td width="10%"><%#Eval("Model")%></td>
-<td width="10%"><%#Eval("SerialNo")%></td>
-<td width="5%"><%#Eval("Status")%></td>
+<td width="15%"><%#Eval("Model")%></td>
+<td width="15%"><%#Eval("SerialNo")%></td>
+<td width="10%"><%#Eval("ComputerNumber")%></td>
+<td width="10%"><%#Eval("Status")%></td>
 <td width="10%"><%#Eval("Warranty")%></td>
 </tr>
 </tbody>
 </ItemTemplate>
 <AlternatingItemTemplate>
-<tr style="background:#F0F4FF;">
-<td width="5%" align='center'><%#Container.ItemIndex+1 %></td>
+<tr style="background:#F0F4FF; "  align='center'>
+<td width="10%"><%#Container.ItemIndex+1 %></td>
 <td width="10%"><%#Eval("ItemType")%></td>
+<td width="10%"><%#Eval("ItemName")%></td>
 <td width="10%"><%#Eval("Manufacturer")%></td>
-<td width="10%"><%#Eval("Model")%></td>
-<td width="10%"><%#Eval("SerialNo")%></td>
-<td width="5%"><%#Eval("Status")%></td>
+<td width="15%"><%#Eval("Model")%></td>
+<td width="15%"><%#Eval("SerialNo")%></td>
+<td width="10%"><%#Eval("ComputerNumber")%></td>
+<td width="10%"><%#Eval("Status")%></td>
 <td width="10%"><%#Eval("Warranty")%></td>
 </tr>
 

@@ -60,7 +60,7 @@
 <asp:LinkButton ID="lbl_approve" runat="server" CommandName="Approve" CommandArgument='<%#Eval("RID")%>' ToolTip="Approve"><i class="fa fa-check" style="font-size:large; color:Green;"></i></asp:LinkButton>
 </td>
 <td width="5%" class="actions" align='center'>
-<asp:LinkButton ID="lbl_Del" runat="server" ToolTip="Reject" CommandName="rid" CommandArgument='<%#Eval("RID")%>'><i class="fa fa-trash" style="font-size:large; color:Red;"></i></asp:LinkButton>
+<asp:LinkButton ID="lbl_Del" runat="server" ToolTip="Reject" CommandName="rid" CommandArgument='<%#Eval("RID")%>'><i class="fa fa-times" style="font-size:large; color:Red;"></i></asp:LinkButton>
 </td>
 
 </tr>
