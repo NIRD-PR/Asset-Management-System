@@ -57,7 +57,7 @@
 <td width="15%" align="center"><asp:Label runat="server" CssClass='<%#GetColor(Eval("Status").ToString()) %>'><%#Eval("Status")%></asp:Label></td>
 <td  width="25%" align="center"><%#Eval("Note")%></td>
 <td width="5%" class="actions" align='center'>
-<asp:LinkButton ID="lbl_approve" runat="server" CommandName="Approve" CommandArgument='<%#Eval("RID")%>' ToolTip="Approve"><i class="fa fa-check" style="font-size:large; color:Green;"></i></asp:LinkButton>
+<asp:LinkButton ID="lbl_approve" runat="server" CommandName="Approve" OnClientClick= "return confirm('Are you Sure To Approve Request?');" CommandArgument='<%#Eval("RID")%>' ToolTip="Approve"><i class="fa fa-check" style="font-size:large; color:Green;"></i></asp:LinkButton>
 </td>
 <td width="5%" class="actions" align='center'>
 <asp:LinkButton ID="lbl_Del" runat="server" ToolTip="Reject" CommandName="rid" CommandArgument='<%#Eval("RID")%>'><i class="fa fa-times" style="font-size:large; color:Red;"></i></asp:LinkButton>
@@ -82,6 +82,7 @@
           <asp:HiddenField ID="hdn_rid" runat="server" ClientIDMode="Static" />
         <asp:TextBox ID="txt_remark" runat="server" CssClass="form-control"></asp:TextBox><br />
         <asp:LinkButton ID="btn_Submit" runat="server" CssClass="btn btn-success" Text="Reject" OnClick="btn_Submit_Click"/>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

@@ -119,7 +119,8 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
         {
             objPRReq.ITID = int.Parse(ddl_ItemType.SelectedValue.ToString());
             objPRReq.OID = oid;
-            PRResp r = objPRIBC.getItemInventory4SerialNo(objPRReq);
+            objPRReq.Status = "Idle";
+            PRResp r = objPRIBC.getItemInventory4SerialNobyStatus(objPRReq);
             DataTable dt = r.GetTable;
             if (dt.Rows.Count > 0)
             {

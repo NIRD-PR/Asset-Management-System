@@ -5451,6 +5451,13 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
+
+        public PRResp getItemInventory4SerialNobyStatus(PRReq objPRReq)
+        {
+            string s = "select distinct * from CIT_tbl_ItemInventory where ITID='" + objPRReq.ITID + "' and OID='" + objPRReq.OID + "' and Status = '" + objPRReq.Status + "' ";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
         public PRResp getItemInventory4SerialNo_EmpID(PRReq objPRReq)
         {
             string s = "select distinct * from CIT_tbl_ItemInventory where ITID='" + objPRReq.ITID + "' and EmpID='" + objPRReq.EmpID + "' and OID='" + objPRReq.OID + "' and Status='" + objPRReq.Status + "' ";
