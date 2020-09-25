@@ -18,6 +18,7 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
     {
         getAdminUser();
         ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "ChosenDropDown", "ChosenDropDown();", true);
+        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "dt", "dt();", true);
         if (!IsPostBack)
         {
             getOldNew();

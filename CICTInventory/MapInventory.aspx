@@ -23,6 +23,14 @@
             $("#<%=ddl_ItemTypes.ClientID%>").chosen();
         }
     </script>
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <script type="text/javascript">
+        function dt() {
+            $('#tb').DataTable();
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
 <%--<asp:UpdatePanel ID="up" runat="server">--%>
@@ -187,7 +195,7 @@
 </center>
 <asp:Repeater ID="rptr_InventoryData" runat="server" OnItemCommand="rptr_InventoryData_ItemCommand">
 <HeaderTemplate>
-<table width="100%" border="1" class="table" style="table-layout:fixed; font-size:12px; line-height:30px; font-family:Tahoma; vertical-align:middle; border-collapse: collapse; margin:0;">
+<table id="tb" width="100%" border="1" class="table" style="table-layout:fixed; font-size:12px; line-height:30px; font-family:Tahoma; vertical-align:middle; border-collapse: collapse; margin:0;">
 <thead><tr>
 <th width="10%">SNO</th>
 <th width="10%">Item Type</th>
@@ -200,9 +208,10 @@
 <th width="10%">Warranty</th>
 </tr>
 </thead>
+<tbody>
 </HeaderTemplate>
 <ItemTemplate>
-<tbody><tr  align='center'>
+<tr  align='center'>
 <td width="10%"><%#Container.ItemIndex+1 %></td>
 <td width="10%"><%#Eval("ItemType")%></td>
 <td width="10%"><%#Eval("ItemName")%></td>
@@ -213,7 +222,6 @@
 <td width="10%"><%#Eval("Status")%></td>
 <td width="10%"><%#Eval("Warranty")%></td>
 </tr>
-</tbody>
 </ItemTemplate>
 <AlternatingItemTemplate>
 <tr style="background:#F0F4FF; "  align='center'>
@@ -229,6 +237,10 @@
 </tr>
 
 </AlternatingItemTemplate>
+    <FooterTemplate>
+       </tbody>
+        </table>
+    </FooterTemplate>
 </asp:Repeater>
 </asp:Panel>
 </div>
@@ -240,8 +252,7 @@
 </div>
 </div>
 </div>
-</div>
-</div></ContentTemplate>
+</ContentTemplate>
 <%--</asp:UpdatePanel>--%>
 
 </asp:Content>

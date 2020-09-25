@@ -35,8 +35,16 @@
             $("#<%=ddl_ItemType.ClientID%>").chosen();
         }
     </script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <script type="text/javascript">
+        function dt() {
+            $('#tb').DataTable();
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
+    <ContentTemplate>
 <div class="content-page">
 <div class="content">
 <div class="container">
@@ -123,7 +131,7 @@
 </center>
 <asp:Repeater ID="rptr_InventoryData" runat="server" onitemcommand="rptr_InventoryData_ItemCommand">
 <HeaderTemplate>
-<table width="100%" border="1" class="table" style="table-layout:fixed; font-size:12px; line-height:30px; font-family:Tahoma; vertical-align:middle; border-collapse: collapse; margin:0;">
+<table id="tb" width="100%" border="1" class="table" style="table-layout:fixed; font-size:12px; line-height:30px; font-family:Tahoma; vertical-align:middle; border-collapse: collapse; margin:0;">
 <thead><tr>
 <th width="5%">SNO</th>
 <th width="10%">Item Name</th>
@@ -132,12 +140,14 @@
 <th width="10%">Serial No</th>
 <th width="5%">Status</th>
 <th width="10%">Warranty</th>
-<th width="10%" colspan="2">Actions</th>
+<th width="5%">Edit</th>
+<th width="5%">Delete</th>
 </tr>
 </thead>
+<tbody>
 </HeaderTemplate>
 <ItemTemplate>
-<tbody><tr align="center">
+<tr align="center">
 <td width="5%"><%#Container.ItemIndex+1 %></td>
 <td width="10%"><%#Eval("ItemType")%></td>
 <td width="10%"><%#Eval("Manufacturer")%></td>
@@ -145,14 +155,13 @@
 <td width="10%"><%#Eval("SerialNo")%></td>
 <td width="5%" ><asp:Label runat="server" CssClass='<%#GetColor(Eval("Status").ToString()) %>'> <%#Eval("Status")%></asp:Label></td>
 <td width="10%"><%#Eval("Warranty")%></td>
-<td width="5%" class="actions" align='center'>
+<td width="5%">
 <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Edit" CommandArgument='<%#Eval("IID")%>' ToolTip="Edit"><i class="fa fa-pencil" style="font-size:large; color:Black;"></i></asp:LinkButton>
 </td>
-<td width="5%" class="actions" align='center'>
+<td width="5%">
 <asp:LinkButton ID="lbl_Del" runat="server" CommandName="Delete" CommandArgument='<%#Eval("IID")%>' OnClientClick= "return confirm('Are you Sure To Delete?');" ToolTip="Delete"><i class="fa fa-trash" style="font-size:large; color:Red;"></i></asp:LinkButton>
 </td>
 </tr>
-</tbody>
 </ItemTemplate>
 <AlternatingItemTemplate>
 <tr style="background:#F0F4FF;" align="center">
@@ -173,6 +182,7 @@
 
 </AlternatingItemTemplate>
     <FooterTemplate>
+        </tbody>
         </table>
     </FooterTemplate>
 </asp:Repeater>
@@ -187,5 +197,6 @@
 </div>
 </div>
 </div>
+        </ContentTemplate>
 </asp:Content>
 
