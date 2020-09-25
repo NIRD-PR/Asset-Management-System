@@ -81,10 +81,11 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             txt_PurchaseDate.Text = dt.Rows[0]["DOP"].ToString();
             txt_Vendor.Text = dt.Rows[0]["Vendor"].ToString();
             txt_WarrantyDate.Text = dt.Rows[0]["WarrantyDate"].ToString();
+            ddl_status.SelectedValue = dt.Rows[0]["Status"].ToString();
             string warranty = dt.Rows[0]["Warranty"].ToString();
-            if(warranty == "No Warranty / No AMC")
+            if (warranty == "Warranty")
             {
-                ddl_Warranty.SelectedIndex = 3;
+                ddl_Warranty.SelectedIndex = 1;
             }
             else if (warranty == "AMC")
             {
@@ -92,24 +93,7 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             }
             else
             {
-                ddl_Warranty.SelectedIndex = 1;
-            }
-            string status = dt.Rows[0]["Status"].ToString();
-            if (status == "Abandoned")
-            {
-                ddl_status.SelectedIndex = 3;
-            }
-            else if (status == "Inactive")
-            {
-                ddl_status.SelectedIndex = 2;
-            }
-            else if( status == "Active") 
-            {
-                ddl_status.SelectedIndex = 1;
-            }
-            else
-            {
-                ddl_status.SelectedIndex = 0;
+                ddl_Warranty.SelectedIndex = 3;
             }
             btn_Submit.Text = "Update";
         }

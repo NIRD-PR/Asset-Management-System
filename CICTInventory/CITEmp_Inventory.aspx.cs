@@ -230,18 +230,18 @@ public partial class Inventory_CITInventory : System.Web.UI.Page
     }
     protected void rptr_InventoryData_ItemCommand(object source, DataListCommandEventArgs e)
     {
-        if (e.CommandName == "Edit")
-        {
-            Response.Redirect("../CIT_MAPInv/{0}?st=" + e.CommandArgument.ToString());
-        }
+        //if (e.CommandName == "Edit")
+        //{
+        //    Response.Redirect("../CIT_MAPInv/{0}?st=" + e.CommandArgument.ToString());
+        //}
 
-        if (e.CommandName == "Delete")
-        {
-            objPRReq.OID = oid;
-            objPRReq.MIID = int.Parse(e.CommandArgument.ToString());
-            objPRIBC.DelMappedITInvetoryItem(objPRReq);
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Item Deleted Successfully..!!!'); window.open('../CIT_EInv/{0}','_self');", true);
-        }
+        //if (e.CommandName == "Delete")
+        //{
+        //    objPRReq.OID = oid;
+        //    objPRReq.MIID = int.Parse(e.CommandArgument.ToString());
+        //    objPRIBC.DelMappedITInvetoryItem(objPRReq);
+        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Item Deleted Successfully..!!!'); window.open('../CIT_EInv/{0}','_self');", true);
+        //}
 
         if (e.CommandName == "Release")
         {

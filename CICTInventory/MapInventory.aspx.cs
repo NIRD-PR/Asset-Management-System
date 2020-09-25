@@ -21,12 +21,12 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
              getAllItemTypes();
              getAllItemsinInventory();
              getEmpType();
-             if (Request.QueryString["st"] != null)
-             {
-                 hdn_MIID.Value = Request.QueryString["st"].ToString();
-                 Update();
-             }
-            //getItemTypes();
+            // Updating of mapping feature (removed)
+            //if (Request.QueryString["st"] != null)
+            //{
+            //    hdn_MIID.Value = Request.QueryString["st"].ToString();
+            //    Update();
+            //}
             getItemTypes();
         }
     }
@@ -50,46 +50,47 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
             Response.Redirect("~/Default.aspx");
         }
     }
-    public void Update()
-    {
-        objPRReq.MIID = int.Parse(hdn_MIID.Value);
-        objPRReq.OID = oid;
-        objPRReq.Status = "Active";
-        PRResp r = objPRIBC.getMappedInventory_MIID(objPRReq);
-        DataTable dt = r.GetTable;
-        if (dt.Rows.Count > 0)
-        {
-            ddl_ItemType.SelectedIndex = int.Parse(dt.Rows[0]["ITID"].ToString());
-            getSerialNos();
-            objPRReq.ITID = int.Parse(dt.Rows[0]["ITID"].ToString());
-            objPRReq.SerialNo = dt.Rows[0]["SerialNo"].ToString();
-            PRResp r1 = objPRIBC.getItemInventory_SerialNo(objPRReq);
-            DataTable dt1 = r1.GetTable;
-            ddl_SerialNo.SelectedValue = dt1.Rows[0]["IID"].ToString();
-            objPRReq.EmpID = double.Parse(dt.Rows[0]["EmpID"].ToString());
-            PRResp r2 = objPRIBC.getEmpDetails_EmpID(objPRReq);
-            DataTable dt2 = r2.GetTable;
-            if(dt2.Rows.Count < 1)
-            {
-                r2 = objPRIBC.getPSEmpDetails_EmpID(objPRReq);
-                dt2 = r2.GetTable;
-            }
-            ddl_EmpType.SelectedIndex = int.Parse(dt2.Rows[0]["EGID"].ToString());
-            getEmpNames();
-            ddl_EmpName.SelectedValue = dt2.Rows[0]["EmpID"].ToString();
-            getEmpDetails();
-            getSerialNoDetails();
+    //public void Update()
+    //{
+    //    objPRReq.MIID = int.Parse(hdn_MIID.Value);
+    //    objPRReq.OID = oid;
+    //    objPRReq.Status = "Active";
+    //    PRResp r = objPRIBC.getMappedInventory_MIID(objPRReq);
+    //    DataTable dt = r.GetTable;
+    //    if (dt.Rows.Count > 0)
+    //    {
+    //        ddl_ItemType.SelectedIndex = int.Parse(dt.Rows[0]["ITID"].ToString());
+    //        getSerialNos();
+    //        objPRReq.ITID = int.Parse(dt.Rows[0]["ITID"].ToString());
+    //        // next line causes error because the asset with this serial no. is no longer idle
+    //        objPRReq.SerialNo = dt.Rows[0]["SerialNo"].ToString();
+    //        PRResp r1 = objPRIBC.getItemInventory_SerialNo(objPRReq);
+    //        DataTable dt1 = r1.GetTable;
+    //        ddl_SerialNo.SelectedValue = dt1.Rows[0]["IID"].ToString();
+    //        objPRReq.EmpID = double.Parse(dt.Rows[0]["EmpID"].ToString());
+    //        PRResp r2 = objPRIBC.getEmpDetails_EmpID(objPRReq);
+    //        DataTable dt2 = r2.GetTable;
+    //        if(dt2.Rows.Count < 1)
+    //        {
+    //            r2 = objPRIBC.getPSEmpDetails_EmpID(objPRReq);
+    //            dt2 = r2.GetTable;
+    //        }
+    //        ddl_EmpType.SelectedIndex = int.Parse(dt2.Rows[0]["EGID"].ToString());
+    //        getEmpNames();
+    //        ddl_EmpName.SelectedValue = dt2.Rows[0]["EmpID"].ToString();
+    //        getEmpDetails();
+    //        getSerialNoDetails();
 
-            //lbl_SerialNo.Text = dt.Rows[0]["SerialNo"].ToString();
-            //lbl_ItemType.Text = dt.Rows[0]["ItemName"].ToString();
-            //lbl_EmpName.Text = dt.Rows[0]["Name"].ToString();
-            //lbl_Warranty.Text = dt.Rows[0]["Warranty"].ToString();
-            //lbl_Manufacturer.Text = dt.Rows[0]["Manufacturer"].ToString();
-            //lbl_Model.Text = dt.Rows[0]["Model"].ToString();
+    //        //lbl_SerialNo.Text = dt.Rows[0]["SerialNo"].ToString();
+    //        //lbl_ItemType.Text = dt.Rows[0]["ItemName"].ToString();
+    //        //lbl_EmpName.Text = dt.Rows[0]["Name"].ToString();
+    //        //lbl_Warranty.Text = dt.Rows[0]["Warranty"].ToString();
+    //        //lbl_Manufacturer.Text = dt.Rows[0]["Manufacturer"].ToString();
+    //        //lbl_Model.Text = dt.Rows[0]["Model"].ToString();
 
-            btn_Submit.Text = "Update";
-        }
-    }
+    //        btn_Submit.Text = "Update";
+    //    }
+    //}
     public string convertQuotes(string str)
     {
         return str.Replace("'", "''");
@@ -573,6 +574,18 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
                 rptr_InventoryData.DataBind();
                 lbl_Count.Text = "No.of Items Listed :" + dt.Rows.Count.ToString();
             }
+        }
+    }
+
+    protected void rptr_InventoryData_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if(e.CommandName == "select")
+        {
+            string[] args = e.CommandArgument.ToString().Split(',');
+            ddl_ItemType.SelectedValue = args[0];
+            getSerialNos();
+            ddl_SerialNo.SelectedValue = args[1];
+            getSerialNoDetails();
         }
     }
 }

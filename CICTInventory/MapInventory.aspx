@@ -185,7 +185,7 @@
 <center><img src="../assets/images/title.png" height="80" width="400"  alt=""/>
 <p style="font-size:14px; margin-top:-3px;">CICT Inventory Stock of <asp:Label ID="lbl_ItemName" runat="server"></asp:Label>  as on <asp:Label ID="lbl_Date" runat="server"></asp:Label></p>
 </center>
-<asp:Repeater ID="rptr_InventoryData" runat="server">
+<asp:Repeater ID="rptr_InventoryData" runat="server" OnItemCommand="rptr_InventoryData_ItemCommand">
 <HeaderTemplate>
 <table width="100%" border="1" class="table" style="table-layout:fixed; font-size:12px; line-height:30px; font-family:Tahoma; vertical-align:middle; border-collapse: collapse; margin:0;">
 <thead><tr>
@@ -208,7 +208,7 @@
 <td width="10%"><%#Eval("ItemName")%></td>
 <td width="10%"><%#Eval("Manufacturer")%></td>
 <td width="15%"><%#Eval("Model")%></td>
-<td width="15%"><%#Eval("SerialNo")%></td>
+<td width="15%"><asp:LinkButton ID="sn" runat="server" CommandName="select" CommandArgument='<%#Eval("ITID")+","+Eval("IID")%>'><%#Eval("SerialNo")%></asp:LinkButton></td>
 <td width="10%"><%#Eval("ComputerNumber")%></td>
 <td width="10%"><%#Eval("Status")%></td>
 <td width="10%"><%#Eval("Warranty")%></td>
@@ -222,7 +222,7 @@
 <td width="10%"><%#Eval("ItemName")%></td>
 <td width="10%"><%#Eval("Manufacturer")%></td>
 <td width="15%"><%#Eval("Model")%></td>
-<td width="15%"><%#Eval("SerialNo")%></td>
+<td width="15%"><asp:LinkButton ID="sn" runat="server" CommandName="select" CommandArgument='<%#Eval("ITID")+","+Eval("IID")%>'><%#Eval("SerialNo")%></asp:LinkButton></td>
 <td width="10%"><%#Eval("ComputerNumber")%></td>
 <td width="10%"><%#Eval("Status")%></td>
 <td width="10%"><%#Eval("Warranty")%></td>
