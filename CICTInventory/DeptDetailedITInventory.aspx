@@ -17,6 +17,14 @@
         return false;
     }    
     </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <script type="text/javascript">
+        function dt() {
+            $('.table').DataTable();
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
 <div class="content-page">
@@ -42,35 +50,36 @@
 <tr><td>
 <asp:Repeater ID="rptr_Inventory" runat="server">
 <HeaderTemplate>
-<table width="100%" class="table table-bordered table-hover" border="1" style="table-layout:fixed; font-family:Tahoma; font-size:12px; border-collapse: collapse; vertical-align:middle; border:0px solid #000; margin:0;">
-<tbody><tr>
+<table width="100%" class="table table-bordered table-hover" border="1" style="table-layout:fixed; font-family:Tahoma; font-size:12px; border-collapse: collapse; vertical-align:middle; margin:0;">
+<thead><tr>
 <td width="5%" align='center'>SNo</td>
-<td width="35%" align='left'>Department</td>
+<td width="30%" align='left'>Department</td>
 <td  width="15%" align='center'>Under AMC</td>
-<td  width="15%" align='center'>Under Warrenty</td>
-<td  width="15%" align='center'>Widthout Warrenty/AMC</td>
+<td  width="15%" align='center'>Under Warranty</td>
+<td  width="20%" align='center'>Without Warranty/AMC</td>
 <td  width="15%" align='center'>Total</td>
 </tr>
-</tbody>
+</thead>
+ <tbody>
 </HeaderTemplate>
 <ItemTemplate>
-<tbody><tr>
+<tr>
 <td width="5%" align='center'><%#Container.ItemIndex+1%></td>
-<td width="35%"  style="padding-left:5px;" align="left"><%#Eval("DeptID")%></td>
+<td width="30%"  style="padding-left:5px;" align="left"><%#Eval("DeptID")%></td>
 <td  width="15%"  style="padding-right:5px;" align="center"><asp:Label ID="lbl_AMC" runat="server"></asp:Label></td>
 <td  width="15%"  style="padding-right:5px;" align="center"><asp:Label ID="lbl_withwarrenty" runat="server"></asp:Label></td>
-<td  width="15%"  style="padding-right:5px;" align="center"><asp:Label ID="lbl_withoutWarrenty" runat="server"></asp:Label></td>
+<td  width="20%"  style="padding-right:5px;" align="center"><asp:Label ID="lbl_withoutWarrenty" runat="server"></asp:Label></td>
 <td  width="15%" style="padding-right:5px;" align="center"><asp:Label ID="lbl_total" runat="server"></asp:Label></td>
 </tr>
-</tbody>
 </ItemTemplate>
 <FooterTemplate>
+</tbody>
 <%--<table width="100%" class="table" style="table-layout:fixed; font-size:12px; border-collapse: collapse; border:0px solid #000; margin:0;">--%>
 <tbody><tr>
-<td width="40%" align='right' colspan="2"> Total : </td>
+<td width="35%" align='right' colspan="2"> Total : </td>
 <td  width="15%"  style="padding-right:5px;" align="center"><asp:Label ID="lbl_GAMC" runat="server" CssClass="lblb"></asp:Label></td>
 <td  width="15%"  style="padding-right:5px;" align="center"><asp:Label ID="lbl_Gwithwarrenty" runat="server"  CssClass="lblb"></asp:Label></td>
-<td  width="15%"  style="padding-right:5px;" align="center"><asp:Label ID="lbl_GwithoutWarrenty" runat="server"  CssClass="lblb"></asp:Label></td>
+<td  width="20%"  style="padding-right:5px;" align="center"><asp:Label ID="lbl_GwithoutWarrenty" runat="server"  CssClass="lblb"></asp:Label></td>
 <td  width="15%"  style="padding-right:5px;" align="center"><asp:Label ID="lbl_GTotal" runat="server"  CssClass="lblb"></asp:Label></td>
 </tr>
 </tbody></table>

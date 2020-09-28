@@ -47,8 +47,8 @@
 <td width="5%" align='center'>SNo</td>
 <td width="35%" align='left'>Manufacturer</td>
 <td  width="15%" align='center'>Under AMC</td>
-<td  width="15%" align='center'>Under Warrenty</td>
-<td  width="15%" align='center'>Widthout Warrenty/AMC</td>
+<td  width="15%" align='center'>Under Warranty</td>
+<td  width="15%" align='center'>Without Warranty/AMC</td>
 <td  width="15%" align='center'>Total</td>
 </tr>
 </tbody>

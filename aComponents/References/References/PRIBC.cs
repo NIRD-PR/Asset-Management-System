@@ -5368,37 +5368,37 @@ namespace NIRDPR.RK.PRReferences
         }
         public PRResp getAllItemInventory_Manufacturer(PRReq objPRReq)
         {
-            string s = "select distinct Manufacturer from CIT_tbl_ItemInventory where Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' ";
+            string s = "select distinct Manufacturer from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
         public PRResp getAllItemInventory_ITemNameNoWarranty(PRReq objPRReq)
         {
-            string s = "select distinct * from CIT_tbl_ItemInventory where Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and Warranty!='Warranty' and Warranty!='AMC' ";
+            string s = "select distinct * from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and Warranty!='Warranty' and Warranty!='AMC' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
         public PRResp getItemInventory_ITID_SerialNo(PRReq objPRReq)
         {
-            string s = "select distinct * from CIT_tbl_ItemInventory where Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and ITID='" + objPRReq.ITID + "' and SerialNo='" + objPRReq.SerialNo + "' ";
+            string s = "select distinct * from CIT_tbl_ItemInventory where Status='Idle' and OID='" + objPRReq.OID + "' and ITID='" + objPRReq.ITID + "' and SerialNo='" + objPRReq.SerialNo + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
         public PRResp getAllItemInventory_ITemNameAMC(PRReq objPRReq)
         {
-            string s = "select distinct * from CIT_tbl_ItemInventory where Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and Warranty='" + objPRReq.Warranty + "' ";
+            string s = "select distinct * from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and Warranty='" + objPRReq.Warranty + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
         public PRResp getAllItemInventory_ITemNameNoWarranty_manufacturer(PRReq objPRReq)
         {
-            string s = "select distinct * from CIT_tbl_ItemInventory where Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and Manufacturer='" + objPRReq.Manufacturer + "' and Warranty!='Warranty' and Warranty!='AMC' ";
+            string s = "select distinct * from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and Manufacturer='" + objPRReq.Manufacturer + "' and Warranty!='Warranty' and Warranty!='AMC' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
         public PRResp getAllItemInventory_ITemName_Manufacturer_AMC(PRReq objPRReq)
         {
-            string s = "select distinct * from CIT_tbl_ItemInventory where Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and Warranty='" + objPRReq.Warranty + "' and Manufacturer='" + objPRReq.Manufacturer + "' ";
+            string s = "select distinct * from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and Warranty='" + objPRReq.Warranty + "' and Manufacturer='" + objPRReq.Manufacturer + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }

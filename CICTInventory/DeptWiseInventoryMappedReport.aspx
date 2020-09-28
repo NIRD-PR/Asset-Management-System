@@ -25,6 +25,13 @@
             $("#<%=ddl_Item.ClientID%>").chosen();
         }
     </script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <script type="text/javascript">
+        function dt() {
+            $('#tb1').DataTable();
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
     <div class="content-page">
@@ -45,7 +52,7 @@
 </center>
 <asp:Repeater ID="rptr_Inventory" runat="server">
 <HeaderTemplate>
-<table width="100%" class="table table-bordered table-hover" border="1" style="table-layout:fixed; font-family:Tahoma; font-size:11px; border-collapse: collapse; vertical-align:middle; border:0px solid #000; margin:0;">
+<table id="tb1" width="100%" class="table table-bordered table-hover" border="1" style="table-layout:fixed; font-family:Tahoma; font-size:11px; border-collapse: collapse; vertical-align:middle; border:0px solid #000; margin:0;">
 <thead><tr>
 <td width="5%" align='center'>SNo</td>
 <td width="10%" align='center'>DeptID</td>
@@ -57,9 +64,10 @@
 <td  width="15%" align='center'>Remarks</td>
 </tr>
 </thead>
+<tbody>
 </HeaderTemplate>
 <ItemTemplate>
-<tbody><tr>
+<tr>
 <td width="5%" align='center'><%#Container.ItemIndex+1%></td>
 <td width="10%" align="center"><%#Eval("DeptID")%></td>
 <td  width="10%" align="center"><%#Eval("EmpID")%></td>
@@ -69,9 +77,9 @@
 <td  width="15%" align="center"><%#Eval("SerialNo")%> </td>
 <td  width="15%" align="center"></td>
 </tr>
-</tbody>
 </ItemTemplate>
 <FooterTemplate>
+    </tbody>
     </table>
 </FooterTemplate>
 </asp:Repeater>

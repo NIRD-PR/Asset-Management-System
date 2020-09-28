@@ -17,6 +17,7 @@ public partial class CICTInventory_DeptDetailedITInventory : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         getAdminUser();
+        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "dt", "dt();", true);
         if (!IsPostBack)
         {
             getAllInvItems();

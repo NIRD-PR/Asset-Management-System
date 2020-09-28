@@ -486,33 +486,33 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
             ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Item Type Updated Successfully..!!!'); window.open('../CIT_MAPInv/{0}','_self');", true);
         }
     }
-    protected void txt_SNo_TextChanged(object sender, EventArgs e)
-    {
-        if (ddl_ItemType.SelectedIndex > 0)
-        {
-            objPRReq.OID = oid;
-            objPRReq.Status = "Active";
-            objPRReq.ITID = int.Parse(ddl_ItemType.SelectedValue.ToString());
-            PRResp r = objPRIBC.getAllMappedInventory_ITID_SNo(objPRReq);
-            DataTable dt = r.GetTable;
-            if (dt.Rows.Count > 0)
-            {
-                ddl_SerialNo.Items.Clear();
-                dt.DefaultView.Sort = "SerialNo Asc";
-                ddl_SerialNo.DataSource = dt;
-                ddl_SerialNo.DataTextField = "SerialNo";
-                ddl_SerialNo.DataValueField = "IID";
-                ddl_SerialNo.DataBind();
-                ddl_SerialNo.Items.Insert(0, "--Select SerialNo--");
-            }
-            else
-            {
-                ddl_SerialNo.Items.Clear();
-                ddl_SerialNo.Items.Insert(0, "--No Data found--");
-                ddl_SerialNo.DataBind();
-            }
-        }
-    }
+    //protected void txt_SNo_TextChanged(object sender, EventArgs e)
+    //{
+    //    if (ddl_ItemType.SelectedIndex > 0)
+    //    {
+    //        objPRReq.OID = oid;
+    //        objPRReq.Status = "Active";
+    //        objPRReq.ITID = int.Parse(ddl_ItemType.SelectedValue.ToString());
+    //        PRResp r = objPRIBC.getAllMappedInventory_ITID_SNo(objPRReq);
+    //        DataTable dt = r.GetTable;
+    //        if (dt.Rows.Count > 0)
+    //        {
+    //            ddl_SerialNo.Items.Clear();
+    //            dt.DefaultView.Sort = "SerialNo Asc";
+    //            ddl_SerialNo.DataSource = dt;
+    //            ddl_SerialNo.DataTextField = "SerialNo";
+    //            ddl_SerialNo.DataValueField = "IID";
+    //            ddl_SerialNo.DataBind();
+    //            ddl_SerialNo.Items.Insert(0, "--Select SerialNo--");
+    //        }
+    //        else
+    //        {
+    //            ddl_SerialNo.Items.Clear();
+    //            ddl_SerialNo.Items.Insert(0, "--No Data found--");
+    //            ddl_SerialNo.DataBind();
+    //        }
+    //    }
+    //}
     protected void txt_Name_TextChanged(object sender, EventArgs e)
     {
         getEmpNames();

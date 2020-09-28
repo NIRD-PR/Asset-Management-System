@@ -37,20 +37,20 @@
 </table>
 <asp:Repeater ID="rptr_Inventory" runat="server">
 <HeaderTemplate>
-<table width="100%" class="table table-bordered table-hover" border="1" style="table-layout:fixed; font-family:Tahoma; font-size:12px; border-collapse: collapse; vertical-align:middle; border:0px solid #000; margin:0;">
-<tbody><tr>
+<table id="tb1" width="100%" class="table table-bordered table-hover" border="1" style="table-layout:fixed; font-family:Tahoma; font-size:12px; border-collapse: collapse; vertical-align:middle; border:0px solid #000; margin:0;">
+<thead><tr>
 <td width="5%" align='center'>SNo</td>
 <td width="35%" align='left'>Item Type</td>
 <td  width="15%" align='center'>Under AMC</td>
-<td  width="15%" align='center'>Under Warrenty</td>
-<td  width="15%" align='center'>Widthout Warrenty/AMC</td>
+<td  width="15%" align='center'>Under Warranty</td>
+<td  width="15%" align='center'>Without Warranty/AMC</td>
 <td  width="15%" align='center'>Total</td>
 </tr>
-</tbody>
+</thead>
+<tbody>
 </HeaderTemplate>
 <ItemTemplate>
-
-<tbody><tr>
+<tr>
 <td width="5%" align='center'><%#Container.ItemIndex+1%></td>
 <td width="35%"  style="padding-left:5px;" align="left"><%#Eval("ItemType")%></td>
 <td  width="15%"  style="padding-right:5px;" align="center"><asp:Label ID="lbl_AMC" runat="server"></asp:Label></td>
@@ -58,10 +58,10 @@
 <td  width="15%"  style="padding-right:5px;" align="center"><asp:Label ID="lbl_withoutWarrenty" runat="server"></asp:Label></td>
 <td  width="15%" style="padding-right:5px;" align="center"><asp:Label ID="lbl_total" runat="server"></asp:Label></td>
 </tr>
-</tbody>
 
 </ItemTemplate>
 <FooterTemplate>
+    </tbody>
 <%--<table width="100%" class="table" style="table-layout:fixed; font-size:12px; border-collapse: collapse; border:0px solid #000; margin:0;">--%>
 <tbody><tr>
 <td width="40%" align='right' colspan="2"> Total : </td>

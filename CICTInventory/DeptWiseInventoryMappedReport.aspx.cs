@@ -16,10 +16,11 @@ public partial class CICTInventory_DeptWiseInventoryMappedReport : System.Web.UI
     {
         getAdminUser();
         ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "ChosenDropDown", "ChosenDropDown();", true);
+        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "dt", "dt();", true);
         if (!IsPostBack)
         {
             getITemType();
-            
+            getAllInvItems();
         }
     }
     public void getITemType()
@@ -61,10 +62,20 @@ public partial class CICTInventory_DeptWiseInventoryMappedReport : System.Web.UI
     {
         objPRReq.OID = oid;
         objPRReq.Status = "Active";
-        objPRReq.ITID = int.Parse(ddl_Item.SelectedValue.ToString());
-        PRResp r = objPRIBC.getAllItemInventory_DeptWise_NameWise_ITID(objPRReq);
-        DataTable dt = r.GetTable;
-        if(dt.Rows.Count>0)
+        PRResp r;
+        DataTable dt;
+        if (ddl_Item.SelectedIndex > 0)
+        {
+            objPRReq.ITID = int.Parse(ddl_Item.SelectedValue.ToString());
+            r = objPRIBC.getAllItemInventory_DeptWise_NameWise_ITID(objPRReq);
+            dt = r.GetTable;
+        }
+        else
+        {
+            r = objPRIBC.getAllItemInventory_DeptWise_NameWise(objPRReq);
+            dt = r.GetTable;
+        }
+        if (dt.Rows.Count > 0)
         {
             rptr_Inventory.DataSource = dt;
             rptr_Inventory.DataBind();
@@ -74,13 +85,6 @@ public partial class CICTInventory_DeptWiseInventoryMappedReport : System.Web.UI
 
     protected void btn_Submit_Click(object sender, EventArgs e)
     {
-        if(ddl_Item.SelectedIndex>0)
-        {
-            getAllInvItems();
-        }
-        else
-        {
-
-        }
+        getAllInvItems();
     }
 }
