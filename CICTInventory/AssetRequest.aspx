@@ -19,6 +19,15 @@
             $('#editModal').modal('show');
         }
     </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <script type="text/javascript">
+        function dt() {
+            $('#tb1').DataTable();
+            $('#tb2').DataTable();
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
 <asp:UpdatePanel ID="up" runat="server">
@@ -34,39 +43,41 @@
 <div class="row" style="margin: 20px 0 10px 0">
 <asp:Repeater ID="rptr_reqPending" runat="server" OnItemCommand="rptr_request_ItemCommand">
 <HeaderTemplate>
-<table width="100%" class="table table-bordered table-hover" border="1" style="table-layout:fixed; font-family:Tahoma; font-size:11px; border-collapse: collapse; vertical-align:middle; border:0px solid #000; margin:0;">
+<table id="tb1" width="100%" class="table table-bordered table-hover" border="1" style="table-layout:fixed; font-family:Tahoma; font-size:11px; border-collapse: collapse; vertical-align:middle; margin:0;">
 <thead><tr>
 <td width="5%" align='center'>SNo</td>
 <td width="10%" align='center'>Item Name</td>
-<td width="5%" align='center'>EmpID</td>
-<td width="15%" align='center'>EmpName</td>
-<td width="15%" align='center'>Date</td>
-<td width="15%" align='center'>Status</td>
-<td width="25%" align='center'>Note</td>
-<td width="10%" colspan="2" align="center">Actions</td>
+<td width="8%" align='center'>EmpID</td>
+<td width="20%" align='center'>EmpName</td>
+<td width="13%" align='center'>Date</td>
+<td width="8%" align='center'>Status</td>
+<td width="24%" align='center'>Note</td>
+<td width="6%" align="center">Approve</td>
+<td width="6%" align="center">Reject</td>
 </tr>
 </thead>
+<tbody>
 </HeaderTemplate>
 <ItemTemplate>
-<tbody><tr>
+<tr>
 <td width="5%" align='center'><%#Container.ItemIndex+1%></td>
 <td width="10%" align="center"><%#Eval("ItemName")%></td>
-<td  width="5%" align="center"><%#Eval("EmpID")%></td>
-<td  width="15%" align="center"><%#Eval("Name")%></td>
-<td  width="15%" align="center"><%#Eval("Date")%></td>
-<td width="15%" align="center"><asp:Label runat="server" CssClass='<%#GetColor(Eval("Status").ToString()) %>'><%#Eval("Status")%></asp:Label></td>
-<td  width="25%" align="center"><%#Eval("Note")%></td>
-<td width="5%" class="actions" align='center'>
+<td  width="8%" align="center"><%#Eval("EmpID")%></td>
+<td  width="20%" align="center"><%#Eval("Name")%></td>
+<td  width="13%" align="center"><%#Eval("Date")%></td>
+<td width="8%" align="center"><asp:Label runat="server" CssClass='<%#GetColor(Eval("Status").ToString()) %>'><%#Eval("Status")%></asp:Label></td>
+<td  width="24%" align="center"><%#Eval("Note")%></td>
+<td width="6%" class="actions" align='center'>
 <asp:LinkButton ID="lbl_approve" runat="server" CommandName="Approve" OnClientClick= "return confirm('Are you Sure To Approve Request?');" CommandArgument='<%#Eval("RID")%>' ToolTip="Approve"><i class="fa fa-check" style="font-size:large; color:Green;"></i></asp:LinkButton>
 </td>
-<td width="5%" class="actions" align='center'>
+<td width="6%" class="actions" align='center'>
 <asp:LinkButton ID="lbl_Del" runat="server" ToolTip="Reject" CommandName="rid" CommandArgument='<%#Eval("RID")%>'><i class="fa fa-times" style="font-size:large; color:Red;"></i></asp:LinkButton>
 </td>
 
 </tr>
-</tbody>
 </ItemTemplate>
 <FooterTemplate>
+    </tbody>
     </table>
 </FooterTemplate>
 </asp:Repeater>
@@ -95,35 +106,36 @@
 <div class="row" style="margin: 20px 0 10px 0">
 <asp:Repeater ID="rptr_req" runat="server" OnItemCommand="rptr_req_ItemCommand">
 <HeaderTemplate>
-<table width="100%" class="table table-bordered table-hover" border="1" style="table-layout:fixed; font-family:Tahoma; font-size:11px; border-collapse: collapse; vertical-align:middle; border:0px solid #000; margin:0;">
+<table id="tb2" width="100%" class="table table-bordered table-hover" border="1" style="table-layout:fixed; font-family:Tahoma; font-size:11px; border-collapse: collapse; vertical-align:middle; margin:0;">
 <thead><tr>
 <td width="5%" align='center'>SNo</td>
 <td width="10%" align='center'>Item Name</td>
-<td width="7%" align='center'>EmpID</td>
+<td width="8%" align='center'>EmpID</td>
 <td width="20%" align='center'>EmpName</td>
-<td width="10%" align='center'>Date</td>
-<td  width="15%" align='center'>Status</td>
-<td  width="30%" align='center'>Remarks</td>
-<td width="3%" align="center">Action</td>
+<td width="13%" align='center'>Date</td>
+<td  width="10%" align='center'>Status</td>
+<td  width="28%" align='center'>Remarks</td>
+<td width="6%" align="center">Edit</td>
 </tr>
 </thead>
+<tbody>
 </HeaderTemplate>
 <ItemTemplate>
-<tbody><tr>
+<tr>
 <td width="5%" align='center'><%#Container.ItemIndex+1%></td>
 <td width="10%" align="center"><%#Eval("ItemName")%></td>
-<td  width="7%" align="center"><%#Eval("EmpID")%></td>
+<td  width="8%" align="center"><%#Eval("EmpID")%></td>
 <td  width="20%" align="center"><%#Eval("Name")%></td>
-<td  width="10%" align="center"><%#Eval("Date")%></td>
-<td  width="15%" align="center"><asp:Label runat="server" CssClass='<%#GetColor(Eval("Status").ToString()) %>'><%#Eval("Status")%></asp:Label></td>
-<td  width="30%" align="center"><%#Eval("Remark")%></td>
-<td width="3%" class="actions" align='center'>
+<td  width="13%" align="center"><%#Eval("Date")%></td>
+<td  width="10%" align="center"><asp:Label runat="server" CssClass='<%#GetColor(Eval("Status").ToString()) %>'><%#Eval("Status")%></asp:Label></td>
+<td  width="28%" align="center"><%#Eval("Remark")%></td>
+<td width="6%" class="actions" align='center'>
 <asp:LinkButton ID="lbl_edit" runat="server" ToolTip="Edit" CommandName="rid" CommandArgument='<%#Eval("RID")%>'><i class="fa fa-pencil" style="font-size:large; color:Blue;"></i></asp:LinkButton>
 </td>
 </tr>
-</tbody>
 </ItemTemplate>
 <FooterTemplate>
+    </tbody>
     </table>
 </FooterTemplate>
 </asp:Repeater>

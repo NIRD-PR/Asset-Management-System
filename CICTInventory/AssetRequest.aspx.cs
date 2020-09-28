@@ -15,6 +15,7 @@ public partial class CICTInventory_AssetRequest : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         getAdminUser();
+        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "dt", "dt();", true);
         if (!IsPostBack)
         {
             getAllRequests();
