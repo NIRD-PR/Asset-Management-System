@@ -5338,31 +5338,31 @@ namespace NIRDPR.RK.PRReferences
         // CIT ItemInventory
         public PRResp getAllItemInventory_ITemNameNoWarranty_Dept(PRReq objPRReq)
         {
-            string s = "select distinct * from CIT_tbl_InventoryMapping where Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and DeptID='" + objPRReq.DeptID + "' and Warranty!='Warranty' and Warranty!='AMC' ";
+            string s = "select distinct * from CIT_tbl_InventoryMapping where Flag1=1 and Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and DeptID='" + objPRReq.DeptID + "' and Warranty!='Warranty' and Warranty!='AMC' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
         public PRResp getAllItemInventory_DeptWise_NameWise(PRReq objPRReq)
         {
-            string s = "select distinct * from CIT_tbl_InventoryMapping where Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' order by DeptID,Name,ItemName ASC ";
+            string s = "select distinct * from CIT_tbl_InventoryMapping where Flag1=1 and Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' order by DeptID,Name,ItemName ASC ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
         public PRResp getAllItemInventory_DeptWise_NameWise_ITID(PRReq objPRReq)
         {
-            string s = "select distinct * from CIT_tbl_InventoryMapping where Status='" + objPRReq.Status + "' and ITID='" + objPRReq.ITID + "' and OID='" + objPRReq.OID + "' order by DeptID,Name,ItemName ASC ";
+            string s = "select distinct * from CIT_tbl_InventoryMapping where Flag1=1 and Status='" + objPRReq.Status + "' and ITID='" + objPRReq.ITID + "' and OID='" + objPRReq.OID + "' order by DeptID,Name,ItemName ASC ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
         public PRResp getAllItemInventory_ITemName_Dept_AMC(PRReq objPRReq)
         {
-            string s = "select distinct * from CIT_tbl_InventoryMapping where Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and Warranty='" + objPRReq.Warranty + "' and DeptID='" + objPRReq.DeptID + "' ";
+            string s = "select distinct * from CIT_tbl_InventoryMapping where Flag1=1 and Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and Warranty='" + objPRReq.Warranty + "' and DeptID='" + objPRReq.DeptID + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
         public PRResp getAllItemInventory_DeptID(PRReq objPRReq)
         {
-            string s = "select distinct DeptID from CIT_tbl_InventoryMapping where Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' order by DeptID Asc  ";
+            string s = "select distinct DeptID from CIT_tbl_InventoryMapping where Flag1=1 and Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' order by DeptID Asc  ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
@@ -5474,6 +5474,20 @@ namespace NIRDPR.RK.PRReferences
         {
             string hod = "delete from CIT_tbl_ItemInventory where  OID='" + objPRReq.OID + "' and IID='" + objPRReq.IID + "' ";
             objPRResp.GetTable = Connections.GetTable(hod);
+            return objPRResp;
+        }
+
+        public PRResp getMappedInventoryDeptWise(PRReq objPRReq)
+        {
+            string s = @"SELECT DeptID
+                , SUM(case when[ItemName] = 'Desktop' then 1 else 0 end) as Desktop
+                ,SUM(case when[ItemName] = 'Laptop' then 1 else 0 end) as Laptop
+                ,SUM(case when[ItemName] = 'Printer' then 1 else 0 end) as Printer
+                ,SUM(case when[ItemName] = 'Scanner' then 1 else 0 end) as Scanner
+                ,SUM(case when[ItemName] = 'All-in-One' then 1 else 0 end) as 'All-in-One'
+                ,SUM(case when[ItemName] = 'Tablet' then 1 else 0 end) as Tablet
+                FROM CIT_tbl_InventoryMapping where Flag1=1 group by DeptID";
+            objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
 

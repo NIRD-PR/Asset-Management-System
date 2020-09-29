@@ -510,8 +510,8 @@
     <Content Include="CICTInventory\DeptWiseInventoryMappedReport.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="CICTInventory\DeptWiseInventoryMappedReport_All.aspx" />
-    <Content Include="CICTInventory\DeptWiseInventoryMappedReport_All.aspx.cs">
+    <Content Include="CICTInventory\DeptWiseInventoryMappedReport_New.aspx" />
+    <Content Include="CICTInventory\DeptWiseInventoryMappedReport_New.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="CICTInventory\DetailedITInventory.aspx" />

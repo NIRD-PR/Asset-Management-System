@@ -24,13 +24,13 @@
     }
 </script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
     <script type="text/javascript">
         function ChosenDropDown() {
-            $("#<%=ddl_EmpType.ClientID%>").chosen(); 
-            $("#<%=ddl_EmpName.ClientID%>").chosen();
+            $("#<%=ddl_EmpType.ClientID%>").select2(); 
+            $("#<%=ddl_EmpName.ClientID%>").select2();
         }
     </script>
 </asp:Content>
