@@ -7,6 +7,11 @@
         var printWindow = window.open('', '', 'height=400,width=600');
         printWindow.document.write('<html><head><title>NIRDPR: CICt Stock Inventory</title>');
         printWindow.document.write('</head><body>');
+        var elements = document.getElementsByClassName("h");
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].style["text-decoration"] = "none";
+            elements[i].style.color = "black";
+        }
         printWindow.document.write(panel.innerHTML);
         printWindow.document.write('</body></html>');
         printWindow.document.close();
@@ -17,23 +22,35 @@
         return false;
     }    
 </script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <style type="text/css">
+        .h{
+            color: black;
+        }
+        .h:hover{
+            color: red;
+        }
+    </style>
     <script type="text/javascript">
         function dt() {
-            $('.table').DataTable();
+            $('.table').DataTable({
+                "autoWidth": false
+            });
+        }
+        function show() {
+            $('#exampleModal').modal('show');
         }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
+<asp:UpdatePanel ID="up" runat="server">
+    <ContentTemplate>
 <div class="content-page">
 <div class="content">
 <div class="container">
 <div class="row">
 <div class="col-lg-12">
 <div class="panel panel-color panel-success">
-<div class="panel-heading"><h3 class="panel-title"> CICT Inventory Report : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="btn_print" runat="server" CssClass="btn btn-primary" OnClientClick = "return PrintPanel();"><i class="fa fa-print"></i></asp:LinkButton><asp:Label ID="lbl_Count" runat="server" CssClass="pull-right"></asp:Label></h3></div>
+<div class="panel-heading"><h3 class="panel-title"> Department-Wise CICT Inventory Report : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="btn_print" runat="server" CssClass="btn btn-primary" OnClientClick = "return PrintPanel();"><i class="fa fa-print"></i></asp:LinkButton><asp:Label ID="lbl_Count" runat="server" CssClass="pull-right"></asp:Label></h3></div>
 <div class="panel-body">
 <div class="row">
 <asp:Panel ID="pnl_print" runat="server">
@@ -43,10 +60,10 @@
 <table width="100%" style="table-layout:fixed; font-family:Tahoma; font-size:12px;">
 <tr><td align="left" width="50%"><asp:Label ID="lbl_ItemCount" runat="server"></asp:Label></td><td align="right" width="50%">Printed Date : <asp:Label ID="lbl_Dated" runat="server"></asp:Label></td></tr>
 </table>
-<asp:Repeater ID="rptr_Inventory" runat="server">
+<asp:Repeater ID="rptr_Inventory" runat="server" OnItemCommand="rptr_Inventory_ItemCommand">
 <HeaderTemplate>
 <table width="100%" class="table table-bordered table-hover table-striped" border="1" style="table-layout:fixed; font-family:Tahoma; font-size:12px; border-collapse: collapse; vertical-align:middle; margin:0;">
-<thead><tr>
+<thead><tr align="center">
 <td width="5%">SNo</td>
 <td width="35%">Department</td>
 <td  width="10%">Desktop</td>
@@ -60,21 +77,21 @@
  <tbody>
 </HeaderTemplate>
 <ItemTemplate>
-<tr>
+<tr align="center">
 <td width="5%"><%#Container.ItemIndex+1%></td>
-<td width="35%"><%#Eval("DeptID")%></td>
-<td width="10%"><%#Eval("Desktop")%></td>
-<td width="10%"><%#Eval("Laptop")%></td>
-<td width="10%"><%#Eval("Printer")%></td>
-<td width="10%"><%#Eval("Scanner")%></td>
-<td width="10%"><%#Eval("All-in-One")%></td>
-<td width="10%"><%#Eval("Tablet")%></td>
+<td width="35%"><asp:LinkButton CssClass="h" ID="dept" runat="server" CommandName="dept" CommandArgument='<%#Eval("DeptID")%>'><%#Eval("DeptID")%></asp:LinkButton></td>
+<td width="10%"><asp:LinkButton CssClass="h" ID="desk" runat="server" CommandArgument='<%#Eval("DeptID") +"|Desktop"%>'><%#Eval("Desktop")%></asp:LinkButton></td>
+<td width="10%"><asp:LinkButton CssClass="h" ID="laptop" runat="server" CommandArgument='<%#Eval("DeptID") +"|Laptop"%>'><%#Eval("Laptop")%></asp:LinkButton></td>
+<td width="10%"><asp:LinkButton CssClass="h" ID="printer" runat="server" CommandArgument='<%#Eval("DeptID") +"|Printer"%>'><%#Eval("Printer")%></asp:LinkButton></td>
+<td width="10%"><asp:LinkButton CssClass="h" ID="scanner" runat="server" CommandArgument='<%#Eval("DeptID") +"|Scanner"%>'><%#Eval("Scanner")%></asp:LinkButton></td>
+<td width="10%"><asp:LinkButton CssClass="h" ID="allinone" runat="server" CommandArgument='<%#Eval("DeptID") +"|All-in-One"%>'><%#Eval("All-in-One")%></asp:LinkButton></td>
+<td width="10%"><asp:LinkButton CssClass="h" ID="tablet" runat="server" CommandArgument='<%#Eval("DeptID") +"|Tablet"%>'><%#Eval("Tablet")%></asp:LinkButton></td>
 </tr>
 </ItemTemplate>
 <FooterTemplate>
 </tbody>
 <%--<table width="100%" class="table" style="table-layout:fixed; font-size:12px; border-collapse: collapse; border:0px solid #000; margin:0;">--%>
-<tbody><tr>
+<tbody><tr align="center">
 <td width="40%" align="right" colspan="2"> Total : </td>
 <td  width="10%"><asp:Label ID="d" runat="server" CssClass="lblb"></asp:Label></td>
 <td  width="10%"><asp:Label ID="l" runat="server"  CssClass="lblb"></asp:Label></td>
@@ -86,6 +103,47 @@
 </tbody></table>
 </FooterTemplate>
 </asp:Repeater>
+ <!--List Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="width: 50%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><asp:Label runat="server" ID="heading" Font-Bold="true"></asp:Label></h5>
+      </div>
+      <div class="modal-body">
+         <asp:Repeater ID="rptr_list" runat="server">
+            <HeaderTemplate>
+            <table id="tb1" width="100%" class="table table-striped table-hover" border="1" style="table-layout:fixed; font-family:Tahoma; font-size:11px; border-collapse: collapse; vertical-align:middle; margin:0;">
+            <thead><tr>
+            <td width="5%" align='center'>SNo</td>
+            <td width="10%" align='center'>EmpID</td>
+            <td width="15%" align='center'>Item Category</td>
+            <td width="35%" align='center'>Name & Design</td>
+            <td width="20%" align='center'>Make & Model</td>
+            <td  width="15%" align='center'>Serial No</td>
+            </tr>
+            </thead>
+            <tbody>
+            </HeaderTemplate>
+            <ItemTemplate>
+            <tr>
+            <td width="5%" align='center'><%#Container.ItemIndex+1%></td>
+            <td width="10%" align="center"><%#Eval("EmpID")%></td>
+            <td width="15%" align="center"><%#Eval("ItemName")%></td>
+            <td  width="35%" align="center"><%#Eval("Name")%>  ,  <%#Eval("Design")%></td>
+            <td  width="20%" align="center"><%#Eval("Manufacturer")%>  ,  <%#Eval("Model")%></td>
+            <td  width="15%" align="center"><%#Eval("SerialNo")%> </td>
+            </tr>
+            </ItemTemplate>
+            <FooterTemplate>
+                </tbody>
+                </table>
+            </FooterTemplate>
+         </asp:Repeater>
+      </div>
+    </div>
+  </div>
+</div>
 </asp:Panel>
 </div>
 </div>
@@ -94,6 +152,7 @@
 </div>
 </div>
 </div>
-
+</ContentTemplate>
+</asp:UpdatePanel>
 </asp:Content>
 

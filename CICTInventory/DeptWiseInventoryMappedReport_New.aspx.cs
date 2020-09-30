@@ -67,4 +67,33 @@ public partial class CICTInventory_DeptWiseInventoryMappedReport : System.Web.UI
         (rptr_Inventory.Controls[rptr_Inventory.Controls.Count - 1].Controls[0].FindControl("a") as Label).Text = a.ToString();
         (rptr_Inventory.Controls[rptr_Inventory.Controls.Count - 1].Controls[0].FindControl("t") as Label).Text = t.ToString();
     }
+
+    protected void rptr_Inventory_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if(e.CommandName == "dept")
+        {
+            objPRReq.DeptID = e.CommandArgument.ToString();
+            objPRReq.Status = "Active";
+            objPRReq.OID = 1;
+            PRResp r = objPRIBC.getAllItemInventoryByDeptID(objPRReq);
+            DataTable dt = r.GetTable;
+            rptr_list.DataSource = dt;
+            rptr_list.DataBind();
+            heading.Text = "Department: " + e.CommandArgument.ToString(); ;
+        }
+        else
+        {
+            string[] args = e.CommandArgument.ToString().Split('|');
+            objPRReq.DeptID = args[0];
+            objPRReq.ItemName = args[1];
+            objPRReq.Status = "Active";
+            objPRReq.OID = 1;
+            PRResp r = objPRIBC.getAllItemInventory_DeptID_ItemName(objPRReq);
+            DataTable dt = r.GetTable;
+            rptr_list.DataSource = dt;
+            rptr_list.DataBind();
+            heading.Text = "Department: " + args[0];
+        }
+        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "pop", "show();", true);
+    }
 }

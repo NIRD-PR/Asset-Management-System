@@ -5366,6 +5366,18 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
+        public PRResp getAllItemInventoryByDeptID(PRReq objPRReq)
+        {
+            string s = "select * from CIT_tbl_InventoryMapping where Flag1=1 and Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and DeptID='" + objPRReq.DeptID + "' order by Name ";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
+        public PRResp getAllItemInventory_DeptID_ItemName(PRReq objPRReq)
+        {
+            string s = "select * from CIT_tbl_InventoryMapping where Flag1=1 and Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and DeptID='" + objPRReq.DeptID + "' order by Name";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
         public PRResp getAllItemInventory_Manufacturer(PRReq objPRReq)
         {
             string s = "select distinct Manufacturer from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' ";

@@ -23,10 +23,6 @@
         return false;
     }
 </script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
     <script type="text/javascript">
         function ChosenDropDown() {
             $("#<%=ddl_EmpType.ClientID%>").select2(); 
@@ -35,8 +31,8 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
-<%--<asp:UpdatePanel ID="up" runat="server">--%>
-<%--<ContentTemplate>--%>
+<asp:UpdatePanel ID="up" runat="server">
+<ContentTemplate>
 <div class="content-page">
 <div class="content">
 <div class="container">
@@ -158,7 +154,7 @@
 </div>
 </div>
 </div>
-<%--</ContentTemplate>--%>
-<%--</asp:UpdatePanel>--%>
+</ContentTemplate>
+</asp:UpdatePanel>
 </asp:Content>
 
