@@ -661,6 +661,7 @@
         routes.MapPageRoute("CIT_InvHome/{UID}", "CIT_InvHome/{UID}", "~/CICTInventory/InventoryHome.aspx");
         routes.MapPageRoute("CIT_InvItems/{UID}", "CIT_InvItems/{UID}", "~/CICTInventory/ItemType.aspx");
         routes.MapPageRoute("CIT_ADDInv/{UID}", "CIT_ADDInv/{UID}", "~/CICTInventory/AddInventory.aspx");
+        routes.MapPageRoute("CIT_ADDInvBulk/{UID}", "CIT_ADDInvBulk/{UID}", "~/CICTInventory/AddInventoryBulk.aspx");
         routes.MapPageRoute("CIT_Location/{UID}", "CIT_Location/{UID}", "~/CICTInventory/Location.aspx");
         routes.MapPageRoute("CIT_Floor/{UID}", "CIT_Floor/{UID}", "~/CICTInventory/Floors.aspx");
         routes.MapPageRoute("CIT_Rooms/{UID}", "CIT_Rooms/{UID}", "~/CICTInventory/RoomNos.aspx");

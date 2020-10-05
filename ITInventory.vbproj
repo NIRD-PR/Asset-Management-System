@@ -470,6 +470,10 @@
     <Content Include="CICTInventory\AddInventory.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="CICTInventory\AddinventoryBulk.aspx" />
+    <Content Include="CICTInventory\AddinventoryBulk.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="CICTInventory\AssetRequest.aspx" />
     <Content Include="CICTInventory\AssetRequest.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -765,6 +769,12 @@
     <Content Include="websiteassets\js\wow.min.js" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CICTInventory\AddinventoryBulk.aspx.designer.vb">
+      <DependentUpon>AddinventoryBulk.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CICTInventory\AddinventoryBulk.aspx.vb">
+      <DependentUpon>AddinventoryBulk.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CICTInventory\AssetRequest.aspx.designer.vb">
       <DependentUpon>AssetRequest.aspx</DependentUpon>
     </Compile>
@@ -876,6 +886,7 @@
     <Content Include="aComponents\Connections\Connections\obj\Debug\Connections.csproj.CoreCompileInputs.cache" />
     <Content Include="aComponents\Connections\Connections\obj\Debug\Connections.csprojAssemblyReference.cache" />
     <Content Include="aComponents\Connections\Connections\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="CICTInventory\AddInventory_Format.xlsx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

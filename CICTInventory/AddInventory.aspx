@@ -49,6 +49,9 @@
 <div class="panel panel-color panel-success">
 <div class="panel-heading"><h3 class="panel-title">Add CIT Inventory</h3></div>
 <div class="panel-body">
+<div class="row" style="margin: 10px 0 20px 0">
+    <a class="font-weight-bold text-danger" href='<%=ResolveUrl("../CIT_ADDInvBulk/{0}") %>'>Want to add in Bulk? Click here</a>
+</div>
 <div class="row">
 <div class="col-xs-3"><asp:HiddenField ID="hdn_IID" runat="server" />
 <label>Item Category <asp:Label ID="lbl_ItemType" runat="server" CssClass="lblr"></asp:Label></label>
