@@ -103,7 +103,7 @@
         <asp:ListItem Selected="True">Idle</asp:ListItem>  
         <asp:ListItem>Active</asp:ListItem>  
         <asp:ListItem>Inactive</asp:ListItem>  
-        <asp:ListItem>Abandoned</asp:ListItem>  
+        <%--<asp:ListItem>Abandoned</asp:ListItem>  --%>
 </asp:DropDownList>  
 </div>
 <div class="col-xs-3">

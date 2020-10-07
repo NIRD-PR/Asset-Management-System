@@ -522,6 +522,10 @@
     <Content Include="CICTInventory\DetailedITInventory.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="CICTInventory\DisposeAsset.aspx" />
+    <Content Include="CICTInventory\DisposeAsset.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="CICTInventory\Emp_Active.aspx" />
     <Content Include="CICTInventory\Emp_Active.aspx.cs" />
     <Content Include="CICTInventory\eTicketMapping2Staff.aspx" />
@@ -780,6 +784,12 @@
     </Compile>
     <Compile Include="CICTInventory\AssetRequest.aspx.vb">
       <DependentUpon>AssetRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CICTInventory\DisposeAsset.aspx.designer.vb">
+      <DependentUpon>DisposeAsset.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CICTInventory\DisposeAsset.aspx.vb">
+      <DependentUpon>DisposeAsset.aspx</DependentUpon>
     </Compile>
     <Compile Include="CICTInventory\ItemHistoryReport.aspx.designer.vb">
       <DependentUpon>ItemHistoryReport.aspx</DependentUpon>

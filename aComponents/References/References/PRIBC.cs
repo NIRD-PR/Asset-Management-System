@@ -5426,6 +5426,12 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
+        public PRResp getAllItemInventoryNotAbandoned(PRReq objPRReq)
+        {
+            string s = "select * from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' ";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
         public PRResp getAllItemInventory_ITID(PRReq objPRReq)
         {
             string s = "select * from CIT_tbl_ItemInventory where OID='" + objPRReq.OID + "' and ITID='" + objPRReq.ITID + "' ";
@@ -5479,6 +5485,12 @@ namespace NIRDPR.RK.PRReferences
         public PRResp EditItemInventory_SerialNo(PRReq objPRReq)
         {
             string update = "update CIT_tbl_ItemInventory set ItemName='" + objPRReq.ItemName + "',ItemType='" + objPRReq.ItemType + "',Model='" + objPRReq.ModelType + "',SerialNo='" + objPRReq.SerialNo + "',Manufacturer='" + objPRReq.Manufacturer + "',ComputerNumber='" + objPRReq.ComputerNo + "',Warranty='" + objPRReq.Warranty + "',WarrantyDate='" + objPRReq.WarrantyDate + "',Vendor='" + objPRReq.Vendor + "',DOP='" + objPRReq.DOP + "',ITID='" + objPRReq.ITID + "',Status='" + objPRReq.Status + "' where OID='" + objPRReq.OID + "' and IID='" + objPRReq.IID + "' ";
+            objPRResp.Count = Connections.ProcessQuery(update);
+            return objPRResp;
+        }
+        public PRResp EditItemInventory_Status(PRReq objPRReq)
+        {
+            string update = "update CIT_tbl_ItemInventory set Status='" + objPRReq.Status + "' where OID='" + objPRReq.OID + "' and IID='" + objPRReq.IID + "' ";
             objPRResp.Count = Connections.ProcessQuery(update);
             return objPRResp;
         }
