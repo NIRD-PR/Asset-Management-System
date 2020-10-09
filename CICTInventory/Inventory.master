@@ -103,6 +103,7 @@
  <li class="has_sub"><a href="#" class="waves-effect"><i class="md md-mail"></i><span> Inventory Reports</span><span class="pull-right"><i class="md md-add"></i></span></a>
  <ul class="list-unstyled">
  <li><a href='<%=ResolveUrl("../CIT_Consol/{0}") %>'><i class="md md-play-circle-fill"></i><span>All Consolidated Inventory</span></a></li>
+     <li><a href='<%=ResolveUrl("../CIT_ConsoliInv/{0}") %>'><i class="md md-play-circle-fill"></i><span>All Consolidated Inventory NEW</span></a></li>
   <li><a href='<%=ResolveUrl("../CIT_DetITInv/{0}") %>'><i class="md md-play-circle-fill"></i><span>Make-wise Inventory Report</span></a></li>
     <li><a href='<%=ResolveUrl("../CIT_MakeITInv/{0}") %>'><i class="md md-play-circle-fill"></i><span>Make-wise Inventory Report NEW</span></a></li>
   <li><a href='<%=ResolveUrl("../CIT_DeptITInv/{0}") %>'><i class="md md-play-circle-fill"></i><span>Dept-wise Inventory Report</span></a></li>

@@ -5444,9 +5444,15 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
+        public PRResp getAllItemInventoryNotAbandonedByDate(PRReq objPRReq)
+        {
+            string s = "select * from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' and Dated>='" + objPRReq.StartDate + "' and Dated<='" + objPRReq.EndDate + "' ";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
         public PRResp getAllItemInventory_ITID(PRReq objPRReq)
         {
-            string s = "select * from CIT_tbl_ItemInventory where OID='" + objPRReq.OID + "' and ITID='" + objPRReq.ITID + "' ";
+            string s = "select * from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' and ITID='" + objPRReq.ITID + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }

@@ -260,7 +260,7 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
         else
         {
             objPRReq.OID = oid;
-            PRResp r = objPRIBC.getAllItemInventory(objPRReq);
+            PRResp r = objPRIBC.getAllItemInventoryNotAbandoned(objPRReq);
             DataTable dt = r.GetTable;
             if (dt.Rows.Count > 0)
             {

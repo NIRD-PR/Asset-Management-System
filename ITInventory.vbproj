@@ -506,6 +506,8 @@
     </Content>
     <Content Include="CICTInventory\CITSupportingStaff.aspx" />
     <Content Include="CICTInventory\CITSupportingStaff.aspx.cs" />
+    <Content Include="CICTInventory\ConsolidatedInventory.aspx" />
+    <Content Include="CICTInventory\ConsolidatedInventory.aspx.cs" />
     <Content Include="CICTInventory\ConsoliInventory.aspx" />
     <Content Include="CICTInventory\ConsoliInventory.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
