@@ -104,6 +104,7 @@
  <ul class="list-unstyled">
  <li><a href='<%=ResolveUrl("../CIT_Consol/{0}") %>'><i class="md md-play-circle-fill"></i><span>All Consolidated Inventory</span></a></li>
   <li><a href='<%=ResolveUrl("../CIT_DetITInv/{0}") %>'><i class="md md-play-circle-fill"></i><span>Make-wise Inventory Report</span></a></li>
+    <li><a href='<%=ResolveUrl("../CIT_MakeITInv/{0}") %>'><i class="md md-play-circle-fill"></i><span>Make-wise Inventory Report NEW</span></a></li>
   <li><a href='<%=ResolveUrl("../CIT_DeptITInv/{0}") %>'><i class="md md-play-circle-fill"></i><span>Dept-wise Inventory Report</span></a></li>
     <li><a href='<%=ResolveUrl("../CIT_DeptITInventory/{0}") %>'><i class="md md-play-circle-fill"></i><span>Dept-wise Inventory Report NEW</span></a></li>
   <li><a href='<%=ResolveUrl("../CIT_DSR/{0}") %>'><i class="md md-play-circle-fill"></i><span>Item-wise Employee Report</span></a></li>

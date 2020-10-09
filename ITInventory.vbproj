@@ -552,7 +552,13 @@
     <Content Include="CICTInventory\ItemType.aspx" />
     <Content Include="CICTInventory\ItemType.aspx.cs" />
     <Content Include="CICTInventory\Location.aspx" />
-    <Content Include="CICTInventory\Location.aspx.cs" />
+    <Content Include="CICTInventory\Location.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="CICTInventory\MakeWiseAssetReport.aspx" />
+    <Content Include="CICTInventory\MakeWiseAssetReport.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="CICTInventory\MapInventory.aspx" />
     <Content Include="CICTInventory\MapInventory.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -777,36 +783,6 @@
     <Content Include="websiteassets\js\wow.min.js" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CICTInventory\Abandoned_Report.aspx.designer.vb">
-      <DependentUpon>Abandoned_Report.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CICTInventory\Abandoned_Report.aspx.vb">
-      <DependentUpon>Abandoned_Report.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CICTInventory\AddinventoryBulk.aspx.designer.vb">
-      <DependentUpon>AddinventoryBulk.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CICTInventory\AddinventoryBulk.aspx.vb">
-      <DependentUpon>AddinventoryBulk.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CICTInventory\AssetRequest.aspx.designer.vb">
-      <DependentUpon>AssetRequest.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CICTInventory\AssetRequest.aspx.vb">
-      <DependentUpon>AssetRequest.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CICTInventory\DisposeAsset.aspx.designer.vb">
-      <DependentUpon>DisposeAsset.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CICTInventory\DisposeAsset.aspx.vb">
-      <DependentUpon>DisposeAsset.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CICTInventory\ItemHistoryReport.aspx.designer.vb">
-      <DependentUpon>ItemHistoryReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CICTInventory\ItemHistoryReport.aspx.vb">
-      <DependentUpon>ItemHistoryReport.aspx</DependentUpon>
-    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

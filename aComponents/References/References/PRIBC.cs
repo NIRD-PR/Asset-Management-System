@@ -5414,6 +5414,18 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
+        public PRResp getItemInventory_Manufacturer(PRReq objPRReq)
+        {
+            string s = "select * from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' and Manufacturer='" + objPRReq.Manufacturer + "' ";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
+        public PRResp getItemInventory_Manufacturer_ItemName(PRReq objPRReq)
+        {
+            string s = "select * from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and Manufacturer='" + objPRReq.Manufacturer + "' ";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
         public PRResp AddItemInventory(PRReq objPRReq)
         {
             string insert = "insert into CIT_tbl_ItemInventory (OID,ITID,ItemName,ItemType,Model,SerialNo,Manufacturer,ComputerNumber,DOP,Warranty,WarrantyDate,Vendor,Status,Dated,UID,UName) values('" + objPRReq.OID + "','" + objPRReq.ITID + "','" + objPRReq.ItemName + "','" + objPRReq.ItemType + "','" + objPRReq.ModelType + "','" + objPRReq.SerialNo + "','" + objPRReq.Manufacturer + "','" + objPRReq.ComputerNo + "','" + objPRReq.DOP + "','" + objPRReq.Warranty + "','" + objPRReq.WarrantyDate + "','" + objPRReq.Vendor + "','" + objPRReq.Status + "','" + objPRReq.Dated + "','" + objPRReq.UID + "','" + objPRReq.UName + "')";
@@ -5517,6 +5529,19 @@ namespace NIRDPR.RK.PRReferences
                 ,SUM(case when[ItemName] = 'All-in-One' then 1 else 0 end) as 'All-in-One'
                 ,SUM(case when[ItemName] = 'Tablet' then 1 else 0 end) as Tablet
                 FROM CIT_tbl_InventoryMapping where Flag1=1 group by DeptID";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
+        public PRResp getMappedInventoryMakeWise(PRReq objPRReq)
+        {
+            string s = @"SELECT Manufacturer
+                , SUM(case when[ItemName] = 'Desktop' then 1 else 0 end) as Desktop
+                ,SUM(case when[ItemName] = 'Laptop' then 1 else 0 end) as Laptop
+                ,SUM(case when[ItemName] = 'Printer' then 1 else 0 end) as Printer
+                ,SUM(case when[ItemName] = 'Scanner' then 1 else 0 end) as Scanner
+                ,SUM(case when[ItemName] = 'All-in-One' then 1 else 0 end) as 'All-in-One'
+                ,SUM(case when[ItemName] = 'Tablet' then 1 else 0 end) as Tablet
+                FROM CIT_tbl_ItemInventory where Status!='Abandoned' group by Manufacturer";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }

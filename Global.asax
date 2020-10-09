@@ -678,6 +678,7 @@
         routes.MapPageRoute("CIT_EInv/{UID}", "CIT_EInv/{UID}", "~/CICTInventory/CITEmp_Inventory.aspx");
         routes.MapPageRoute("CIT_Consol/{UID}", "CIT_Consol/{UID}", "~/CICTInventory/ConsoliInventory.aspx");
         routes.MapPageRoute("CIT_DetITInv/{UID}", "CIT_DetITInv/{UID}", "~/CICTInventory/DetailedITInventory.aspx");
+        routes.MapPageRoute("CIT_MakeITInv/{UID}", "CIT_MakeITInv/{UID}", "~/CICTInventory/MakeWiseAssetReport.aspx");
         routes.MapPageRoute("CIT_DeptITInv/{UID}", "CIT_DeptITInv/{UID}", "~/CICTInventory/DeptDetailedITInventory.aspx");
         routes.MapPageRoute("CIT_DeptITInventory/{UID}", "CIT_DeptITInventory/{UID}", "~/CICTInventory/DeptWiseInventoryMappedReport_New.aspx");
         routes.MapPageRoute("CIT_HolDT/{UID}", "CIT_HolDT/{UID}", "~/CICTInventory/CICTETickets_HoldStatus.aspx");
