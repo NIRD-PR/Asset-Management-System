@@ -124,7 +124,7 @@ public partial class CICTInventory_DisposeAsset : System.Web.UI.Page
         string p1 = Server.MapPath("..\\Disposed\\");
         if (dispose.HasFile)
         {
-            strFileName = DateTime.Now.ToFileTime() + "_" + dispose.FileName.ToString();
+            strFileName = dispose.FileName.ToString();
             dispose.SaveAs(p1 + strFileName);
         }
         else
@@ -135,7 +135,6 @@ public partial class CICTInventory_DisposeAsset : System.Web.UI.Page
         {
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('Please choose an asset to dispose');", true);
         }
-        string strFileType = System.IO.Path.GetExtension(DateTime.Now.ToFileTime() + "_" + dispose.FileName.ToString()).ToString().ToLower();
         string path = p1 + strFileName;
         System.IO.StreamWriter file = new System.IO.StreamWriter(path, append: true);
         string text = "\n Sale Price :" + sale.Text +"\n";
@@ -149,13 +148,14 @@ public partial class CICTInventory_DisposeAsset : System.Web.UI.Page
             objPRReq.OID = 1;
             objPRReq.IID = int.Parse(iid);
             objPRReq.Status = "Abandoned";
+            objPRReq.FileName = strFileName;
             PRResp r = objPRIBC.getItemInventory_IID(objPRReq);
             DataTable dt = r.GetTable;
             text += dt.Rows[0]["SerialNo"].ToString() + " , ";
             text += dt.Rows[0]["DOP"].ToString() + " , ";
             text += dt.Rows[0]["Dated"].ToString();
             file.WriteLine(text);
-            r = objPRIBC.EditItemInventory_Status(objPRReq);
+            r = objPRIBC.EditItemInventoryDisposal(objPRReq);
         }
         text = "\nThis disposal entry done by " + name + " (" + objPRReq.UID + ") on " + DateTime.Now.ToString();
         file.WriteLine(text);

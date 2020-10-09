@@ -466,6 +466,10 @@
     <Content Include="bin\zh-CHS\AjaxControlToolkit.resources.dll" />
     <Content Include="bin\zh-CHT\AjaxControlToolkit.resources.dll" />
     <Content Include="BirthDayGreetings.htm" />
+    <Content Include="CICTInventory\Abandoned_Report.aspx" />
+    <Content Include="CICTInventory\Abandoned_Report.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="CICTInventory\AddInventory.aspx" />
     <Content Include="CICTInventory\AddInventory.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -773,6 +777,12 @@
     <Content Include="websiteassets\js\wow.min.js" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CICTInventory\Abandoned_Report.aspx.designer.vb">
+      <DependentUpon>Abandoned_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CICTInventory\Abandoned_Report.aspx.vb">
+      <DependentUpon>Abandoned_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CICTInventory\AddinventoryBulk.aspx.designer.vb">
       <DependentUpon>AddinventoryBulk.aspx</DependentUpon>
     </Compile>

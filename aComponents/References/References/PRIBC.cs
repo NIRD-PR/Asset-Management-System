@@ -5444,6 +5444,12 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
+        public PRResp getDisposedItemInventoryByDate(PRReq objPRReq)
+        {
+            string s = "select * from CIT_tbl_ItemInventory where OID='" + objPRReq.OID + "' and Status='" + objPRReq.Status + "' and DisposedOn >='" + objPRReq.StartDate + "' and DisposedOn <='" + objPRReq.EndDate + "' ";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
         public PRResp getAvailableItemInventory_ITID(PRReq objPRReq)
         {
             string s = "select * from CIT_tbl_ItemInventory where OID='" + objPRReq.OID + "' and ITID='" + objPRReq.ITID + "' and Status='" + objPRReq.Status + "' ";
@@ -5488,9 +5494,9 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.Count = Connections.ProcessQuery(update);
             return objPRResp;
         }
-        public PRResp EditItemInventory_Status(PRReq objPRReq)
+        public PRResp EditItemInventoryDisposal(PRReq objPRReq)
         {
-            string update = "update CIT_tbl_ItemInventory set Status='" + objPRReq.Status + "' where OID='" + objPRReq.OID + "' and IID='" + objPRReq.IID + "' ";
+            string update = "update CIT_tbl_ItemInventory set Status='" + objPRReq.Status + "', DisposalFile ='" + objPRReq.FileName + "', DisposedOn='" + DateTime.Now + "' where OID='" + objPRReq.OID + "' and IID='" + objPRReq.IID + "' ";
             objPRResp.Count = Connections.ProcessQuery(update);
             return objPRResp;
         }
