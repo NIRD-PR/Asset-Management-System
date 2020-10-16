@@ -34,7 +34,25 @@
             });
         }
         function dt() {
-            $('#tb1').DataTable();
+            var n = 'CICT- Inventory Stock';
+            $('#tb1').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'pageLength', 'print',
+                    {
+                        extend: 'excel',
+                        filename: n ,
+                        title: n,
+                        messageTop: 'Assets added from ' + $("#<%=stdate.ClientID%>").text() + ' to ' + $("#<%=enddate.ClientID%>").text() 
+                    },
+                    {
+                        extend: 'pdf',
+                        filename: n,
+                        title: n,
+                        messageTop: 'Assets added from ' + $("#<%=stdate.ClientID%>").text() + ' to ' + $("#<%=enddate.ClientID%>").text() 
+                    }
+                ]
+            });
         }
     </script>
     

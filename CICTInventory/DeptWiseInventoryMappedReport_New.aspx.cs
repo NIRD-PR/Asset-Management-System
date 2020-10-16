@@ -92,7 +92,7 @@ public partial class CICTInventory_DeptWiseInventoryMappedReport : System.Web.UI
             DataTable dt = r.GetTable;
             rptr_list.DataSource = dt;
             rptr_list.DataBind();
-            heading.Text = "Department: " + args[0];
+            heading.Text = "Department: " + args[0] + " , " + args[1];
         }
         ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "pop", "show();", true);
     }

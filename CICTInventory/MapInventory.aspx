@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" MaintainScrollPositionOnPostback="true" Language="C#" MasterPageFile="Inventory.master" AutoEventWireup="true" CodeFile="MapInventory.aspx.cs" Inherits="CICTInventory_MapInventory" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-<script language="javascript">
+<script type="text/javascript" language="javascript">
     function ToUpper(ctrl) {
         var t = ctrl.value;
         ctrl.value = t.toUpperCase();
@@ -20,7 +20,23 @@
             $("#<%=ddl_ItemTypes.ClientID%>").select2();
         }
         function dt() {
-            $('#tb').DataTable();
+            var n = 'CICT-Idle Inventory Stock';
+            $('#tb').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'pageLength', 'print',
+                    {
+                        extend: 'excel',
+                        filename: n,
+                        title: n
+                    },
+                    {
+                        extend: 'pdf',
+                        filename: n,
+                        title: n
+                    }
+                ]
+            });
         }
     </script>
 </asp:Content>

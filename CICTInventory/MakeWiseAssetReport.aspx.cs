@@ -90,7 +90,7 @@ public partial class CICTInventory_MakeWiseAssetReport : System.Web.UI.Page
             DataTable dt = r.GetTable;
             rptr_list.DataSource = dt;
             rptr_list.DataBind();
-            heading.Text = "Manufacturer: " + args[0];
+            heading.Text = "Manufacturer: " + args[0] + " , " + args[1] ;
         }
         ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "pop", "show();", true);
     }

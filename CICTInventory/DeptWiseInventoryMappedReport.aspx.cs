@@ -69,11 +69,13 @@ public partial class CICTInventory_DeptWiseInventoryMappedReport : System.Web.UI
             objPRReq.ITID = int.Parse(ddl_Item.SelectedValue.ToString());
             r = objPRIBC.getAllItemInventory_DeptWise_NameWise_ITID(objPRReq);
             dt = r.GetTable;
+            heading.Value = ddl_Item.Items[ddl_Item.SelectedIndex].ToString();
         }
         else
         {
             r = objPRIBC.getAllItemInventory_DeptWise_NameWise(objPRReq);
             dt = r.GetTable;
+            heading.Value = "All items";
         }
         if (dt.Rows.Count > 0)
         {

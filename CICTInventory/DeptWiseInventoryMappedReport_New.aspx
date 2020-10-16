@@ -32,8 +32,39 @@
     </style>
     <script type="text/javascript">
         function dt() {
-            $('.table').DataTable({
-                "autoWidth": false
+            var n = 'CICT-Department Wise Inventory Report';
+            $('#tb1').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'pageLength', 'print',
+                    {
+                        extend: 'excel',
+                        filename: n,
+                        title: n
+                    },
+                    {
+                        extend: 'pdf',
+                        filename: n,
+                        title: n
+                    }
+                ]
+            });
+            var t = 'CICT-' + $("#<%=heading.ClientID%>").text() + ' Inventory Report';
+            $('#tb2').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'pageLength', 'print',
+                    {
+                        extend: 'excel',
+                        filename: t,
+                        title: t
+                    },
+                    {
+                        extend: 'pdf',
+                        filename: t,
+                        title: t
+                    }
+                ]
             });
         }
         function show() {
@@ -62,7 +93,7 @@
 </table>
 <asp:Repeater ID="rptr_Inventory" runat="server" OnItemCommand="rptr_Inventory_ItemCommand">
 <HeaderTemplate>
-<table width="100%" class="table table-bordered table-hover table-striped" border="1" style="table-layout:fixed; font-family:Tahoma; font-size:12px; border-collapse: collapse; vertical-align:middle; margin:0;">
+<table id="tb1" width="100%" class="table table-bordered table-hover table-striped" border="1" style="table-layout:fixed; font-family:Tahoma; font-size:12px; border-collapse: collapse; vertical-align:middle; margin:0;">
 <thead><tr align="center">
 <td width="5%">SNo</td>
 <td width="35%">Department</td>
@@ -113,7 +144,7 @@
       <div class="modal-body">
          <asp:Repeater ID="rptr_list" runat="server">
             <HeaderTemplate>
-            <table id="tb1" width="100%" class="table table-striped table-hover" border="1" style="table-layout:fixed; font-family:Tahoma; font-size:11px; border-collapse: collapse; vertical-align:middle; margin:0;">
+            <table id="tb2" width="100%" class="table table-striped table-hover" border="1" style="table-layout:fixed; font-family:Tahoma; font-size:11px; border-collapse: collapse; vertical-align:middle; margin:0;">
             <thead><tr>
             <td width="5%" align='center'>SNo</td>
             <td width="10%" align='center'>EmpID</td>

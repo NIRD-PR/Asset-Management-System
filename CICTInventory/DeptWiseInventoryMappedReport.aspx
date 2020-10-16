@@ -22,7 +22,23 @@
             $("#<%=ddl_Item.ClientID%>").select2();
         }
         function dt() {
-            $('#tb1').DataTable();
+            var n = $("#<%=heading.ClientID%>").val() + ' Mapped Inventory Report';
+            $('#tb1').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'pageLength', 'print',
+                    {
+                        extend: 'excel',
+                        filename: n,
+                        title: n
+                    },
+                    {
+                        extend: 'pdf',
+                        filename: n,
+                        title: n
+                    }
+                ]
+            });
         }
     </script>
 </asp:Content>
@@ -39,6 +55,7 @@
         <tr><td width="10%" align="right">Select Item :</td><td width="15%"><asp:DropDownList ID="ddl_Item" runat="server" CssClass="form-control"></asp:DropDownList></td><td width="10%"><asp:Button ID="btn_Submit" runat="server" CssClass="btn btn-primary" Text="Get Report" OnClick="btn_Submit_Click" /></td></tr>
     </table>
 <div class="row">
+<asp:HiddenField runat="server" ID="heading"/>
 <asp:Panel ID="pnl_print" runat="server">
 <center> <img src="../assets/images/title.png" height="80" width="400"  alt=""/>
 <h5> NIRDPR - ITem-wise CICT Inventory  Details </h5>
