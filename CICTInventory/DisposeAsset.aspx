@@ -116,6 +116,10 @@
     <asp:TextBox runat="server" ID="sale"></asp:TextBox>
 </div>
 <div class="col-12" style="margin-top: 20px">
+    <label>Enter Remarks <label class="lblr">*</label></label>
+    <asp:TextBox runat="server" ID="remarks"></asp:TextBox>
+</div>
+<div class="col-12" style="margin-top: 20px">
     <asp:Button runat="server" ID="final" OnClick="final_Click" Text="Submit" CssClass="btn btn-danger"/>
 </div>
 </div>

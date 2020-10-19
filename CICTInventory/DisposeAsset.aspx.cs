@@ -16,7 +16,7 @@ public partial class CICTInventory_DisposeAsset : System.Web.UI.Page
     PRIBC objPRIBC = new PRIBC();
     string name; int oid;
     string connectionString = ""; string strFileName;
-    string msg = "Please choose assets to be disposed from table above. Select the checkbox of desired assets and click on green button. The chosen assets will display in a table here.";
+    string msg1 = "Please choose assets to be disposed from table above. Select the checkbox of desired assets and click on green button. The chosen assets will display in a table here.";
     protected void Page_Load(object sender, EventArgs e)
     {
         getAdminUser();
@@ -24,7 +24,7 @@ public partial class CICTInventory_DisposeAsset : System.Web.UI.Page
         ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "dt", "dt();", true);
         if (!IsPostBack)
         {
-            isChoosen.Text = msg;
+            isChoosen.Text = msg1;
             getAllItemsinInventory();
         }
     }
@@ -99,7 +99,7 @@ public partial class CICTInventory_DisposeAsset : System.Web.UI.Page
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('Please choose an asset to dispose');", true);
             rptr_del.DataSource = null;
             rptr_del.DataBind();
-            isChoosen.Text = msg;
+            isChoosen.Text = msg1;
         }
         else
         {
@@ -120,50 +120,61 @@ public partial class CICTInventory_DisposeAsset : System.Web.UI.Page
 
     protected void final_Click(object sender, EventArgs e)
     {
-        HttpFileCollection uploadfile = Request.Files;
-        string p1 = Server.MapPath("..\\Disposed\\");
-        if (dispose.HasFile)
+        try
         {
-            strFileName = dispose.FileName.ToString();
-            dispose.SaveAs(p1 + strFileName);
-        }
-        else
-        {
-            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('Please upload a file for disposal details');", true);
-        }
-        if(rptr_del.Items.Count < 1)
-        {
-            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('Please choose an asset to dispose');", true);
-        }
-        string path = p1 + strFileName;
-        System.IO.StreamWriter file = new System.IO.StreamWriter(path, append: true);
-        string text = "\n Sale Price :" + sale.Text +"\n";
-        file.WriteLine(text);
-        text = "\n Serial No. , Date of Purchase , Credited to Govt on";
-        file.WriteLine(text);
-        foreach (RepeaterItem i in rptr_del.Items)
-        {
-            text = "\n ";
-            string iid = (i.FindControl("iid") as HiddenField).Value;
-            objPRReq.OID = 1;
-            objPRReq.IID = int.Parse(iid);
-            objPRReq.Status = "Abandoned";
+            HttpFileCollection uploadfile = Request.Files;
+            string p1 = Server.MapPath("..\\Disposed\\");
+            if (dispose.HasFile)
+            {
+                strFileName = DateTime.Now.ToFileTime() + "_" + dispose.FileName.ToString();
+                dispose.SaveAs(p1 + strFileName);
+            }
+            else
+            {
+                throw new Exception("Please upload a file for disposal details");
+            }
+            if (rptr_del.Items.Count < 1)
+            {
+                throw new Exception("Please choose an asset to dispose");
+            }
+            if (remarks.Text.Length < 1)
+            {
+                throw new Exception("Please enter a remark");
+            }
+            if (sale.Text.Length > 0)
+            {
+                try
+                {
+                    objPRReq.APrice = double.Parse(sale.Text);
+                }
+                catch
+                {
+                    throw new Exception("Enter only numeric digits in Sale price field");
+                }
+                
+            }
             objPRReq.FileName = strFileName;
-            PRResp r = objPRIBC.getItemInventory_IID(objPRReq);
-            DataTable dt = r.GetTable;
-            text += dt.Rows[0]["SerialNo"].ToString() + " , ";
-            text += dt.Rows[0]["DOP"].ToString() + " , ";
-            text += dt.Rows[0]["Dated"].ToString();
-            file.WriteLine(text);
-            r = objPRIBC.EditItemInventoryDisposal(objPRReq);
+            objPRReq.Status = "Abandoned";
+            objPRReq.OID = 1;
+            foreach (RepeaterItem i in rptr_del.Items)
+            {
+                string iid = (i.FindControl("iid") as HiddenField).Value;
+                objPRReq.IID = int.Parse(iid);
+                PRResp r = objPRIBC.EditItemInventoryDisposal(objPRReq);
+            }
+            string m = "Status of " + rptr_del.Items.Count + " assets successfully changed to abandoned.";
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('" + m.ToString() + "');", true);
         }
-        text = "\nThis disposal entry done by " + name + " (" + objPRReq.UID + ") on " + DateTime.Now.ToString();
-        file.WriteLine(text);
-        file.Close();
-        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('Status of assets successfully changed to abandoned.');", true);
+        catch (Exception ex)
+        {
+            string msg = ex.Message.Replace("'", ""); ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('" + msg.ToString() + "');", true);
+            return;
+        }
         rptr_del.DataSource = null;
         rptr_del.DataBind();
-        isChoosen.Text = msg;
+        sale.Text = "";
+        remarks.Text = "";
+        isChoosen.Text = msg1;
         getAllItemsinInventory();
     }
 }

@@ -5514,7 +5514,7 @@ namespace NIRDPR.RK.PRReferences
         }
         public PRResp EditItemInventoryDisposal(PRReq objPRReq)
         {
-            string update = "update CIT_tbl_ItemInventory set Status='" + objPRReq.Status + "', DisposalFile ='" + objPRReq.FileName + "', DisposedOn='" + DateTime.Now + "' where OID='" + objPRReq.OID + "' and IID='" + objPRReq.IID + "' ";
+            string update = "update CIT_tbl_ItemInventory set Status='" + objPRReq.Status + "',SalePrice='" + objPRReq.APrice + "' ,DisposalRemark='" + objPRReq.Remarks + "', DisposalFile ='" + objPRReq.FileName + "', DisposedOn='" + DateTime.Now + "' where OID='" + objPRReq.OID + "' and IID='" + objPRReq.IID + "' ";
             objPRResp.Count = Connections.ProcessQuery(update);
             return objPRResp;
         }

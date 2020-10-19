@@ -106,7 +106,7 @@
 </div>
 <div class="row">
 <div class="col-xs-3">
-<label>File Number</label>
+<label>Computer Number(Specifications)</label>
 <asp:TextBox ID="txt_ComputerNo" runat="server" CssClass="form-control" MaxLength="10" onkeyup="ToUpper(this)" placeholder="Number on Item"></asp:TextBox><br />
 </div>
 <div class="col-xs-3">
