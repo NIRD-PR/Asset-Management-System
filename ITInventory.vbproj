@@ -552,13 +552,19 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="CICTInventory\ItemType.aspx" />
-    <Content Include="CICTInventory\ItemType.aspx.cs" />
+    <Content Include="CICTInventory\ItemType.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="CICTInventory\Location.aspx" />
     <Content Include="CICTInventory\Location.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="CICTInventory\MakeWiseAssetReport.aspx" />
     <Content Include="CICTInventory\MakeWiseAssetReport.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="CICTInventory\Manufacturer.aspx" />
+    <Content Include="CICTInventory\Manufacturer.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="CICTInventory\MapInventory.aspx" />

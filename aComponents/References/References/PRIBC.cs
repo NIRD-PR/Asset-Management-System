@@ -5336,6 +5336,43 @@ namespace NIRDPR.RK.PRReferences
         }
 
         // CIT ItemInventory
+
+        public PRResp getAllManufacturers(PRReq objPRReq)
+        {
+            string s = "select * from CIT_tbl_Manufacturer";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
+        public PRResp AddManufacturers(PRReq objPRReq)
+        {
+            string insert = "insert into CIT_tbl_Manufacturer (Name) values('" + objPRReq.Manufacturer + "')";
+            objPRResp.Count = Connections.ProcessQuery(insert);
+            return objPRResp;
+        }
+        public PRResp getManufacturersByName(PRReq objPRReq)
+        {
+            string s = "select * from CIT_tbl_Manufacturer where Name='" + objPRReq.Manufacturer + "' ";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
+        public PRResp getManufacturerByMID(PRReq objPRReq)
+        {
+            string s = "select * from CIT_tbl_Manufacturer where MID='" + objPRReq.ID + "' ";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
+        public PRResp EditManufacturerByMID(PRReq objPRReq)
+        {
+            string update = "update CIT_tbl_Manufacturer set Name='" + objPRReq.Manufacturer + "' where MID='" + objPRReq.ID + "' ";
+            objPRResp.Count = Connections.ProcessQuery(update);
+            return objPRResp;
+        }
+        public PRResp DelManufacturers(PRReq objPRReq)
+        {
+            string hod = "delete from CIT_tbl_Manufacturer where MID='" + objPRReq.ID + "' ";
+            objPRResp.GetTable = Connections.GetTable(hod);
+            return objPRResp;
+        }
         public PRResp getAllItemInventory_ITemNameNoWarranty_Dept(PRReq objPRReq)
         {
             string s = "select distinct * from CIT_tbl_InventoryMapping where Flag1=1 and Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and DeptID='" + objPRReq.DeptID + "' and Warranty!='Warranty' and Warranty!='AMC' ";

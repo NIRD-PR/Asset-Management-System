@@ -170,11 +170,6 @@ public partial class CICTInventory_DisposeAsset : System.Web.UI.Page
             string msg = ex.Message.Replace("'", ""); ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('" + msg.ToString() + "');", true);
             return;
         }
-        rptr_del.DataSource = null;
-        rptr_del.DataBind();
-        sale.Text = "";
-        remarks.Text = "";
-        isChoosen.Text = msg1;
-        getAllItemsinInventory();
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " window.open('../CIT_DelInv/{0}','_self');", true);
     }
 }

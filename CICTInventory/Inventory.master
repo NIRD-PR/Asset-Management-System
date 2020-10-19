@@ -97,6 +97,7 @@
  <li><a href='<%=ResolveUrl("../CIT_Rooms/{0}") %>'><i class="md md-play-circle-fill"></i><span> Add Room</span></a></li>
  <li><a href='<%=ResolveUrl("../CIT_Halls/{0}") %>'><i class="md md-play-circle-fill"></i><span> Add Hall Name</span></a></li>
  <li><a href='<%=ResolveUrl("../CIT_InvItems/{0}") %>'><i class="md md-play-circle-fill"></i><span> Item Type</span></a></li>
+ <li><a href='<%=ResolveUrl("../CIT_Manu/{0}") %>'><i class="md md-play-circle-fill"></i><span> Manufacturer</span></a></li>
  <li><a href='<%=ResolveUrl("../CIT_ADDInv/{0}") %>'><i class="md md-play-circle-fill"></i><span> Add Inventory</span></a></li>
  <li><a href='<%=ResolveUrl("../CIT_DelInv/{0}") %>'><i class="md md-play-circle-fill"></i><span> Dispose Assets</span></a></li>
  <li><a href='<%=ResolveUrl("../CIT_InvReq/{0}") %>'><i class="md md-play-circle-fill"></i><span> Asset Request<span class="pull-right" style="vertical-align:middle;"><asp:Label ID="lbl_request" runat="server" class="badge badge-xs badge-info" Text="0"></asp:Label></span></span></a></li>
