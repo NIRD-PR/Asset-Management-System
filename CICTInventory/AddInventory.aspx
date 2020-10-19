@@ -30,6 +30,8 @@
         function ChosenDropDown() {
             $("#<%=ddl_ItemTypes.ClientID%>").select2();
             $("#<%=ddl_ItemType.ClientID%>").select2();
+            $("#<%=ddl_Manufacturer.ClientID%>").select2();
+            $("#<%=ddl_soc.ClientID%>").select2();
         }
         function dt() {
             var n = 'CICT-Inventory Stock';
@@ -89,7 +91,7 @@
 <div class="row">
 <div class="col-xs-3">
 <label>Manufacturer &nbsp;<label class="lblr">*</label></label>
-<asp:TextBox ID="txt_Manufacturer" runat="server" CssClass="form-control" onkeyup="ToUpper(this)" placeholder="Manufacturer"></asp:TextBox><br />
+<asp:DropDownList ID="ddl_Manufacturer" runat="server" CssClass="form-control"></asp:DropDownList><br />
 </div>
 <div class="col-xs-3">
 <label>Warranty &nbsp;<label class="lblr">*</label><asp:Label ID="lbl_Warranty" runat="server" CssClass="lblr"></asp:Label></label>
@@ -121,6 +123,24 @@
         <asp:ListItem>Inactive</asp:ListItem>  
         <%--<asp:ListItem>Abandoned</asp:ListItem>  --%>
 </asp:DropDownList>  
+</div>
+<div class="col-xs-3">
+<label>e-file Computer Number</label>
+<asp:TextBox ID="efile" runat="server" CssClass="form-control"></asp:TextBox><br />
+</div>
+</div>
+<div class="row">
+<div class="col-xs-3">
+<label>Bill number</label>
+<asp:TextBox ID="bill" runat="server" CssClass="form-control" onkeyup="ToUpper(this)" placeholder="Bill Number"></asp:TextBox><br />
+</div>
+<div class="col-xs-3">
+<label>Section of Center</label>
+<asp:DropDownList ID="ddl_soc" runat="server" CssClass="form-control"></asp:DropDownList><br />
+</div>
+<div class="col-xs-3">
+<label>Price</label>
+<asp:TextBox ID="price" runat="server" CssClass="form-control" placeholder="Price"></asp:TextBox><br />
 </div>
 <div class="col-xs-3">
 <label><br /></label><br />

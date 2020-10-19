@@ -25,6 +25,8 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             getWarrenty();
             getAllItemTypes();
             getAllItemsinInventory();
+            getManufacturers();
+            getSectionOfCenter();
             if (Request.QueryString["st"] != null)
             {
                 hdn_IID.Value = Request.QueryString["st"].ToString();
@@ -77,12 +79,16 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             }
             txt_Model.Text = dt.Rows[0]["Model"].ToString();
             txt_ComputerNo.Text = dt.Rows[0]["ComputerNumber"].ToString();
-            txt_Manufacturer.Text = dt.Rows[0]["Manufacturer"].ToString();
+            ddl_Manufacturer.SelectedValue = dt.Rows[0]["Manufacturer"].ToString().ToUpper();
             txt_SerialNo.Text = dt.Rows[0]["SerialNo"].ToString();
             txt_PurchaseDate.Text = dt.Rows[0]["DOP"].ToString();
             txt_Vendor.Text = dt.Rows[0]["Vendor"].ToString();
             txt_WarrantyDate.Text = dt.Rows[0]["WarrantyDate"].ToString();
             ddl_status.SelectedValue = dt.Rows[0]["Status"].ToString();
+            efile.Text = dt.Rows[0]["eFile"].ToString();
+            price.Text = dt.Rows[0]["Price"].ToString();
+            bill.Text = dt.Rows[0]["Bill"].ToString();
+            ddl_soc.SelectedValue = dt.Rows[0]["SectionofCenter"].ToString();
             string warranty = dt.Rows[0]["Warranty"].ToString();
             if (warranty == "Warranty")
             {
@@ -121,6 +127,28 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             ddl_ItemType.DataBind();
             ddl_ItemType.Items.Insert(0, "Select Type");
         }
+    }
+    public void getManufacturers()
+    {
+        PRResp r = objPRIBC.getAllManufacturers(objPRReq);
+        DataTable dt = r.GetTable;
+        ddl_Manufacturer.DataSource = dt;
+        ddl_Manufacturer.DataTextField = "Name";
+        ddl_Manufacturer.DataValueField = "Name";
+        ddl_Manufacturer.DataBind();
+        ddl_Manufacturer.Items.Insert(0, "--Select Manufacturer--");
+    }
+    public void getSectionOfCenter()
+    {
+        objPRReq.Status = "Active";
+        objPRReq.OID = oid;
+        PRResp r = objPRIBC.getDepartments(objPRReq);
+        DataTable dt = r.GetTable;
+        ddl_soc.DataSource = dt;
+        ddl_soc.DataTextField = "Department";
+        ddl_soc.DataValueField = "DeptID";
+        ddl_soc.DataBind();
+        ddl_soc.Items.Insert(0, "--Select Center--");
     }
     public void getOldNew()
     {
@@ -191,9 +219,9 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
                 return;
             }
 
-            if (txt_Manufacturer.Text.Trim() != "")
+            if (ddl_Manufacturer.SelectedIndex > 0)
             {
-                objPRReq.Manufacturer = convertQuotes(txt_Manufacturer.Text.Trim());
+                objPRReq.Manufacturer = ddl_Manufacturer.SelectedItem.Text.Trim();
             }
             else
             {
@@ -205,6 +233,33 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             objPRReq.Vendor = convertQuotes(txt_Vendor.Text.Trim());
             objPRReq.ComputerNo = convertQuotes(txt_ComputerNo.Text.Trim());
             objPRReq.DOP = convertQuotes(txt_PurchaseDate.Text.Trim());
+            objPRReq.InvoiceNumber = bill.Text.Trim();
+            if (price.Text.Length > 0)
+            {
+                try
+                {
+                    objPRReq.APrice = double.Parse(price.Text);
+                }
+                catch
+                {
+                    throw new Exception("Enter only a numeric value in Price");
+                }
+            }
+            if (efile.Text.Length > 0)
+            {
+                try
+                {
+                    objPRReq.EID = int.Parse(efile.Text);
+                }
+                catch
+                {
+                    throw new Exception("Enter only a numeric value in eFile");
+                }
+            }
+            if (ddl_soc.SelectedIndex > 0)
+            {
+                objPRReq.Department = ddl_soc.SelectedItem.Value.Trim();
+            }
             if (btn_Submit.Text != "Update")
             {
                 PRResp r = objPRIBC.getItemInventory_SerialNo(objPRReq);
@@ -287,7 +342,7 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             objPRIBC.DelItemInventory(objPRReq);
             string msg = "Deleted Successfully...!!!";
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('" + msg + "');", true);
-            getAllItemTypes();
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " window.open('../CIT_ADDInv/{0}','_self');", true);
         }
     }
     public void getItemTypes()
