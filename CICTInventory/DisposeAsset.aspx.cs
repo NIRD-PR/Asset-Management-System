@@ -15,7 +15,7 @@ public partial class CICTInventory_DisposeAsset : System.Web.UI.Page
     PRResp objPRResp = new PRResp();
     PRIBC objPRIBC = new PRIBC();
     string name; int oid;
-    string connectionString = ""; string strFileName;
+    string connectionString = ""; string strFileName="";
     string msg1 = "Please choose assets to be disposed from table above. Select the checkbox of desired assets and click on green button. The chosen assets will display in a table here.";
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -129,10 +129,6 @@ public partial class CICTInventory_DisposeAsset : System.Web.UI.Page
                 strFileName = DateTime.Now.ToFileTime() + "_" + dispose.FileName.ToString();
                 dispose.SaveAs(p1 + strFileName);
             }
-            else
-            {
-                throw new Exception("Please upload a file for disposal details");
-            }
             if (rptr_del.Items.Count < 1)
             {
                 throw new Exception("Please choose an asset to dispose");
@@ -163,13 +159,12 @@ public partial class CICTInventory_DisposeAsset : System.Web.UI.Page
                 PRResp r = objPRIBC.EditItemInventoryDisposal(objPRReq);
             }
             string m = "Status of " + rptr_del.Items.Count + " assets successfully changed to abandoned.";
-            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('" + m.ToString() + "');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('" + m.ToString() + "'); window.open('../CIT_DelInv/{0}','_self');", true);
         }
         catch (Exception ex)
         {
             string msg = ex.Message.Replace("'", ""); ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('" + msg.ToString() + "');", true);
             return;
         }
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " window.open('../CIT_DelInv/{0}','_self');", true);
     }
 }

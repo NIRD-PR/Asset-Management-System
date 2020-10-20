@@ -131,9 +131,16 @@ public partial class CICTInventory_AbandonedReport : System.Web.UI.Page
 
     protected void rptr_Inventory_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-        Response.ContentType = "Application/text";
-        Response.AppendHeader("Content-Disposition", "attachment; filename=" + e.CommandArgument.ToString());
-        Response.TransmitFile(Server.MapPath("..\\Disposed\\"+ e.CommandArgument.ToString()));
-        Response.End();
+        if (e.CommandArgument.ToString() == "")
+        {
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('No File was uploaded');", true);
+        }
+        else
+        {
+            Response.ContentType = "Application/text";
+            Response.AppendHeader("Content-Disposition", "attachment; filename=" + e.CommandArgument.ToString());
+            Response.TransmitFile(Server.MapPath("..\\Disposed\\" + e.CommandArgument.ToString()));
+            Response.End();
+        }
     }
 }

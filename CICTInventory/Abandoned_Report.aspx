@@ -101,10 +101,10 @@
 <td width="10%">Model</td>
 <td width="10%">Serial Number</td>
 <td  width="10%">Manufacturer</td>
-<td width="10%">Specifications</td>
 <td  width="13%">Date of Purchase</td>
 <td  width="13%">Credited To Govt. On</td>
 <td  width="13%">Disposed On</td>
+<td width="10%">Disposal Remark</td>
 <td  width="6%">Disposal Details</td>
 </tr>
 </thead>
@@ -117,10 +117,10 @@
 <td  width="10%"><%#Eval("Model")%></td>
 <td  width="10%"><%#Eval("SerialNo")%></td>
 <td  width="10%"><%#Eval("Manufacturer")%></td>
-<td  width="10%"><%#Eval("ComputerNumber")%></td>
 <td  width="13%"><%#Eval("DOP")%> </td>
 <td  width="13%"><%#Eval("Dated")%> </td>
 <td  width="13%"><%#Eval("DisposedOn")%></td>
+<td  width="10%"><%#Eval("DisposalRemark")%></td>
 <td  width="6%"><asp:LinkButton runat="server" ID="download" CssClass="font-weight-bold text-danger" CommandArgument='<%#Eval("DisposalFile")%>'><i class="fa fa-download" style="transform: scale(2)"></i></asp:LinkButton></td>
 </tr>
 </ItemTemplate>

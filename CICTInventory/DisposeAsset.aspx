@@ -108,7 +108,7 @@
     </FooterTemplate>
 </asp:Repeater>
 <div class="col-12" style="margin-top: 20px">
-    <label>Why and How Disposed of ?<label class="lblr">*</label></label>
+    <label>Why and How Disposed of ?</label>
     <asp:FileUpload ID="dispose" runat="server"/>
 </div>
 <div class="col-12" style="margin-top: 20px">

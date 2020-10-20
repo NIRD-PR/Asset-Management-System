@@ -85,77 +85,112 @@ public partial class CICTInventory_AddInventoryBulk : System.Web.UI.Page
             da.SelectCommand = objCmdSelect;
             DataSet ds = new DataSet();
             da.Fill(ds, "myExcel");
-            int total = 0;
             for (int i = 0; i < ds.Tables["myExcel"].Rows.Count; i++)
             {
-                objPRReq.ItemName = ds.Tables["myExcel"].Rows[i][0].ToString();
-                objPRReq.ItemType = objPRReq.ItemName;
-                int quantity;
-                try
-                {
-                    quantity = int.Parse(ds.Tables["myExcel"].Rows[i][1].ToString());
-                }
-                catch
-                {
-                    throw new System.Exception("Check Quantity column");
-                }
-                if (quantity < 1)
-                {
-                    throw new System.Exception("Please enter a quantity greater than 0");
-                }
+                objPRReq.ItemName = ds.Tables["myExcel"].Rows[i][0].ToString().Trim();
                 objPRReq.OID = 1;
                 objPRReq.Status = "Active";
+                objPRReq.ItemType = objPRReq.ItemName;
                 PRResp r = objPRIBC.getItemTypeByName(objPRReq);
                 DataTable dt = r.GetTable;
-                if(dt.Rows.Count < 1)
+                if (dt.Rows.Count < 1)
                 {
                     throw new System.Exception("Please enter a valid item category");
                 }
                 objPRReq.ITID = int.Parse(dt.Rows[0]["ITID"].ToString());
-                objPRReq.DOP = ds.Tables["myExcel"].Rows[i][2].ToString();
-                if (objPRReq.DOP == "")
-                {
-                    throw new System.Exception("Please enter a Date of Purchase");
-                }
-                objPRReq.InvoiceNumber = ds.Tables["myExcel"].Rows[i][3].ToString();
-                objPRReq.APrice = double.Parse(ds.Tables["myExcel"].Rows[i][4].ToString());
-                objPRReq.ModelType = ds.Tables["myExcel"].Rows[i][5].ToString();
-                if (objPRReq.ModelType == "")
-                {
-                    throw new System.Exception("Please enter a Model");
-                }
-                objPRReq.Manufacturer = ds.Tables["myExcel"].Rows[i][6].ToString();
+                objPRReq.Manufacturer = ds.Tables["myExcel"].Rows[i][1].ToString().Trim();
                 if (objPRReq.Manufacturer == "")
                 {
                     throw new System.Exception("Please enter a Manufacturer");
                 }
-                string[] serialnos = ds.Tables["myExcel"].Rows[i][7].ToString().Split(',');
-                if(serialnos.Length != quantity)
+                else
                 {
-                    throw new System.Exception("Please enter " + quantity + "(quantity written) serial nos. separated by commas (,)");
+                    PRResp man = objPRIBC.getManufacturersByName(objPRReq);
+                    DataTable t = man.GetTable;
+                    if(t.Rows.Count == 0)
+                    {
+                        throw new Exception("Manufacturer does not exist in database. Please add it in Manufacturers page.");
+                    }
                 }
-                objPRReq.ComputerNo = ds.Tables["myExcel"].Rows[i][8].ToString();
-                objPRReq.Warranty = ds.Tables["myExcel"].Rows[i][9].ToString();
-                objPRReq.WarrantyDate = ds.Tables["myExcel"].Rows[i][10].ToString();
-                objPRReq.Vendor = ds.Tables["myExcel"].Rows[i][11].ToString();
+                objPRReq.ItemType = "New";
+                if(ds.Tables["myExcel"].Rows[i][2].ToString().ToLower().Trim() == "old")
+                {
+                    objPRReq.ItemType = "Old";
+                }
+
+                objPRReq.DOP = ds.Tables["myExcel"].Rows[i][3].ToString().Trim();
+                if (objPRReq.DOP == "")
+                {
+                    throw new System.Exception("Please enter a Date of Purchase");
+                }
+
+                objPRReq.InvoiceNumber = ds.Tables["myExcel"].Rows[i][4].ToString().Trim();
+                
+                objPRReq.ModelType = ds.Tables["myExcel"].Rows[i][5].ToString().Trim();
+                if (objPRReq.ModelType == "")
+                {
+                    throw new System.Exception("Please enter a Model");
+                }
+
+                objPRReq.SerialNo = ds.Tables["myExcel"].Rows[i][6].ToString().Trim();
+                if(objPRReq.SerialNo.Length == 0)
+                {
+                    throw new System.Exception("Please enter a serial no");
+                }
+
+                objPRReq.ComputerNo = ds.Tables["myExcel"].Rows[i][7].ToString().Trim();
+
+                objPRReq.Warranty = ds.Tables["myExcel"].Rows[i][8].ToString().Trim();
                 if (objPRReq.Warranty == "")
                 {
                     objPRReq.Warranty = "No Warranty / No AMC";
                 }
+
+                objPRReq.WarrantyDate = ds.Tables["myExcel"].Rows[i][9].ToString().Trim();
+                objPRReq.Vendor = ds.Tables["myExcel"].Rows[i][10].ToString().Trim();
+
+                if (ds.Tables["myExcel"].Rows[i][11].ToString().Trim().Length > 0)
+                {
+                    try
+                    {
+                        objPRReq.EID = int.Parse(ds.Tables["myExcel"].Rows[i][11].ToString().Trim());
+                    }
+                    catch
+                    {
+                        throw new Exception("Enter only a numeric value in eFile");
+                    }
+                }
+
+                if (ds.Tables["myExcel"].Rows[i][12].ToString().Trim().Length > 0)
+                {
+                    try
+                    {
+                        objPRReq.APrice = double.Parse(ds.Tables["myExcel"].Rows[i][12].ToString().Trim());
+                    }
+                    catch
+                    {
+                        throw new Exception("Enter only a numeric value in Price");
+                    }
+                }
+
+                objPRReq.Department = ds.Tables["myExcel"].Rows[i][13].ToString().Trim();
                 objPRReq.Dated = DateTime.Now;
                 objPRReq.UID = int.Parse(hdn_EmpID.Value.Trim());
                 objPRReq.UName = uname;
-                total += serialnos.Length;
-                for(int j = 0; j < serialnos.Length; j++)
+                objPRReq.Status = "Idle";
+                objPRReq.ItemType = "New";
+                r = objPRIBC.getItemInventory_SerialNo(objPRReq);
+                dt = r.GetTable;
+                if (dt.Rows.Count > 0)
                 {
-                    objPRReq.Status = "Idle";
-                    objPRReq.ItemType = "New";
-                    objPRReq.SerialNo = serialnos[j];
-                    PRResp ir = objPRIBC.AddItemInventory(objPRReq);
+                    throw new Exception("Item is Already Registered with us.");
+                }
+                else
+                {
+                    objPRIBC.AddItemInventory(objPRReq);
                 }
             }
-            total += ds.Tables["myExcel"].Rows.Count;
-            string msg = total + " of Records Updated Successfully"; ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('" + msg.ToString() + "');", true);
+            string msg = ds.Tables["myExcel"].Rows.Count + " of Records Updated Successfully"; ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('" + msg.ToString() + "');", true);
         }
         catch (Exception ex)
         {

@@ -71,11 +71,11 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             string ItemType = dt.Rows[0]["ItemType"].ToString();
             if (ItemType == "New")
             {
-                ddl_NewOld.SelectedIndex = 2;
+                ddl_NewOld.SelectedIndex = 1;
             }
             else
             {
-                ddl_NewOld.SelectedIndex = 1;
+                ddl_NewOld.SelectedIndex = 2;
             }
             txt_Model.Text = dt.Rows[0]["Model"].ToString();
             txt_ComputerNo.Text = dt.Rows[0]["ComputerNumber"].ToString();
