@@ -5399,7 +5399,7 @@ namespace NIRDPR.RK.PRReferences
         }
         public PRResp EditModelByMID(PRReq objPRReq)
         {
-            string update = "update CIT_tbl_Models set Manufacturer='" + objPRReq.Manufacturer + "'and Model='" + objPRReq.ModelType + "' where MID='" + objPRReq.ID + "' ";
+            string update = "update CIT_tbl_Models set Manufacturer='" + objPRReq.Manufacturer + "', Model='" + objPRReq.ModelType + "' where MID='" + objPRReq.ID + "' ";
             objPRResp.Count = Connections.ProcessQuery(update);
             return objPRResp;
         }

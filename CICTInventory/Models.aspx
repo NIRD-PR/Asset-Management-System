@@ -2,6 +2,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script type="text/javascript">
+        function ToUpper(ctrl) {
+            var t = ctrl.value;
+            ctrl.value = t.toUpperCase();
+        }
         function ChosenDropDown() {
             $("#<%=ddl_manufacturer.ClientID%>").select2();
         }
@@ -47,7 +51,7 @@
 </div>
 <div class="col-xs-12">
 <label>Enter Models Name</label>
-<asp:TextBox ID="txt_model" runat="server" CssClass="form-control"  required="" placeholder="Model Name"></asp:TextBox>
+<asp:TextBox ID="txt_model" runat="server" CssClass="form-control" onkeyup="ToUpper(this)" required="" placeholder="Model Name"></asp:TextBox>
 </div>
 <div class="col-xs-12"><br />
         <asp:Button ID="btn_Submit" runat="server" CssClass="btn btn-primary" 
@@ -66,8 +70,8 @@
 <th width="10%">SNO</th>
 <th width="30%">Manufacturer</th>
 <th width="45%">Model</th>
-<th width="8%">Edit</th>
-<th width="8%">Delete</th>
+<%--<th width="8%">Edit</th>--%>
+<%--<th width="8%">Delete</th>--%>
 </tr>
 </thead>
 <tbody>
@@ -77,12 +81,12 @@
 <td width="10%" align='center'><%#Container.ItemIndex+1 %></td>
 <td width="30%"><%#Eval("Manufacturer")%></td>
 <td width="45%"><%#Eval("Model")%></td>
-<td width="8%" class="actions" align='center'>
+<%--<td width="8%" class="actions" align='center'>
 <asp:LinkButton ID="lbl_Edit" runat="server" CommandName="Edit" CommandArgument='<%#Eval("MID")%>'><i class="fa fa-pencil"></i></asp:LinkButton>
 </td>
 <td width="8%" class="actions" align='center'>
 <asp:LinkButton ID="lbl_Del" runat="server" CommandName="Delete" CommandArgument='<%#Eval("MID")%>' OnClientClick= "return confirm('Are you Sure To Delete?');"><i class="fa fa-trash-o"></i></asp:LinkButton>
-</td>
+</td>--%>
 </tr>
 </ItemTemplate>
 <FooterTemplate>

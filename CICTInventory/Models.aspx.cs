@@ -20,6 +20,7 @@ public partial class CITInventory_Models : System.Web.UI.Page
         if (!IsPostBack)
         {
             getAllManufacturers();
+            getModels();
             if (Request.QueryString["st"] != null)
             {
                 Update();
@@ -79,13 +80,13 @@ public partial class CITInventory_Models : System.Web.UI.Page
             if (btn_Submit.Text != "Update")
             {
                 objPRIBC.AddModel(objPRReq);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Model Added Successfully..!!!'); window.open('../CIT_Manu/{0}','_self');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Model Added Successfully..!!!'); window.open('../CIT_Models/{0}','_self');", true);
             }
             else
             {
                 objPRReq.ID = int.Parse(Request.QueryString["st"].ToString());
                 objPRIBC.EditModelByMID(objPRReq);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Model Updated Successfully..!!!'); window.open('../CIT_Manu/{0}','_self');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Model Updated Successfully..!!!'); window.open('../CIT_Models/{0}','_self');", true);
             }
         }
         catch (Exception ex)
@@ -136,7 +137,7 @@ public partial class CITInventory_Models : System.Web.UI.Page
             if (e.CommandName == "Delete")
             {
                 objPRReq.ID = int.Parse(e.CommandArgument.ToString());
-                objPRIBC.DelManufacturers(objPRReq);
+                objPRIBC.DelModel(objPRReq);
                 string msg = "Deleted Successfully...!!!";
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('" + msg + "');", true);
                 getAllManufacturers();

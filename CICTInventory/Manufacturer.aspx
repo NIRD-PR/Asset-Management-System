@@ -37,7 +37,7 @@
 <thead><tr>
 <th width="10%">SNO</th>
 <th width="75%">Manufacturer</th>
-<th width="15%" colspan="2">Actions</th>
+<%--<th width="15%" colspan="2">Actions</th>--%>
 </tr>
 </thead>
 </table>
@@ -47,12 +47,12 @@
 <tbody><tr class="gradeX" align="center">
 <td width="10%" align='center'><%#Container.ItemIndex+1 %></td>
 <td width="75%"><%#Eval("Name")%></td>
-<td width="8%" class="actions" align='center'>
+<%--<td width="8%" class="actions" align='center'>
 <asp:LinkButton ID="lbl_Edit" runat="server" CommandName="Edit" CommandArgument='<%#Eval("MID")%>'><i class="fa fa-pencil"></i></asp:LinkButton>
 </td>
 <td width="8%" class="actions" align='center'>
 <asp:LinkButton ID="lbl_Del" runat="server" CommandName="Delete" CommandArgument='<%#Eval("MID")%>' OnClientClick= "return confirm('Are you Sure To Delete?');"><i class="fa fa-trash-o"></i></asp:LinkButton>
-</td>
+</td>--%>
 </tr>
 </tbody>
 </table>
