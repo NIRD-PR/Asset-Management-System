@@ -77,9 +77,10 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             {
                 ddl_NewOld.SelectedIndex = 2;
             }
-            txt_Model.Text = dt.Rows[0]["Model"].ToString();
-            txt_ComputerNo.Text = dt.Rows[0]["ComputerNumber"].ToString();
             ddl_Manufacturer.SelectedValue = dt.Rows[0]["Manufacturer"].ToString().ToUpper();
+            getModels();
+            ddl_Model.SelectedValue = dt.Rows[0]["Model"].ToString().Trim().Replace(" ","").ToUpper();
+            txt_ComputerNo.Text = dt.Rows[0]["ComputerNumber"].ToString();
             txt_SerialNo.Text = dt.Rows[0]["SerialNo"].ToString();
             txt_PurchaseDate.Text = dt.Rows[0]["DOP"].ToString();
             txt_Vendor.Text = dt.Rows[0]["Vendor"].ToString();
@@ -137,6 +138,26 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
         ddl_Manufacturer.DataValueField = "Name";
         ddl_Manufacturer.DataBind();
         ddl_Manufacturer.Items.Insert(0, "--Select Manufacturer--");
+    }
+
+    public void getModels()
+    {
+        if (ddl_Manufacturer.SelectedIndex > 0)
+        {
+            objPRReq.Manufacturer = ddl_Manufacturer.SelectedItem.Text;
+            PRResp r = objPRIBC.getModelByManufacturer(objPRReq);
+            DataTable dt = r.GetTable;
+            ddl_Model.DataSource = dt;
+            ddl_Model.DataTextField = "Model";
+            ddl_Model.DataValueField = "Model";
+            ddl_Model.DataBind();
+            ddl_Model.Items.Insert(0, "--Select Model--");
+        }
+        else
+        {
+            ddl_Model.DataSource = null;
+            ddl_Model.DataBind();
+        }
     }
     public void getSectionOfCenter()
     {
@@ -197,9 +218,9 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('" + msg + "');", true);
                 return;
             }
-            if (txt_Model.Text.Trim() != "")
+            if (ddl_Model.SelectedIndex > 0)
             {
-                objPRReq.ModelType = convertQuotes(txt_Model.Text.Trim());
+                objPRReq.ModelType = ddl_Model.SelectedItem.Text.Trim();
             }
             else
             {
@@ -379,5 +400,10 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             return "text-danger";
         }
         return "text-success";
+    }
+
+    protected void ddl_Manufacturer_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        getModels();
     }
 }

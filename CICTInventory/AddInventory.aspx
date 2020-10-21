@@ -31,6 +31,7 @@
             $("#<%=ddl_ItemTypes.ClientID%>").select2();
             $("#<%=ddl_ItemType.ClientID%>").select2();
             $("#<%=ddl_Manufacturer.ClientID%>").select2();
+            $("#<%=ddl_Model.ClientID%>").select2();
             $("#<%=ddl_soc.ClientID%>").select2();
         }
         function dt() {
@@ -80,18 +81,18 @@
 <asp:DropDownList ID="ddl_NewOld" runat="server" CssClass="form-control"></asp:DropDownList><br />
 </div>
 <div class="col-xs-3">
-<label>Model &nbsp;<label class="lblr">*</label></label>
-<asp:TextBox ID="txt_Model" runat="server" CssClass="form-control" onkeyup="ToUpper(this)" placeholder="Model"></asp:TextBox><br />
+<label>Manufacturer &nbsp;<label class="lblr">*</label></label>
+<asp:DropDownList ID="ddl_Manufacturer" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddl_Manufacturer_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList><br />
 </div>
 <div class="col-xs-3">
-<label>Serial Number &nbsp;<label class="lblr">*</label></label>
-<asp:TextBox ID="txt_SerialNo" runat="server" CssClass="form-control" onkeyup="ToUpper(this)" placeholder="Serial Number"></asp:TextBox><br />
+<label>Model &nbsp;<label class="lblr">*</label></label>
+<asp:DropDownList ID="ddl_Model" runat="server" CssClass="form-control"></asp:DropDownList><br />
 </div>
 </div>
 <div class="row">
 <div class="col-xs-3">
-<label>Manufacturer &nbsp;<label class="lblr">*</label></label>
-<asp:DropDownList ID="ddl_Manufacturer" runat="server" CssClass="form-control"></asp:DropDownList><br />
+<label>Serial Number &nbsp;<label class="lblr">*</label></label>
+<asp:TextBox ID="txt_SerialNo" runat="server" CssClass="form-control" onkeyup="ToUpper(this)" placeholder="Serial Number"></asp:TextBox><br />
 </div>
 <div class="col-xs-3">
 <label>Warranty &nbsp;<label class="lblr">*</label><asp:Label ID="lbl_Warranty" runat="server" CssClass="lblr"></asp:Label></label>
