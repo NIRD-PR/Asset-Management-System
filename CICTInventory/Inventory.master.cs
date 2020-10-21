@@ -30,7 +30,6 @@ public partial class Inventory : System.Web.UI.MasterPage
                 oid = int.Parse(dt.Rows[0]["OID"].ToString());
             }
             getNewTickets();
-            getPendingRequest();
         }
         else
         {

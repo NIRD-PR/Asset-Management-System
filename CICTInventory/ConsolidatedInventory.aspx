@@ -78,8 +78,8 @@
         <strong>OR</strong>
     </div>
     <div class="row" style="margin: 20px 0">
-        <label> Start Date : </label> <asp:TextBox runat="server" ID="start" ClientIDMode="Static"></asp:TextBox> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <label> End Date : </label>  <asp:TextBox runat="server" ID="end" ClientIDMode="Static"></asp:TextBox>
+        <label> Start Date : </label> <asp:TextBox runat="server" ID="start" ClientIDMode="Static" AutoComplete="off"></asp:TextBox> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <label> End Date : </label>  <asp:TextBox runat="server" ID="end" ClientIDMode="Static" AutoComplete="off"></asp:TextBox>
     </div>
     <div class="row" style="margin: 20px 0">
         <asp:Button ID="btn_Submit" runat="server" CssClass="btn btn-primary" Text="Get Report" OnClick="btn_Submit_Click" />

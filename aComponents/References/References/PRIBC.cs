@@ -5373,6 +5373,42 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.GetTable = Connections.GetTable(hod);
             return objPRResp;
         }
+        public PRResp AddModel(PRReq objPRReq)
+        {
+            string insert = "insert into CIT_tbl_Models (Model,Manufacturer) values('" + objPRReq.ModelType + "' , '" + objPRReq.Manufacturer + "')";
+            objPRResp.Count = Connections.ProcessQuery(insert);
+            return objPRResp;
+        }
+        public PRResp getModelByName(PRReq objPRReq)
+        {
+            string s = "select * from CIT_tbl_Models where Model='" + objPRReq.ModelType + "' and Manufacturer='" + objPRReq.Manufacturer + "'";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
+        public PRResp getModelByMID(PRReq objPRReq)
+        {
+            string s = "select * from CIT_tbl_Models where MID='" + objPRReq.ID + "' ";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
+        public PRResp getModelByManufacturer(PRReq objPRReq)
+        {
+            string s = "select * from CIT_tbl_Models where Manufacturer='" + objPRReq.Manufacturer + "' ";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
+        public PRResp EditModelByMID(PRReq objPRReq)
+        {
+            string update = "update CIT_tbl_Models set Manufacturer='" + objPRReq.Manufacturer + "'and Model='" + objPRReq.ModelType + "' where MID='" + objPRReq.ID + "' ";
+            objPRResp.Count = Connections.ProcessQuery(update);
+            return objPRResp;
+        }
+        public PRResp DelModel(PRReq objPRReq)
+        {
+            string hod = "delete from CIT_tbl_Models where MID='" + objPRReq.ID + "' ";
+            objPRResp.GetTable = Connections.GetTable(hod);
+            return objPRResp;
+        }
         public PRResp getAllItemInventory_ITemNameNoWarranty_Dept(PRReq objPRReq)
         {
             string s = "select distinct * from CIT_tbl_InventoryMapping where Flag1=1 and Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and DeptID='" + objPRReq.DeptID + "' and Warranty!='Warranty' and Warranty!='AMC' ";

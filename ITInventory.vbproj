@@ -150,6 +150,8 @@
     <Content Include="App_Code\StoreStockBackup.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="assets\bootstrap-datepicker.min.css" />
+    <Content Include="assets\bootstrap-datepicker.min.js" />
     <Content Include="assets\calender\jquery.datepick.css" />
     <Content Include="assets\calender\jquery.datepick.js" />
     <Content Include="assets\calender\jquery.plugin.js" />
@@ -164,6 +166,8 @@
     <Content Include="assets\css\menu.css" />
     <Content Include="assets\css\pages.css" />
     <Content Include="assets\css\responsive.css" />
+    <Content Include="assets\datatables.min.css" />
+    <Content Include="assets\datatables.min.js" />
     <Content Include="assets\fonts\fontawesome-webfont93e3.svg" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\fonts\ioniconsaa26.svg" />
@@ -423,6 +427,73 @@
     <Content Include="assets\plugins\x-editable\dist\bootstrap3-editable\js\bootstrap-editable.min.js" />
     <Content Include="assets\scripts\jquery-1.4.2.min.js" />
     <Content Include="assets\scripts\jquery.webcam.js" />
+    <Content Include="assets\select2\css\select2.css" />
+    <Content Include="assets\select2\css\select2.min.css" />
+    <Content Include="assets\select2\js\i18n\af.js" />
+    <Content Include="assets\select2\js\i18n\ar.js" />
+    <Content Include="assets\select2\js\i18n\az.js" />
+    <Content Include="assets\select2\js\i18n\bg.js" />
+    <Content Include="assets\select2\js\i18n\bn.js" />
+    <Content Include="assets\select2\js\i18n\bs.js" />
+    <Content Include="assets\select2\js\i18n\ca.js" />
+    <Content Include="assets\select2\js\i18n\cs.js" />
+    <Content Include="assets\select2\js\i18n\da.js" />
+    <Content Include="assets\select2\js\i18n\de.js" />
+    <Content Include="assets\select2\js\i18n\dsb.js" />
+    <Content Include="assets\select2\js\i18n\el.js" />
+    <Content Include="assets\select2\js\i18n\en.js" />
+    <Content Include="assets\select2\js\i18n\eo.js" />
+    <Content Include="assets\select2\js\i18n\es.js" />
+    <Content Include="assets\select2\js\i18n\et.js" />
+    <Content Include="assets\select2\js\i18n\eu.js" />
+    <Content Include="assets\select2\js\i18n\fa.js" />
+    <Content Include="assets\select2\js\i18n\fi.js" />
+    <Content Include="assets\select2\js\i18n\fr.js" />
+    <Content Include="assets\select2\js\i18n\gl.js" />
+    <Content Include="assets\select2\js\i18n\he.js" />
+    <Content Include="assets\select2\js\i18n\hi.js" />
+    <Content Include="assets\select2\js\i18n\hr.js" />
+    <Content Include="assets\select2\js\i18n\hsb.js" />
+    <Content Include="assets\select2\js\i18n\hu.js" />
+    <Content Include="assets\select2\js\i18n\hy.js" />
+    <Content Include="assets\select2\js\i18n\id.js" />
+    <Content Include="assets\select2\js\i18n\is.js" />
+    <Content Include="assets\select2\js\i18n\it.js" />
+    <Content Include="assets\select2\js\i18n\ja.js" />
+    <Content Include="assets\select2\js\i18n\ka.js" />
+    <Content Include="assets\select2\js\i18n\km.js" />
+    <Content Include="assets\select2\js\i18n\ko.js" />
+    <Content Include="assets\select2\js\i18n\lt.js" />
+    <Content Include="assets\select2\js\i18n\lv.js" />
+    <Content Include="assets\select2\js\i18n\mk.js" />
+    <Content Include="assets\select2\js\i18n\ms.js" />
+    <Content Include="assets\select2\js\i18n\nb.js" />
+    <Content Include="assets\select2\js\i18n\ne.js" />
+    <Content Include="assets\select2\js\i18n\nl.js" />
+    <Content Include="assets\select2\js\i18n\pa.js" />
+    <Content Include="assets\select2\js\i18n\pl.js" />
+    <Content Include="assets\select2\js\i18n\ps.js" />
+    <Content Include="assets\select2\js\i18n\pt-BR.js" />
+    <Content Include="assets\select2\js\i18n\pt.js" />
+    <Content Include="assets\select2\js\i18n\ro.js" />
+    <Content Include="assets\select2\js\i18n\ru.js" />
+    <Content Include="assets\select2\js\i18n\sk.js" />
+    <Content Include="assets\select2\js\i18n\sl.js" />
+    <Content Include="assets\select2\js\i18n\sq.js" />
+    <Content Include="assets\select2\js\i18n\sr-Cyrl.js" />
+    <Content Include="assets\select2\js\i18n\sr.js" />
+    <Content Include="assets\select2\js\i18n\sv.js" />
+    <Content Include="assets\select2\js\i18n\th.js" />
+    <Content Include="assets\select2\js\i18n\tk.js" />
+    <Content Include="assets\select2\js\i18n\tr.js" />
+    <Content Include="assets\select2\js\i18n\uk.js" />
+    <Content Include="assets\select2\js\i18n\vi.js" />
+    <Content Include="assets\select2\js\i18n\zh-CN.js" />
+    <Content Include="assets\select2\js\i18n\zh-TW.js" />
+    <Content Include="assets\select2\js\select2.full.js" />
+    <Content Include="assets\select2\js\select2.full.min.js" />
+    <Content Include="assets\select2\js\select2.js" />
+    <Content Include="assets\select2\js\select2.min.js" />
     <Content Include="assets\sha1.js" />
     <Content Include="assets\splitjs\VwdCmsSplitterBar.js" />
     <Content Include="bin\AjaxControlToolkit.dll" />
@@ -507,7 +578,9 @@
     <Content Include="CICTInventory\CITSupportingStaff.aspx" />
     <Content Include="CICTInventory\CITSupportingStaff.aspx.cs" />
     <Content Include="CICTInventory\ConsolidatedInventory.aspx" />
-    <Content Include="CICTInventory\ConsolidatedInventory.aspx.cs" />
+    <Content Include="CICTInventory\ConsolidatedInventory.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="CICTInventory\ConsoliInventory.aspx" />
     <Content Include="CICTInventory\ConsoliInventory.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -569,6 +642,10 @@
     </Content>
     <Content Include="CICTInventory\MapInventory.aspx" />
     <Content Include="CICTInventory\MapInventory.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="CICTInventory\Models.aspx" />
+    <Content Include="CICTInventory\Models.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="CICTInventory\RoomNos.aspx" />
