@@ -5859,34 +5859,6 @@ namespace NIRDPR.RK.PRReferences
             return objPRResp;
         }
 
-        public PRResp getAllPendingAssetRequests(PRReq objPRReq)
-        {
-            string s = "select * from CIT_tbl_Request as c join PR_tbl_Employee as p on c.EmpID=p.EmpID where c.Status='Active'";
-            objPRResp.GetTable = Connections.GetTable(s);
-            return objPRResp;
-        }
-
-        public PRResp getAllPastAssetRequests(PRReq objPRReq)
-        {
-            string s = "select * from CIT_tbl_Request as c join PR_tbl_Employee as p on c.EmpID=p.EmpID where c.Status!='Active'";
-            objPRResp.GetTable = Connections.GetTable(s);
-            return objPRResp;
-        }
-
-        public PRResp changeRequest(PRReq objPRReq)
-        {
-            string s = "update CIT_tbl_Request set Status='" + objPRReq.Status + "' , Remark ='" + objPRReq.Remarks + "' where RID ='" + objPRReq.RID + "' ";
-            objPRResp.GetTable = Connections.GetTable(s);
-            return objPRResp;
-        }
-
-        public PRResp editRemark(PRReq objPRReq)
-        {
-            string s = "update CIT_tbl_Request set Remark ='" + objPRReq.Remarks + "' where RID ='" + objPRReq.RID + "' ";
-            objPRResp.GetTable = Connections.GetTable(s);
-            return objPRResp;
-        }
-
         // CIT Supporting Staff Registration
         public PRResp RegisterCITSupporintStaff(PRReq objPRReq)
         {

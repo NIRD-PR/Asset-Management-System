@@ -64,18 +64,4 @@ public partial class Inventory : System.Web.UI.MasterPage
             lbl_NewTickets.Text = dt.Rows[0]["count"].ToString();
         }
     }
-    public void getPendingRequest()
-    {
-        objPRReq.OID = oid;
-        PRResp r = objPRIBC.getAllPendingAssetRequests(objPRReq);
-        DataTable dt = r.GetTable;
-        if (dt.Rows.Count > 0)
-        {
-            lbl_request.Text = dt.Rows.Count.ToString();
-        }
-        else
-        {
-            lbl_request.Visible = false;
-        }
-    }
 }
