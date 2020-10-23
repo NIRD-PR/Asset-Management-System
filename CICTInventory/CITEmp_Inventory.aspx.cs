@@ -250,7 +250,7 @@ public partial class Inventory_CITInventory : System.Web.UI.Page
             objPRReq.MIID = int.Parse(e.CommandArgument.ToString());
             objPRReq.Flag1 = 0;
             objPRIBC.ReleaseMappedItem_EmpID(objPRReq);
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Item Released Successfully..!!!'); window.open('../CIT_EInv/{0}','_self');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Asset Released Successfully..!!!'); window.open('../CIT_EInv/{0}','_self');", true);
 
         }
     }

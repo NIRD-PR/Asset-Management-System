@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" MaintainScrollPositionOnPostback="true" Language="C#" MasterPageFile="Inventory.master" AutoEventWireup="true" CodeFile="Manufacturer.aspx.cs" Inherits="CITInventory_Manufacturer" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <script type="text/javascript">
+        function ToUpper(ctrl) {
+            var t = ctrl.value;
+            ctrl.value = t.toUpperCase();
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
 <asp:UpdatePanel ID="up" runat="server">
@@ -18,7 +24,7 @@
 <div class="panel-body">
 <div class="col-xs-12">
 <label>Enter Manufacturer Name</label>
-<asp:TextBox ID="txt_Manufacturer" runat="server" CssClass="form-control"  required="" placeholder="Manufacturer Name"></asp:TextBox>
+<asp:TextBox ID="txt_Manufacturer" runat="server" CssClass="form-control" onkeyup="ToUpper(this)"  required="" placeholder="Manufacturer Name"></asp:TextBox>
 </div>
 
 <div class="col-xs-12"><br />

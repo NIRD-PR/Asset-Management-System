@@ -109,15 +109,17 @@
 <td width="15%">Manufacturer</td>
 <td width="20%">Model</td>
 <td width="15%">SerialNo</td>
-<td width="20%">Warranty</td>
-<td width="25%">Computer No.</td>
+<td width="10%">Warranty</td>
+<td width="15%">Assigned on</td>
+<td width="20%">Computer No.</td>
 <td width="5%" class="rm" >Release</td>
 </tr>
 <tr><td width="15%" align="center" style="vertical-align:middle;text-align:center; "><%#Eval("Manufacturer")%></td>
 <td width="20%" style="vertical-align:middle; font-size:0.9em; text-align:center"><%#Eval("Model")%></td>
 <td width="15%" style="vertical-align:middle; font-size:0.9em; text-align:center;"><%#Eval("SerialNo")%></td>
-<td width="20%" style="vertical-align:middle; font-size:0.9em; text-align:center;"><%#Eval("Warranty")%></td>
-<td width="25%" style="vertical-align:middle; font-size:0.9em; text-align:center;"><%#Eval("ComputerNumber")%></td>
+<td width="10%" style="vertical-align:middle; font-size:0.9em; text-align:center;"><%#Eval("Warranty")%></td>
+<td width="15%" style="vertical-align:middle; font-size:0.9em; text-align:center;"><%#Eval("Dated")%></td>
+<td width="20%" style="vertical-align:middle; font-size:0.9em; text-align:center;"><%#Eval("ComputerNumber")%></td>
 <%--<td width="3%" class="actions rm" align='center'>
 <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Edit" CommandArgument='<%#Eval("MIID")%>' ToolTip="Edit" ><i class="fa fa-pencil" style="font-size:large; color:Black;"></i></asp:LinkButton>
 </td>

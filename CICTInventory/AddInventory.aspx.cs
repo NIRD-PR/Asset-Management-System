@@ -79,7 +79,11 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             }
             ddl_Manufacturer.SelectedValue = dt.Rows[0]["Manufacturer"].ToString().ToUpper();
             getModels();
-            ddl_Model.SelectedValue = dt.Rows[0]["Model"].ToString().Trim().Replace(" ","").ToUpper();
+            ddl_Model.SelectedValue = dt.Rows[0]["Model"].ToString().Trim().Replace(" ","").ToUpper() ;
+            if(ddl_Model.SelectedIndex == 0)
+            {
+                ddl_Model.SelectedValue = dt.Rows[0]["Model"].ToString().Trim().ToUpper();
+            }
             txt_ComputerNo.Text = dt.Rows[0]["ComputerNumber"].ToString();
             txt_SerialNo.Text = dt.Rows[0]["SerialNo"].ToString();
             txt_PurchaseDate.Text = dt.Rows[0]["DOP"].ToString();
@@ -253,7 +257,18 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             objPRReq.WarrantyDate = convertQuotes(txt_WarrantyDate.Text.Trim());
             objPRReq.Vendor = convertQuotes(txt_Vendor.Text.Trim());
             objPRReq.ComputerNo = convertQuotes(txt_ComputerNo.Text.Trim());
-            objPRReq.DOP = convertQuotes(txt_PurchaseDate.Text.Trim());
+            if(txt_PurchaseDate.Text.Trim().Length > 0)
+            {
+                try
+                {
+                    CultureInfo culture = new CultureInfo("pt-BR");
+                    objPRReq.DOP = DateTime.ParseExact(txt_PurchaseDate.Text.Trim(), "dd/MM/yyyy", null).ToString("d", culture);
+                }
+                catch
+                {
+                    throw new Exception("Please enter date in dd/MM/YYYY format or leave it empty.");
+                }
+            }
             objPRReq.InvoiceNumber = bill.Text.Trim();
             if (price.Text.Length > 0)
             {
@@ -293,14 +308,14 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
                 else
                 {
                     objPRIBC.AddItemInventory(objPRReq);
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Item Type Added Successfully..!!!'); window.open('../CIT_ADDInv/{0}','_self');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Asset Added Successfully..!!!'); window.open('../CIT_ADDInv/{0}','_self');", true);
                 }
             }
             else
             {
                 objPRReq.IID = int.Parse(hdn_IID.Value);
                 objPRIBC.EditItemInventory_SerialNo(objPRReq);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Item Type Updated Successfully..!!!'); window.open('../CIT_ADDInv/{0}','_self');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Asset Updated Successfully..!!!'); window.open('../CIT_ADDInv/{0}','_self');", true);
             }
         }
         catch (Exception ex)

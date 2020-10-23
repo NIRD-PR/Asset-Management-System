@@ -476,14 +476,14 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
             else
             {
                 objPRIBC.MapITInventorytoEmp(objPRReq);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Item Type Mapped  Successfully..!!!'); window.open('../CIT_MAPInv/{0}','_self');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Asset Alloted Successfully..!!!'); window.open('../CIT_MAPInv/{0}','_self');", true);
             }
         }
         else
         {
             objPRReq.MIID = int.Parse(hdn_MIID.Value);
             objPRIBC.updateMappedItemtoOthers(objPRReq);
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Item Type Updated Successfully..!!!'); window.open('../CIT_MAPInv/{0}','_self');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", " alert('Asset Alloted Successfully..!!!'); window.open('../CIT_MAPInv/{0}','_self');", true);
         }
     }
     //protected void txt_SNo_TextChanged(object sender, EventArgs e)

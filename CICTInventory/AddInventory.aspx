@@ -33,6 +33,12 @@
             $("#<%=ddl_Manufacturer.ClientID%>").select2();
             $("#<%=ddl_Model.ClientID%>").select2();
             $("#<%=ddl_soc.ClientID%>").select2();
+            $("#<%=txt_PurchaseDate.ClientID%>").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                format: "dd/mm/yyyy",
+                language: "tr"
+            });
         }
         function dt() {
             var n = 'CICT-Inventory Stock';
@@ -114,7 +120,7 @@
 </div>
 <div class="col-xs-3">
 <label>Purchase Date</label>
-<asp:TextBox ID="txt_PurchaseDate" runat="server" CssClass="form-control" MaxLength="10"></asp:TextBox><br />
+<asp:TextBox ID="txt_PurchaseDate" runat="server" CssClass="form-control" AutoComplete="off"></asp:TextBox><br />
 </div>
 <div class="col-xs-3">
 <label>Status</label>&nbsp;<span data-toggle="tooltip" data-placement="right" data-html="true" title="Idle - Free / Not in use <br> Active - In Use <br> Inactive - Can't be alotted currently <br> Abandoned - Decomissioned / Not usable"><i class="fa fa-info"></i></span>
@@ -168,10 +174,11 @@
 <table id="tb" width="100%" border="1" class="table" style="table-layout:fixed; font-size:12px; line-height:30px; font-family:Tahoma; vertical-align:middle; border-collapse: collapse; margin:0;">
 <thead><tr>
 <th width="5%">SNO</th>
-<th width="10%">Item Name</th>
+<th width="5%">Item Name</th>
 <th width="10%">Manufacture</th>
 <th width="10%">Model</th>
 <th width="10%">Serial No</th>
+<th width="5%">DOP</th>
 <th width="5%">Status</th>
 <th width="10%">Warranty</th>
 <th width="5%">Edit</th>
@@ -183,10 +190,11 @@
 <ItemTemplate>
 <tr align="center">
 <td width="5%"><%#Container.ItemIndex+1 %></td>
-<td width="10%"><%#Eval("ItemType")%></td>
+<td width="5%"><%#Eval("ItemType")%></td>
 <td width="10%"><%#Eval("Manufacturer")%></td>
 <td width="10%"><%#Eval("Model")%></td>
 <td width="10%"><%#Eval("SerialNo")%></td>
+<td width="5%"><%#Eval("DOP")%></td>
 <td width="5%" ><asp:Label runat="server" CssClass='<%#GetColor(Eval("Status").ToString()) %>'> <%#Eval("Status")%></asp:Label></td>
 <td width="10%"><%#Eval("Warranty")%></td>
 <td width="5%">
@@ -200,10 +208,11 @@
 <AlternatingItemTemplate>
 <tr style="background:#F0F4FF;" align="center">
 <td width="5%"><%#Container.ItemIndex+1 %></td>
-<td width="10%"><%#Eval("ItemType")%></td>
+<td width="5%"><%#Eval("ItemType")%></td>
 <td width="10%"><%#Eval("Manufacturer")%></td>
 <td width="10%"><%#Eval("Model")%></td>
 <td width="10%"><%#Eval("SerialNo")%></td>
+<td width="5%"><%#Eval("DOP")%></td>
 <td width="5%"><asp:Label runat="server" CssClass='<%#GetColor(Eval("Status").ToString()) %>'> <%#Eval("Status")%></asp:Label></td>
 <td width="10%"><%#Eval("Warranty")%></td>
 <td width="5%" class="actions" align='center'>

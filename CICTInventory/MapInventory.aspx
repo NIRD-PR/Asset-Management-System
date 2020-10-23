@@ -103,7 +103,7 @@
 
 <div class="row">
 <div class="col-xs-12" align="center"><asp:Button ID="btn_Submit" runat="server" 
-        CssClass="btn btn-success" Text="MAP Item" onclick="btn_Submit_Click" /></div>
+        CssClass="btn btn-success" Text="Allot Asset" onclick="btn_Submit_Click" /></div>
 </div>
 </div>
 <%--<div class="panel panel-color panel-info" style="margin-bottom:300px">

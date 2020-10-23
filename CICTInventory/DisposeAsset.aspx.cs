@@ -149,6 +149,7 @@ public partial class CICTInventory_DisposeAsset : System.Web.UI.Page
                 }
                 
             }
+            objPRReq.Remarks = remarks.Text.Trim();
             objPRReq.FileName = strFileName;
             objPRReq.Status = "Abandoned";
             objPRReq.OID = 1;
