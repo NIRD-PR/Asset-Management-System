@@ -648,6 +648,10 @@
     <Content Include="CICTInventory\Models.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="CICTInventory\Roles.aspx" />
+    <Content Include="CICTInventory\Roles.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="CICTInventory\RoomNos.aspx" />
     <Content Include="CICTInventory\RoomNos.aspx.cs" />
     <Content Include="CICTInventory\UpdateCITInventory_ExcelMapping.aspx" />

@@ -5976,6 +5976,32 @@ namespace NIRDPR.RK.PRReferences
             return objPRResp;
         }
 
+        // Roles
+        public PRResp getRoles(PRReq objPRReq)
+        {
+            string s = "select * from  tbl_Roles";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
+        public PRResp getAllAdmins(PRReq objPRReq)
+        {
+            string s = "select * from  tbl_Admin where Status='" + objPRReq.Status + "'";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
+        public PRResp getAdminRoleEmpID(PRReq objPRReq)
+        {
+            string s = "select * from  tbl_Admin where Status='" + objPRReq.Status + "' and Application='" + objPRReq.Application + "' and EmpID='" + objPRReq.EmpID + "'";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
+        public PRResp AddRole(PRReq objPRReq)
+        {
+            string s = "insert into tbl_Admin(UserID, EmpID, Name, DSID, Design, Email, Password, Mobile, OID, OrgName, Application, Role, Status, Photo) values('" + objPRReq.UserID + "', '" + objPRReq.EmpID + "', '" + objPRReq.Name + "', '" + objPRReq.DSID + "', '" + objPRReq.Design + "', '" + objPRReq.Email + "', '" + objPRReq.Password + "', '" + objPRReq.Mobile + "', '" + objPRReq.OID + "', '" + objPRReq.OrgName + "', '" + objPRReq.Application + "', '" + objPRReq.Role + "', '" + objPRReq.Status + "', '" + objPRReq.Photo + "')";
+            objPRResp.GetTable = Connections.GetTable(s);
+            return objPRResp;
+        }
+
         // CIT E ticketing
 
         public PRResp RegisterCIT_eTicket(PRReq objPRReq)

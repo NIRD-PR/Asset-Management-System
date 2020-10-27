@@ -119,6 +119,7 @@
  <ul class="list-unstyled">
  <li><a href='<%=ResolveUrl("../CIT_SS/{0}") %>'><i class="md md-play-circle-fill"></i><span> ADD Supporting Staff</span></a></li>
 <li><a href='<%=ResolveUrl("../CIT_Staff/{0}") %>'><i class="md md-play-circle-fill"></i><span> Staff Details</span></a></li>
+    <li><a href='<%=ResolveUrl("../Roles/{0}") %>'><i class="md md-play-circle-fill"></i><span> Roles</span></a></li>
  </ul></li>
  <li class="has_sub"><a href="#" class="waves-effect"><i class="md md-mail"></i><span> E-Tickets</span><span class="pull-right"><i class="md md-add"></i></span></a>
  <ul class="list-unstyled">

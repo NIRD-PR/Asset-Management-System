@@ -657,6 +657,9 @@
         //CMU Ticketing
         routes.MapPageRoute("CMU_TktHome/{UID}", "CMU_TktHome/{UID}", "~/CMU_Ticketing/CMUTicketingHome.aspx");
 
+        //Roles
+        routes.MapPageRoute("Roles/{UID}", "Roles/{UID}", "~/CICTInventory/Roles.aspx");
+
         //CIT Inventory
         routes.MapPageRoute("CIT_InvHome/{UID}", "CIT_InvHome/{UID}", "~/CICTInventory/InventoryHome.aspx");
         routes.MapPageRoute("CIT_InvItems/{UID}", "CIT_InvItems/{UID}", "~/CICTInventory/ItemType.aspx");
