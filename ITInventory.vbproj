@@ -696,7 +696,9 @@
     <Content Include="FAQ.aspx" />
     <Content Include="FAQ.aspx.cs" />
     <Content Include="GenerateCaptcha.aspx" />
-    <Content Include="GenerateCaptcha.aspx.cs" />
+    <Content Include="GenerateCaptcha.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="GovMailRequestForm.aspx" />
     <Content Include="GovMailRequestForm.aspx.cs" />
@@ -704,12 +706,22 @@
     <Content Include="HostelLogin.aspx.cs" />
     <Content Include="loader.gif" />
     <Content Include="Login.aspx" />
-    <Content Include="Login.aspx.cs" />
+    <Content Include="Login.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="NewLogin.aspx" />
+    <Content Include="NewLogin.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="ResetPassword.aspx" />
     <Content Include="ResetPassword.aspx.cs" />
-    <Content Include="Site.master.cs" />
+    <Content Include="Site.master.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="StoreLogin.aspx" />
-    <Content Include="StoreLogin.aspx.cs" />
+    <Content Include="StoreLogin.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Training.aspx" />
     <Content Include="Training.aspx.cs" />
     <Content Include="url.vbs" />

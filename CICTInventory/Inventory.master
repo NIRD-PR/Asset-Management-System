@@ -15,8 +15,6 @@
 <link href="../assets/css/responsive.css" rel="stylesheet" type="text/css" />
 	<link href="../assets/css/ajax-calender-theme.css" rel="stylesheet" />
     <script type="text/javascript" src="../assets/js/jquery.min.js"></script>
-  <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="../assets/js/jquery.app.js"></script>
 
 <link rel="stylesheet" type="text/css" href="../assets/datatables.min.css"/>
 <script type="text/javascript" src="../assets/datatables.min.js"></script>
