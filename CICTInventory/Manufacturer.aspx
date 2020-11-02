@@ -6,6 +6,25 @@
             var t = ctrl.value;
             ctrl.value = t.toUpperCase();
         }
+        function dt() {
+            var n = 'CICT- Manufacturers List';
+            $('.table').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'pageLength', 'print',
+                    {
+                        extend: 'excel',
+                        filename: n,
+                        title: n
+                    },
+                    {
+                        extend: 'pdf',
+                        filename: n,
+                        title: n
+                    }
+                ]
+            });
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
@@ -46,11 +65,10 @@
 <%--<th width="15%" colspan="2">Actions</th>--%>
 </tr>
 </thead>
-</table>
+<tbody>
 </HeaderTemplate>
 <ItemTemplate>
-<table class="table table-bordered table-hover" width="100%" id="datatable-editable" style="font-size:0.9em; margin-bottom:1px;">
-<tbody><tr class="gradeX" align="center">
+<tr class="gradeX" align="center">
 <td width="10%" align='center'><%#Container.ItemIndex+1 %></td>
 <td width="75%"><%#Eval("Name")%></td>
 <%--<td width="8%" class="actions" align='center'>
@@ -60,11 +78,11 @@
 <asp:LinkButton ID="lbl_Del" runat="server" CommandName="Delete" CommandArgument='<%#Eval("MID")%>' OnClientClick= "return confirm('Are you Sure To Delete?');"><i class="fa fa-trash-o"></i></asp:LinkButton>
 </td>--%>
 </tr>
-</tbody>
-</table>
-
-
 </ItemTemplate>
+    <FooterTemplate>
+        </tbody>
+    </table>
+    </FooterTemplate>
 </asp:Repeater>
 </div>
 </div></div></div>

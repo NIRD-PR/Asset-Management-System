@@ -15,6 +15,7 @@ public partial class CITInventory_Manufacturer : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         getAdminUser();
+        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "dt", "dt();", true);
         if (!IsPostBack)
         {
             getAllManufacturers();
@@ -96,6 +97,7 @@ public partial class CITInventory_Manufacturer : System.Web.UI.Page
         objPRReq.OID = oid;
         PRResp r = objPRIBC.getAllManufacturers(objPRReq);
         DataTable dt = r.GetTable;
+        dt.DefaultView.Sort = "Name asc";
         rptr_Data.DataSource = dt;
         rptr_Data.DataBind();
         lbl_Count.Text = " No. of Manufacturers Listed : " + dt.Rows.Count.ToString();

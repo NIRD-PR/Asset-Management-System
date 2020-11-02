@@ -68,6 +68,11 @@ public partial class CITInventory_Models : System.Web.UI.Page
     {
         try
         {
+            if (ddl_manufacturer.SelectedIndex == 0)
+            {
+                string msg = "Please Select a Manufacturer..!!!";
+                throw new Exception(msg);
+            }
             objPRReq.Manufacturer = ddl_manufacturer.SelectedItem.Text;
             objPRReq.ModelType = convertQuotes(txt_model.Text.Trim());
             PRResp r = objPRIBC.getModelByName(objPRReq);
@@ -101,6 +106,7 @@ public partial class CITInventory_Models : System.Web.UI.Page
         objPRReq.OID = oid;
         PRResp r = objPRIBC.getAllManufacturers(objPRReq);
         DataTable dt = r.GetTable;
+        dt.DefaultView.Sort = "Name asc";
         ddl_manufacturer.DataSource = dt;
         ddl_manufacturer.DataTextField = "Name";
         ddl_manufacturer.DataValueField = "Name";

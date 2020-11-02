@@ -131,7 +131,15 @@ public partial class CICTInventory_AddInventoryBulk : System.Web.UI.Page
                 {
                     throw new System.Exception("Please enter a Model");
                 }
-
+                else
+                {
+                    PRResp man = objPRIBC.getModelByName(objPRReq);
+                    DataTable t = man.GetTable;
+                    if (t.Rows.Count == 0)
+                    {
+                        throw new Exception("Model does not exist in database for this manufacturer. Please add it in Models page.");
+                    }
+                }
                 objPRReq.SerialNo = ds.Tables["myExcel"].Rows[i][6].ToString().Trim();
                 if(objPRReq.SerialNo.Length == 0)
                 {
