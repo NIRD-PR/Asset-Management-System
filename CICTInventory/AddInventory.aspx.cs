@@ -77,13 +77,9 @@ public partial class CICTInventory_AddInventory : System.Web.UI.Page
             {
                 ddl_NewOld.SelectedIndex = 2;
             }
-            ddl_Manufacturer.SelectedValue = dt.Rows[0]["Manufacturer"].ToString().ToUpper();
+            ddl_Manufacturer.SelectedValue = dt.Rows[0]["Manufacturer"].ToString().Trim().ToUpper();
             getModels();
-            ddl_Model.SelectedValue = dt.Rows[0]["Model"].ToString().Trim().Replace(" ","").ToUpper() ;
-            if(ddl_Model.SelectedIndex == 0)
-            {
-                ddl_Model.SelectedValue = dt.Rows[0]["Model"].ToString().Trim().ToUpper();
-            }
+            ddl_Model.SelectedValue = dt.Rows[0]["Model"].ToString().Trim().ToUpper();
             txt_ComputerNo.Text = dt.Rows[0]["ComputerNumber"].ToString();
             txt_SerialNo.Text = dt.Rows[0]["SerialNo"].ToString();
             txt_PurchaseDate.Text = dt.Rows[0]["DOP"].ToString();

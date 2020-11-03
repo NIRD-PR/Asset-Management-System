@@ -549,10 +549,6 @@
     <Content Include="CICTInventory\AddinventoryBulk.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="CICTInventory\AssetRequest.aspx" />
-    <Content Include="CICTInventory\AssetRequest.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
     <Content Include="CICTInventory\ChangePassword.aspx" />
     <Content Include="CICTInventory\ChangePassword.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
