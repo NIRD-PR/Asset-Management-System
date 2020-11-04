@@ -5337,6 +5337,8 @@ namespace NIRDPR.RK.PRReferences
 
         // CIT ItemInventory
 
+        // Models/Manufacturers Bhubhanshu Gurjar START
+
         public PRResp getAllManufacturers(PRReq objPRReq)
         {
             string s = "select * from CIT_tbl_Manufacturer";
@@ -5409,25 +5411,28 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.GetTable = Connections.GetTable(hod);
             return objPRResp;
         }
-        public PRResp getAllItemInventory_ITemNameNoWarranty_Dept(PRReq objPRReq)
+
+        // Bhubhanshu Gurjar END
+
+        public PRResp getAllItemInventory_ITemNameNoWarranty_Dept(PRReq objPRReq) // Bhubhanshu Gurjar added flag1=1
         {
             string s = "select distinct * from CIT_tbl_InventoryMapping where Flag1=1 and Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and DeptID='" + objPRReq.DeptID + "' and Warranty!='Warranty' and Warranty!='AMC' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
-        public PRResp getAllItemInventory_DeptWise_NameWise(PRReq objPRReq)
+        public PRResp getAllItemInventory_DeptWise_NameWise(PRReq objPRReq) // Bhubhanshu Gurjar added flag1=1
         {
             string s = "select distinct * from CIT_tbl_InventoryMapping where Flag1=1 and Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' order by DeptID,Name,ItemName ASC ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
-        public PRResp getAllItemInventory_DeptWise_NameWise_ITID(PRReq objPRReq)
+        public PRResp getAllItemInventory_DeptWise_NameWise_ITID(PRReq objPRReq) // Bhubhanshu Gurjar added flag1=1
         {
             string s = "select distinct * from CIT_tbl_InventoryMapping where Flag1=1 and Status='" + objPRReq.Status + "' and ITID='" + objPRReq.ITID + "' and OID='" + objPRReq.OID + "' order by DeptID,Name,ItemName ASC ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
-        public PRResp getAllItemInventory_ITemName_Dept_AMC(PRReq objPRReq)
+        public PRResp getAllItemInventory_ITemName_Dept_AMC(PRReq objPRReq) // Bhubhanshu Gurjar added flag1=1
         {
             string s = "select distinct * from CIT_tbl_InventoryMapping where Flag1=1 and Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and Warranty='" + objPRReq.Warranty + "' and DeptID='" + objPRReq.DeptID + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
@@ -5439,6 +5444,8 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
+        // Bhubhanshu Gurjar START
+
         public PRResp getAllItemInventoryByDeptID(PRReq objPRReq)
         {
             string s = "select * from CIT_tbl_InventoryMapping where Flag1=1 and Status='" + objPRReq.Status + "' and OID='" + objPRReq.OID + "' and DeptID='" + objPRReq.DeptID + "' order by Name ";
@@ -5451,42 +5458,46 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
-        public PRResp getAllItemInventory_Manufacturer(PRReq objPRReq)
+
+        // Bhubhanshu Gurjar END
+        public PRResp getAllItemInventory_Manufacturer(PRReq objPRReq)  // Bhubhanshu Gurjar added Status!='Abandoned'
         {
             string s = "select distinct Manufacturer from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
-        public PRResp getAllItemInventory_ITemNameNoWarranty(PRReq objPRReq)
+        public PRResp getAllItemInventory_ITemNameNoWarranty(PRReq objPRReq) // Bhubhanshu Gurjar added Status!='Abandoned'
         {
             string s = "select distinct * from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and Warranty!='Warranty' and Warranty!='AMC' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
-        public PRResp getItemInventory_ITID_SerialNo(PRReq objPRReq)
+        public PRResp getItemInventory_ITID_SerialNo(PRReq objPRReq) // Bhubhanshu Gurjar added Status!='Abandoned'
         {
             string s = "select distinct * from CIT_tbl_ItemInventory where Status='Idle' and OID='" + objPRReq.OID + "' and ITID='" + objPRReq.ITID + "' and SerialNo='" + objPRReq.SerialNo + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
-        public PRResp getAllItemInventory_ITemNameAMC(PRReq objPRReq)
+        public PRResp getAllItemInventory_ITemNameAMC(PRReq objPRReq) // Bhubhanshu Gurjar added Status!='Abandoned'
         {
             string s = "select distinct * from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and Warranty='" + objPRReq.Warranty + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
-        public PRResp getAllItemInventory_ITemNameNoWarranty_manufacturer(PRReq objPRReq)
+        public PRResp getAllItemInventory_ITemNameNoWarranty_manufacturer(PRReq objPRReq) // Bhubhanshu Gurjar added Status!='Abandoned'
         {
             string s = "select distinct * from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and Manufacturer='" + objPRReq.Manufacturer + "' and Warranty!='Warranty' and Warranty!='AMC' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
-        public PRResp getAllItemInventory_ITemName_Manufacturer_AMC(PRReq objPRReq)
+        public PRResp getAllItemInventory_ITemName_Manufacturer_AMC(PRReq objPRReq) // Bhubhanshu Gurjar added Status!='Abandoned'
         {
             string s = "select distinct * from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' and ItemName='" + objPRReq.ItemName + "' and Warranty='" + objPRReq.Warranty + "' and Manufacturer='" + objPRReq.Manufacturer + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
+
+        // Bhubhanshu Gurjar START
         public PRResp getItemInventory_Manufacturer(PRReq objPRReq)
         {
             string s = "select * from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' and Manufacturer='" + objPRReq.Manufacturer + "' ";
@@ -5499,7 +5510,10 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
-        public PRResp AddItemInventory(PRReq objPRReq)
+
+        // Bhubhanshu Gurjar END
+
+        public PRResp AddItemInventory(PRReq objPRReq) // Bhubhanshu Gurjar Updated insert query according to new columns 
         {
             string insert = "insert into CIT_tbl_ItemInventory (OID,ITID,ItemName,ItemType,Model,SerialNo,Manufacturer,ComputerNumber,DOP,Warranty,WarrantyDate,Vendor,Status,Dated,UID,UName,eFile,Bill,SectionofCenter,Price) values('" + objPRReq.OID + "','" + objPRReq.ITID + "','" + objPRReq.ItemName + "','" + objPRReq.ItemType + "','" + objPRReq.ModelType + "','" + objPRReq.SerialNo + "','" + objPRReq.Manufacturer + "','" + objPRReq.ComputerNo + "','" + objPRReq.DOP + "','" + objPRReq.Warranty + "','" + objPRReq.WarrantyDate + "','" + objPRReq.Vendor + "','" + objPRReq.Status + "','" + objPRReq.Dated + "','" + objPRReq.UID + "','" + objPRReq.UName + "','" + objPRReq.EID + "','" + objPRReq.InvoiceNumber + "','" + objPRReq.Department + "','" + objPRReq.APrice + "')";
             objPRResp.Count = Connections.ProcessQuery(insert);
@@ -5511,6 +5525,7 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
+        // asset not abandoned Bhubhanshu Gurjar START
         public PRResp getAllItemInventoryNotAbandoned(PRReq objPRReq)
         {
             string s = "select * from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' ";
@@ -5523,7 +5538,9 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
-        public PRResp getAllItemInventory_ITID(PRReq objPRReq)
+        // Bhubhanshu Gurjar END
+
+        public PRResp getAllItemInventory_ITID(PRReq objPRReq) // Bhubhanshu Gurjar added status!='Abandoned'
         {
             string s = "select * from CIT_tbl_ItemInventory where Status!='Abandoned' and OID='" + objPRReq.OID + "' and ITID='" + objPRReq.ITID + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
@@ -5535,7 +5552,8 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
-        public PRResp getDisposedItemInventoryByDate(PRReq objPRReq)
+
+        public PRResp getDisposedItemInventoryByDate(PRReq objPRReq) // Bhubhanshu Gurjar check disposed assets query
         {
             string s = "select * from CIT_tbl_ItemInventory where OID='" + objPRReq.OID + "' and Status='" + objPRReq.Status + "' and DisposedOn >='" + objPRReq.StartDate + "' and DisposedOn <='" + objPRReq.EndDate + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
@@ -5567,7 +5585,7 @@ namespace NIRDPR.RK.PRReferences
             return objPRResp;
         }
 
-        public PRResp getItemInventory4SerialNobyStatus(PRReq objPRReq)
+        public PRResp getItemInventory4SerialNobyStatus(PRReq objPRReq) // Bhubhanshu Gurjar 
         {
             string s = "select distinct * from CIT_tbl_ItemInventory where ITID='" + objPRReq.ITID + "' and OID='" + objPRReq.OID + "' and Status = '" + objPRReq.Status + "' ";
             objPRResp.GetTable = Connections.GetTable(s);
@@ -5579,13 +5597,13 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
-        public PRResp EditItemInventory_SerialNo(PRReq objPRReq)
+        public PRResp EditItemInventory_SerialNo(PRReq objPRReq) // Bhubhanshu Gurjar updated query according to new columns
         {
             string update = "update CIT_tbl_ItemInventory set ItemName='" + objPRReq.ItemName + "',ItemType='" + objPRReq.ItemType + "',Model='" + objPRReq.ModelType + "',SerialNo='" + objPRReq.SerialNo + "',Manufacturer='" + objPRReq.Manufacturer + "',ComputerNumber='" + objPRReq.ComputerNo + "',Warranty='" + objPRReq.Warranty + "',WarrantyDate='" + objPRReq.WarrantyDate + "',Vendor='" + objPRReq.Vendor + "',DOP='" + objPRReq.DOP + "',ITID='" + objPRReq.ITID + "',Status='" + objPRReq.Status + "',eFile='" + objPRReq.EID + "',Bill='" + objPRReq.InvoiceNumber + "',SectionofCenter='" + objPRReq.Department + "',Price='" + objPRReq.APrice + "' where OID='" + objPRReq.OID + "' and IID='" + objPRReq.IID + "' ";
             objPRResp.Count = Connections.ProcessQuery(update);
             return objPRResp;
         }
-        public PRResp EditItemInventoryDisposal(PRReq objPRReq)
+        public PRResp EditItemInventoryDisposal(PRReq objPRReq) // Bhubhanshu Gurjar new query to dispose assets
         {
             string update = "update CIT_tbl_ItemInventory set Status='" + objPRReq.Status + "',SalePrice='" + objPRReq.APrice + "' ,DisposalRemark='" + objPRReq.Remarks + "', DisposalFile ='" + objPRReq.FileName + "', DisposedOn='" + DateTime.Now + "' where OID='" + objPRReq.OID + "' and IID='" + objPRReq.IID + "' ";
             objPRResp.Count = Connections.ProcessQuery(update);
@@ -5598,6 +5616,7 @@ namespace NIRDPR.RK.PRReferences
             return objPRResp;
         }
 
+        // Bhubhanshu Gurjar START
         public PRResp getMappedInventoryDeptWise(PRReq objPRReq)
         {
             string s = @"SELECT DeptID
@@ -5624,6 +5643,8 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
+
+        // Bhubhanshu Gurjar END
 
         // Location / Buildings
 
@@ -5814,7 +5835,7 @@ namespace NIRDPR.RK.PRReferences
         }
         // Map CIT Inventory to Emp
 
-        public PRResp MapITInventorytoEmp(PRReq objPRReq)
+        public PRResp MapITInventorytoEmp(PRReq objPRReq) // Bhubhanshu Gurjar added query to change status to active after alloting asset
         {
             string insert = "insert into CIT_tbl_InventoryMapping (OID,ITID,ItemName,Model,SerialNo,Manufacturer,ComputerNumber,Warranty,EmpID,Name,Design,Email,Mobile,DID,DeptID,Location,Status,Dated,UID,UName,Flag1) values('" + objPRReq.OID + "','" + objPRReq.ITID + "','" + objPRReq.ItemName + "','" + objPRReq.ModelType + "','" + objPRReq.SerialNo + "','" + objPRReq.Manufacturer + "','" + objPRReq.ComputerNo + "','" + objPRReq.Warranty + "','" + objPRReq.EmpID + "','" + objPRReq.Name + "','" + objPRReq.Design + "','" + objPRReq.Email + "','" + objPRReq.Mobile + "','" + objPRReq.DID + "','" + objPRReq.DeptID + "','" + objPRReq.Location + "','" + objPRReq.Status + "','" + objPRReq.Dated + "','" + objPRReq.UID + "','" + objPRReq.UName + "','" + objPRReq.Flag1 + "')";
             objPRResp.Count = Connections.ProcessQuery(insert);
@@ -5860,7 +5881,7 @@ namespace NIRDPR.RK.PRReferences
             return objPRResp;
         }
 
-        public PRResp ReleaseMappedItem_EmpID(PRReq objPRReq)
+        public PRResp ReleaseMappedItem_EmpID(PRReq objPRReq) // Bhubhanshu Gurjar added query to change status to idle after releasing asset
         {
             string update = "update CIT_tbl_InventoryMapping set Flag1='" + objPRReq.Flag1 + "' , Returned ='" + DateTime.Now + "' where OID='" + objPRReq.OID + "' and MIID='" + objPRReq.MIID + "' and Status='" + objPRReq.Status + "' ";
             objPRResp.Count = Connections.ProcessQuery(update);
@@ -5976,7 +5997,7 @@ namespace NIRDPR.RK.PRReferences
             return objPRResp;
         }
 
-        // Roles
+        // Roles Bhubhanshu Gurjar START
         public PRResp getRoles(PRReq objPRReq)
         {
             string s = "select * from  tbl_Roles";
@@ -6001,6 +6022,8 @@ namespace NIRDPR.RK.PRReferences
             objPRResp.GetTable = Connections.GetTable(s);
             return objPRResp;
         }
+
+        // Bhubhanshu Gurjar END
 
         // CIT E ticketing
 
