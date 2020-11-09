@@ -151,7 +151,8 @@ public partial class Inventory_CITInventory : System.Web.UI.Page
                 {
                     lbl_Dept.Text = dt.Rows[0]["DeptID"].ToString();
                     lbl_EmpID.Text = dt.Rows[0]["EmpID"].ToString();
-                     lbl_Name.Text = dt.Rows[0]["Name"].ToString() + "(" + lbl_EmpID.Text + ")";
+                    lbl_Name.Text = dt.Rows[0]["Name"].ToString() + "(" + lbl_EmpID.Text + ")";
+                    Label2.Text = dt.Rows[0]["Name"].ToString();
                     lbl_Design.Text = dt.Rows[0]["Design"].ToString();
                     hdn_DID.Value = dt.Rows[0]["DID"].ToString();
                     hdn_Email.Value = dt.Rows[0]["Email"].ToString();
@@ -163,6 +164,7 @@ public partial class Inventory_CITInventory : System.Web.UI.Page
                     lbl_EmpID.Text = "";
                     lbl_Name.Text = "";
                     lbl_Design.Text = "";
+                    Label2.Text = "";
                 }
             }
             getCITInventory();

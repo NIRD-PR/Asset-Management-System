@@ -114,21 +114,6 @@ public partial class CICTInventory_Roles : System.Web.UI.Page
         ddl_EmpType.Items.Insert(3, "Project Staff");
         ddl_EmpType.DataBind();
     }
-    //public void getEmpType()
-    //{
-    //    objPRReq.OID = oid;
-    //    objPRReq.Status = "Active";
-    //    PRResp r = objPRIBC.getEmpGroups(objPRReq);
-    //    DataTable dt = r.GetTable;
-    //    if (dt.Rows.Count > 0)
-    //    {
-    //        ddl_EmpType.DataSource = dt;
-    //        ddl_EmpType.DataTextField = "EmpGroup";
-    //        ddl_EmpType.DataValueField = "EmpGroup";
-    //        ddl_EmpType.DataBind();
-    //        ddl_EmpType.Items.Insert(0, "--Select EmpType--");
-    //    }
-    //}
 
     public void getEmpNames()
     {
@@ -251,6 +236,8 @@ public partial class CICTInventory_Roles : System.Web.UI.Page
             objPRReq.EmpID = int.Parse(ddl_EmpName.SelectedValue.ToString());
             r = objPRIBC.getAdmin_Roles_EmpID(objPRReq);
             dt = r.GetTable;
+            userid.Text = "";
+            userid.Enabled = true;
             string s="";
             if(dt.Rows.Count > 0)
             {
