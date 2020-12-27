@@ -48,7 +48,7 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
         else
         {
             Session.Abandon();
-            Response.Redirect("~/Default.aspx");
+            Response.Redirect("~/CICTInventory/Default.aspx");
         }
     }
     //public void Update()
@@ -179,7 +179,7 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
         ddl_EmpType.Items.Insert(1, "Academic");
         ddl_EmpType.Items.Insert(2, "Non-Academic");
         ddl_EmpType.Items.Insert(3, "Project Staff");
-        ddl_EmpType.Items.Insert(4, "Others");
+        //ddl_EmpType.Items.Insert(4, "Others");
         ddl_EmpType.DataBind();
     }
     //public void getEmpType()
@@ -241,24 +241,24 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
                     ddl_EmpName.DataBind();
                 }
             }
-            else if (ddl_EmpType.SelectedItem.Text == "Others")
-            {
-                PRResp r = objPRIBC.SearchHallsByName(objPRReq);
-                DataTable dt = r.GetTable;
-                if (dt.Rows.Count > 0)
-                {
-                    ddl_EmpName.DataSource = dt;
-                    ddl_EmpName.DataTextField = "HallName";
-                    ddl_EmpName.DataValueField = "HID";
-                    ddl_EmpName.DataBind();
-                    ddl_EmpName.Items.Insert(0, "--EmpName--");
-                }
-                else
-                {
-                    ddl_EmpName.Items.Insert(0, "--No Data Found--");
-                    ddl_EmpName.DataBind();
-                }
-            }
+            //else if (ddl_EmpType.SelectedItem.Text == "Others")
+            //{
+            //    PRResp r = objPRIBC.SearchHallsByName(objPRReq);
+            //    DataTable dt = r.GetTable;
+            //    if (dt.Rows.Count > 0)
+            //    {
+            //        ddl_EmpName.DataSource = dt;
+            //        ddl_EmpName.DataTextField = "HallName";
+            //        ddl_EmpName.DataValueField = "HID";
+            //        ddl_EmpName.DataBind();
+            //        ddl_EmpName.Items.Insert(0, "--EmpName--");
+            //    }
+            //    else
+            //    {
+            //        ddl_EmpName.Items.Insert(0, "--No Data Found--");
+            //        ddl_EmpName.DataBind();
+            //    }
+            //}
 
         }
     }
@@ -318,28 +318,28 @@ public partial class CICTInventory_MapInventory : System.Web.UI.Page
                     lbl_Design.Text = "";
                 }
             }
-            else if (ddl_EmpType.SelectedItem.Text == "Others")
-            {
-                PRResp r = objPRIBC.getHallDetails_HID(objPRReq);
-                DataTable dt = r.GetTable;
-                if (dt.Rows.Count > 0)
-                {
-                    lbl_Dept.Text = dt.Rows[0]["Location"].ToString();
-                    lbl_EmpID.Text = dt.Rows[0]["HID"].ToString();
-                    lbl_Name.Text = dt.Rows[0]["HallName"].ToString();
-                    lbl_Design.Text = dt.Rows[0]["Location"].ToString();
-                    hdn_DID.Value = dt.Rows[0]["LID"].ToString();
-                    hdn_Email.Value = "";
-                    hdn_Mobile.Value = "0";
-                }
-                else
-                {
-                    lbl_Dept.Text = "";
-                    lbl_EmpID.Text = "";
-                    lbl_Name.Text = "";
-                    lbl_Design.Text = "";
-                }
-            }
+            //else if (ddl_EmpType.SelectedItem.Text == "Others")
+            //{
+            //    PRResp r = objPRIBC.getHallDetails_HID(objPRReq);
+            //    DataTable dt = r.GetTable;
+            //    if (dt.Rows.Count > 0)
+            //    {
+            //        lbl_Dept.Text = dt.Rows[0]["Location"].ToString();
+            //        lbl_EmpID.Text = dt.Rows[0]["HID"].ToString();
+            //        lbl_Name.Text = dt.Rows[0]["HallName"].ToString();
+            //        lbl_Design.Text = dt.Rows[0]["Location"].ToString();
+            //        hdn_DID.Value = dt.Rows[0]["LID"].ToString();
+            //        hdn_Email.Value = "";
+            //        hdn_Mobile.Value = "0";
+            //    }
+            //    else
+            //    {
+            //        lbl_Dept.Text = "";
+            //        lbl_EmpID.Text = "";
+            //        lbl_Name.Text = "";
+            //        lbl_Design.Text = "";
+            //    }
+            //}
         }
     }
     //protected void ddl_ItemTypes_SelectedIndexChanged(object sender, EventArgs e)

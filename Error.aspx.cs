@@ -20,6 +20,6 @@ public partial class Error : System.Web.UI.Page
     }
     protected void btn_Submit_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/Default.aspx");
+        Response.Redirect("http://erp.nirdpr.in");
     }
 }

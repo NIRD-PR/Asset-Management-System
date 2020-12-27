@@ -15,6 +15,9 @@
                                         <h3 class="panel-title">Inventory Mapping by Excel File</h3>
                                     </div>
                                     <div class="panel-body">
+                                        <div class="row" style="margin: 10px 0 20px 10px">
+                                            <asp:LinkButton runat="server" ID="download" OnClick="download_Click" CssClass="font-weight-bold text-danger">Please upload the excel file only in this format. Click to download.</asp:LinkButton> 
+                                        </div>
                                         <div class="col-lg-12">
                                             <div class="col-xs-3">
                                                 <asp:HiddenField ID="HiddenField1" runat="server" />

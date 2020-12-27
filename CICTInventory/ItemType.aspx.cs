@@ -41,7 +41,7 @@ public partial class CITInventory_ItemType : System.Web.UI.Page
         else
         {
             Session.Abandon();
-            Response.Redirect("~/Default.aspx");
+            Response.Redirect("~/CICTInventory/Default.aspx");
         }
     }
     public string convertQuotes(string str)

@@ -58,7 +58,7 @@
         routes.MapPageRoute("HEmp_CancelCLRH/{UID}", "HEmp_CancelCLRH/{UID}", "~/HOC/RLeave/HCancel_CLRH.aspx");
         routes.MapPageRoute("HEmp_CancelNoCLRH/{UID}", "HEmp_CancelNoCLRH/{UID}", "~/HOC/RLeave/HCancel_OtherthanCLRH.aspx");
         routes.MapPageRoute("HEmp_AllmyLeaves/{UID}", "HEmp_AllmyLeaves/{UID}", "~/HOC/RLeave/AllLeaveswithanyStatus.aspx");
-        
+
         routes.MapPageRoute("HEmp_Dept_EL_Status/{UID}", "HEmp_Dept_EL_Status/{UID}", "~/HOC/RLeave/Dept_el_AvailedStatus.aspx");
         routes.MapPageRoute("HEmp_Dept_ELs/{UID}", "HEmp_Dept_ELs/{UID}", "~/HOC/RLeave/Dept_eL_Used.aspx");
         routes.MapPageRoute("HEmp_Dept_ET_Status/{UID}", "HEmp_Dept_ET_Status/{UID}", "~/HOC/RLeave/Dept_eT_AvailedStatus.aspx");
@@ -147,7 +147,7 @@
         routes.MapPageRoute("HOC_RGeneral_WPList/{UID}", "HOC_RGeneral_WPList/{UID}", "~/HOC/RGeneral/WebnarTrainingList.aspx");
         routes.MapPageRoute("HOC_RGeneral_WPListMail/{UID}", "HOC_RGeneral_WPListMail/{UID}", "~/HOC/RGeneral/WebnarTrainingList_Mail.aspx");
         routes.MapPageRoute("HOC_RGeneral_eCert/{UID}", "HOC_RGeneral_eCert/{UID}", "~/HOC/RGeneral/Default.aspx");
-        
+
         //Admin Master
         routes.MapPageRoute("Admin/{UID}", "Admin/{UID}", "~/Admin/AdminHome.aspx");
         routes.MapPageRoute("Admin_D_Incharge/{UID}", "Admin_D_Incharge/{UID}", "~/Admin/DeptIncharge.aspx");
@@ -187,7 +187,7 @@
         routes.MapPageRoute("Admin_SetAppDU/{UID}", "Admin_SetAppDU/{UID}", "~/Admin/SetAppDefaultUser.aspx");
         routes.MapPageRoute("Admin_UPSLeaves/{UID}", "Admin_UPSLeaves/{UID}", "~/Admin/UpdatePSLeaves.aspx");
         routes.MapPageRoute("Admin_ELeaveStatus/{UID}", "Admin_ELeaveStatus/{UID}", "~/Admin/REmpAppliedLeaveStatus.aspx");
-		routes.MapPageRoute("Admin_PELeaveStatus/{UID}", "Admin_PELeaveStatus/{UID}", "~/Admin/PEmpAppliedLeaveStatus.aspx");
+        routes.MapPageRoute("Admin_PELeaveStatus/{UID}", "Admin_PELeaveStatus/{UID}", "~/Admin/PEmpAppliedLeaveStatus.aspx");
 
         routes.MapPageRoute("Admin_AddProbCategory/{UID}", "Admin_AddProbCategory/{UID}", "~/Admin/ET_AddComplaintType.aspx");
         routes.MapPageRoute("Admin_mapOfficer/{UID}", "Admin_mapOfficer/{UID}", "~/Admin/ET_MapOfficer.aspx");
@@ -331,9 +331,9 @@
         routes.MapPageRoute("ACR_RPTO_Assessed/{UID}", "ACR_RPTO_Assessed/{UID}", "~/HOC/RACR/ACR_RPTO_Assessed.aspx");
         routes.MapPageRoute("ACR_REVO_Assessed/{UID}", "ACR_REVO_Assessed/{UID}", "~/HOC/RACR/ACR_REVO_Assessed.aspx");
         routes.MapPageRoute("ACR_ACPT_Assessed/{UID}", "ACR_ACPT_Assessed/{UID}", "~/HOC/RACR/ACR_ACPT_Assessed.aspx");
-        
+
         routes.MapPageRoute("PHACR_Rev_Officer/{UID}", "PHACR_Rev_Officer/{UID}", "~/ProjectStaff/RACR/ACR_Reviewing_Officer_Assmt_waiting.aspx");
-         routes.MapPageRoute("PHACR_Accept_Officer/{UID}", "PHACR_Accept_Officer/{UID}", "~/ProjectStaff/RACR/ACR_Accept_Officer_Assmt_waiting.aspx");
+        routes.MapPageRoute("PHACR_Accept_Officer/{UID}", "PHACR_Accept_Officer/{UID}", "~/ProjectStaff/RACR/ACR_Accept_Officer_Assmt_waiting.aspx");
 
         routes.MapPageRoute("PH4_1_ACR_RevOff_LengthOfService/{UID}", "PH4_1_ACR_RevOff_LengthOfService/{UID}", "~/ProjectStaff/RACR/4_1_ACR_RevOff_LengthOfService.aspx");
         routes.MapPageRoute("PH4_2_ACR_RevOff_Satisfy_RPTStatus/{UID}", "PH4_2_ACR_RevOff_Satisfy_RPTStatus/{UID}", "~/ProjectStaff/RACR/4_2_ACR_RevOff_Satisfy_RPTStatus.aspx");
@@ -381,7 +381,7 @@
         routes.MapPageRoute("ACR_New_Accept_Off_Action/{UID}", "ACR_New_Accept_Off_Action/{UID}", "~/HOC/RACR/ACR_NewLayout_Accept_Officer_Action.aspx"); // New Layout
         routes.MapPageRoute("ACR_New_Accept_Off_Preview/{UID}", "ACR_New_Accept_Off_Preview/{UID}", "~/HOC/RACR/ACR_NewLayout_Accept_Officer_Preview.aspx");
 
-        
+
         routes.MapPageRoute("ACRRpt_Rev_accpt/{UID}", "ACRRpt_Rev_accpt/{UID}", "~/HOC/RACR/ACR_Reporting_Officer_Assmt_waiting.aspx");
         routes.MapPageRoute("ACR_Rev_Officer/{UID}", "ACR_Rev_Officer/{UID}", "~/HOC/RACR/ACR_Reviewing_Officer_Assmt_waiting.aspx");
         routes.MapPageRoute("ACR_Accept_Officer/{UID}", "ACR_Accept_Officer/{UID}", "~/HOC/RACR/ACR_Accept_Officer_Assmt_waiting.aspx");
@@ -521,7 +521,7 @@
 
         routes.MapPageRoute("PGeneral_WPList/{UID}", "PGeneral_WPList/{UID}", "~/ProjectStaff/PGeneral/WebnarTrainingList.aspx");
         routes.MapPageRoute("PGeneral_WPListMail/{UID}", "PGeneral_WPListMail/{UID}", "~/ProjectStaff/PGeneral/WebnarTrainingList_Mail.aspx");
-        
+
         routes.MapPageRoute("PEmp/{UID}", "PEmp/{UID}", "~/ProjectStaff/PGeneral/PSHome.aspx");
         routes.MapPageRoute("PEmp_CP/{UID}", "PEmp_CP/{UID}", "~/ProjectStaff/PGeneral/ChangePassword.aspx");
         routes.MapPageRoute("PEmp_Contact/{UID}", "PEmp_Contact/{UID}", "~/ProjectStaff/PGeneral/NirdContactsList.aspx");
@@ -649,16 +649,17 @@
         routes.MapPageRoute("DG_db_emp/{UID}", "DG_db_emp/{UID}", "~/DG/Dashboard_Emp.aspx");
         routes.MapPageRoute("DG_db_empprof/{UID}", "DG_db_empprof/{UID}", "~/DG/Emp_Active.aspx");
         routes.MapPageRoute("DG_ELeaveStatus/{UID}", "DG_ELeaveStatus/{UID}", "~/DG/REmpAppliedLeaveStatus.aspx");
-		routes.MapPageRoute("DG_PELeaveStatus/{UID}", "DG_PELeaveStatus/{UID}", "~/DG/PEmpAppliedLeaveStatus.aspx");
+        routes.MapPageRoute("DG_PELeaveStatus/{UID}", "DG_PELeaveStatus/{UID}", "~/DG/PEmpAppliedLeaveStatus.aspx");
 
         //HR Information Report by Praveen
         routes.MapPageRoute("DGEmp_PSServInfoReportXLS/{UID}", "DGEmp_PSServInfoReportXLS/{UID}", "~/DG/HRInfoFilldReportsXLS.aspx");
-        
+
         //CMU Ticketing
         routes.MapPageRoute("CMU_TktHome/{UID}", "CMU_TktHome/{UID}", "~/CMU_Ticketing/CMUTicketingHome.aspx");
 
         //Roles
-        routes.MapPageRoute("Roles/{UID}", "Roles/{UID}", "~/CICTInventory/Roles.aspx");
+        routes.MapPageRoute("Roles/{UID}", "Roles/{UID}", "~/Admin/AssignRole.aspx");
+        routes.MapPageRoute("AddRole/{UID}", "AddRole/{UID}", "~/Admin/AddRole.aspx");
 
         //CIT Inventory
         routes.MapPageRoute("CIT_InvHome/{UID}", "CIT_InvHome/{UID}", "~/CICTInventory/InventoryHome.aspx");
@@ -923,7 +924,7 @@
                 {
                     _leaves = true;
 
-                    EmpLeaveUpdates.Yearly_MasterLeaveUpdates(); // Closed Holidays List  & CL RH updation
+                    //EmpLeaveUpdates.Yearly_MasterLeaveUpdates(); // Closed Holidays List  & CL RH updation
 
                 }
                 if (DateTime.Now.Hour !=7  && DateTime.Now.Minute <= 2 &&  _leaves == true)
@@ -943,7 +944,7 @@
                 if (DateTime.Now.Hour == 7 && DateTime.Now.Minute <=2 &&  _el_hpl_update == false)
                 {
                     _el_hpl_update = true;
-                    EmpLeaveUpdates.Yearly_MasterLeaveUpdates();//addition of EL(15) HPL(10)  July 1st
+                    //EmpLeaveUpdates.Yearly_MasterLeaveUpdates();//addition of EL(15) HPL(10)  July 1st
                 }
                 if (DateTime.Now.Hour != 7 && DateTime.Now.Minute <= 2&&  _el_hpl_update == true)
                 {
@@ -980,9 +981,9 @@
 
     static void ScheduledTask()
     {
-        EmpBirthDayGreetings.SendGreetings();
+        //EmpBirthDayGreetings.SendGreetings();
         // AutoSQLBackupMail.AutoSqlBackupMail();
-        StoreStockBackup.DoClosingStockBackup();
+        //StoreStockBackup.DoClosingStockBackup();
     }
 
 

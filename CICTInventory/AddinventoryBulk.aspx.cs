@@ -47,7 +47,7 @@ public partial class CICTInventory_AddInventoryBulk : System.Web.UI.Page
         else
         {
             Session.Abandon();
-            Response.Redirect("~/Default.aspx");
+            Response.Redirect("~/CICTInventory/Default.aspx");
         }
     }
 

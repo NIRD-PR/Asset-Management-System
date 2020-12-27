@@ -51,6 +51,9 @@
 <div class="panel panel-color panel-success">
 <div class="panel-heading"><h3 class="panel-title">CIT Inventory Mapping</h3></div>
 <div class="panel-body">
+<div class="row" style="margin: 10px 0 20px 0">
+    <a class="font-weight-bold text-danger" href='<%=ResolveUrl("../CIT_ExcelMAPInv/{0}") %>'>Want to Map using Excel? Click here</a>
+</div>
 <div class="row">
 <div class="col-xs-2"><asp:HiddenField ID="HiddenField1" runat="server" />
 <label>Select Emp Type <asp:Label ID="lbl_EmpType" runat="server" CssClass="lblr"></asp:Label></label>

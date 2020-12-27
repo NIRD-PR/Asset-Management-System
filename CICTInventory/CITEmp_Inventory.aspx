@@ -77,7 +77,7 @@
 <center>
 <table width="100%" class="table" border="1px" style="table-layout:fixed; font-family:Tahoma; font-size:12px; font-weight:bold; line-height:18px; vertical-align:baseline; border-collapse: collapse; margin:0;">
 <tr style="font-weight:bold; font-size:0.8em; color:#257A08; vertical-align:middle; text-align:center;">
-<td rowspan="2" width="10%" align="center" style="background:#A591FA;"><asp:ImageMap ID="Album_Image" runat="server" CssClass="thumb-md img-circle" ImageUrl='<%#"../SPhotos/"+Eval("Photo")%>' Width="60" Height="65"></asp:ImageMap>  </td>
+<td rowspan="2" width="10%" align="center" style="background:#A591FA;"><img ID="Album_Image" runat="server" class="thumb-md img-circle" src='<%#"http://erp.nirdpr.in/SPhotos/"+Eval("Photo")%>' style="width:60px; height:65px" />  </td>
 <td width="5%">EmpID</td>
 <td width="25%">Name / Design [Dept]</td>
 <td width="25%">Contact Details</td>

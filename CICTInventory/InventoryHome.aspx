@@ -15,7 +15,54 @@
         }, 500);
         return false;
     }
-    </script>
+    function dt() {
+        var n = "CICT-Inventory Current Stats";
+        $('#tb1').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'pageLength', 'print',
+                {
+                    extend: 'excel',
+                    filename: n,
+                    title: n
+                },
+                {
+                    extend: 'pdf',
+                    filename: n,
+                    title: n
+                }
+            ]
+        });
+        var t = 'CICT-' + $("#<%=heading.ClientID%>").text() + ' Inventory Report';
+        $('#tb2').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'pageLength', 'print',
+                {
+                    extend: 'excel',
+                    filename: t,
+                    title: t
+                },
+                {
+                    extend: 'pdf',
+                    filename: t,
+                    title: t
+                }
+            ]
+        });
+    }
+    function show() {
+        $('#exampleModal').modal('show');
+    }
+</script>
+    <style type="text/css">
+        .h{
+            color: black;
+        }
+        .h:hover{
+            color: red;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
 <asp:UpdatePanel ID="up" runat="server">
@@ -23,160 +70,164 @@
 <div class="content-page">
 <div class="content">
 <div class="container">
-<div class="row"><asp:HiddenField ID="hdn_EmpID" runat="server" /><asp:HiddenField ID="hdn_Email" runat="server" />
-<div class="panel panel-color panel-success" style="margin-bottom:1px;">
-<div class="panel-heading"><h3 class="panel-title">CIT  e-Tickets Dashboard &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="lbl_Count" runat="server" CssClass="pull-right"></asp:Label></h3></div>
-<div class="panel-body" style="width:100%; font-size:12px; table-layout:fixed;background:#E2F7FE;">
-<div class="row" style="background:#E2F7FE;">
+<div class="row" style="margin: 0 10px">
+<div class="col-12">
+<div class="panel panel-color panel-success">
+<div class="panel-heading"><h3 class="panel-title"> CICT Dashboard </h3></div>
+<div class="panel-body">
+<div class="row">
  <div class="col-sm-6 col-lg-3">
                                 <div class="mini-stat clearfix bx-shadow bg-white">
-                                    <span class="mini-stat-icon bg-danger" ><i class="fa fa-ticket" style="margin-top:15px;"></i></span>
+                                    <span class="mini-stat-icon bg-danger" ><i class="fa fa-desktop" style="margin-top:15px;"></i></span>
                                     <div class="mini-stat-info text-right text-dark">
-                                        <span class="counter text-danger"><asp:Label ID="lbl_TotTicketsCount" runat="server" Text="0" style="color:#FF0000;"></asp:Label></span>
-                                        New Tickets
-                                    </div>
-                                    <div class="tiles-progress">
-                                        <div class="m-t-20">
-                                            <h5 class="text-uppercase">New <span class="pull-right"><asp:Label ID="lbl_totTckPer" runat="server"></asp:Label></span></h5>
-                                            <div class="progress progress-sm m-0">
-                                                <div id="tot_Pbar" runat="server" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<%=lbltotCount%>" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="sr-only"><asp:Label ID="lbl_TotCounts" runat="server" Text="0" style="color:#FF0000;"></asp:Label> Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <p class="text-danger" style="font-size: 2rem">Desktop</p>
+                                        <p style="font-size: 1.1em"><asp:Label ForeColor="Black" Font-Size="Small" Font-Bold="false" runat="server" ID="desktop"></asp:Label></p>
                                     </div>
                                 </div>
                             </div>
 
 <div class="col-sm-6 col-lg-3">
                                 <div class="mini-stat clearfix bx-shadow bg-white">
-                                    <span class="mini-stat-icon" style=" background:#2DA01A;" ><i class="fa fa-ticket" style="margin-top:15px;"></i></span>
+                                    <span class="mini-stat-icon" style=" background:#2DA01A;" ><i class="fa fa-laptop" style="margin-top:15px;"></i></span>
                                     <div class="mini-stat-info text-right text-dark">
-                                        <span class="counter text-danger"><asp:Label ID="lbl_ProgTicketsCount" runat="server" Text="0" style="color:#2DA01A;"></asp:Label></span>
-                                        In-Progess Tickets
-                                    </div>
-                                    <div class="tiles-progress">
-                                        <div class="m-t-20">
-                                            <h5 class="text-uppercase">In-Progress <span class="pull-right"><asp:Label ID="lbl_ProgTckPer" runat="server"></asp:Label></span></h5>
-                                            <div class="progress progress-sm m-0">
-                                                <div id="Prog_Pbar" runat="server" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<%=lblProgCount%>" aria-valuemin="0" aria-valuemax="100" >
-                                                    <span class="sr-only"><asp:Label ID="lbl_ProgCounts" runat="server" Text="0" style="color:#FF0000;"></asp:Label> Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <p style="color: #2DA01A; font-size: 2rem">Laptop</p>
+                                        <p style="font-size: 1.1em"><asp:Label ForeColor="Black" Font-Size="Small" Font-Bold="false" runat="server" ID="laptop"></asp:Label></p>
                                     </div>
                                 </div>
                             </div>
 
 <div class="col-sm-6 col-lg-3">
      <div class="mini-stat clearfix bx-shadow bg-white">
-                                    <span class="mini-stat-icon bg-info" ><i class="fa fa-ticket" style="margin-top:15px;"></i></span>
+                                    <span class="mini-stat-icon bg-info" ><i class="fa fa-print" style="margin-top:15px;"></i></span>
                                     <div class="mini-stat-info text-right text-dark">
-                                        <span class="counter text-danger"><asp:Label ID="lbl_HoldTicketsCount" runat="server" Text="0" style="color:#5DA6F9;"></asp:Label></span>
-                                        Hold Tickets
-                                    </div>
-                                    <div class="tiles-progress">
-                                        <div class="m-t-20">
-                                            <h5 class="text-uppercase">Hold <span class="pull-right"><asp:Label ID="lbl_HoldTckPer" runat="server"></asp:Label></span></h5>
-                                            <div class="progress progress-sm m-0">
-                                                <div id="Hold_Pbar" runat="server" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<%=lblHoldCount%>" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="sr-only"><asp:Label ID="lbl_HoldCounts" runat="server" Text="0" style="color:#FF0000;"></asp:Label> Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <p class="text-info" style="font-size: 2rem">Printer</p>
+                                        <p style="font-size: 1.1em"><asp:Label ForeColor="Black" Font-Size="Small" Font-Bold="false" runat="server" ID="printer"></asp:Label></p>
                                     </div>
                                 </div>
                             </div>
 
 <div class="col-sm-6 col-lg-3">
      <div class="mini-stat clearfix bx-shadow bg-white">
-                                    <span class="mini-stat-icon" style=" background:#8010F3;" ><i class="fa fa-ticket" style="margin-top:15px;"></i></span>
+                                    <span class="mini-stat-icon" style=" background:#8010F3;" ><i class="fa fa-barcode" style="margin-top:15px;"></i></span>
                                     <div class="mini-stat-info text-right text-dark">
-                                        <span class="counter text-danger"><asp:Label ID="lbl_ClosedTicketsCount" runat="server" Text="0" style="color:#8010F3;"></asp:Label></span>
-                                        Closed Tickets
-                                    </div>
-                                    <div class="tiles-progress">
-                                        <div class="m-t-20">
-                                            <h5 class="text-uppercase">Closed <span class="pull-right"><asp:Label ID="lbl_ClosedTckPer" runat="server"></asp:Label></span></h5>
-                                            <div class="progress progress-sm m-0">
-                                                <div id="Closed_Pbar" runat="server" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<%=lblClosedCount%>" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="sr-only"><asp:Label ID="lbl_ClosedCounts" runat="server" Text="0" style="color:#FF0000;"></asp:Label>  Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <p class="counter" style="color:#8010F3; font-size: 2rem ">Scanner</p>
+                                        <p style="font-size: 1.1em"><asp:Label ForeColor="Black" Font-Size="Small" Font-Bold="false" runat="server" ID="scanner"></asp:Label></p>
                                     </div>
                                 </div>
                             </div>
 </div>
 </div>
 </div>
-<div class="row" style="background:#E2F7FE;">
-<div class="col-xs-12">
-<div class="panel panel-color panel-primary" style="margin-bottom:1px;">
-<div class="panel-heading"><h3 class="panel-title">Department wise CICT e-Tickets Status &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="LinkButton1" runat="server" CssClass="middle btn btn-success" OnClientClick = "return PrintPanel();"><i class="fa fa-print"></i></asp:LinkButton> <asp:Label ID="lbl_IndentsCount" runat="server" CssClass="pull-right">0</asp:Label></h3></div>
-<div class="panel-body" style="width:100%; font-size:12px; table-layout:fixed;">
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12">
+<div class="panel panel-color panel-info">
+<div class="panel-heading"><h3 class="panel-title"> CICT Inventory Dashboard : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="btn_print" runat="server" CssClass="btn btn-primary" OnClientClick = "return PrintPanel();"><i class="fa fa-print"></i></asp:LinkButton><asp:Label ID="lbl_Count" runat="server" CssClass="pull-right"></asp:Label></h3></div>
+<div class="panel-body">
+<div class="row">
 <asp:Panel ID="pnl_print" runat="server">
-
-<table width="100%" style="font-family:Tahoma;">
-<tr><td colspan="5" align="center"><img src="../assets/images/title.png" height="80" width="400"  alt=""/></td></tr>
-<tr><td colspan="5" align="center"><h5>Department wise CICT e-Tickets Status </h5></td></tr>
+<center> <img src="../assets/images/title.png" height="80" width="400"  alt=""/>
+<h5> NIRDPR - CICT Inventory  Details </h5>
+</center>
+<table width="100%" style="table-layout:fixed; font-family:Tahoma; font-size:12px;">
+<tr><td align="left" width="50%"><asp:Label ID="lbl_ItemCount" runat="server"></asp:Label></td><td align="right" width="50%">Printed Date : <asp:Label ID="lbl_Dated" runat="server"></asp:Label></td></tr>
 </table>
-<table width="100%" style="table-layout:fixed; font-family:Tahoma; font-size:12px;"><tr><td align="left" width="30%">From Date : 20/06/2018</td><td align="left" width="30%">To Date :<asp:Label ID="lbl_today" runat="server"></asp:Label></td><td align="right" width="40%"><asp:Label ID="lbl_noofdepts" runat="server"></asp:Label></td></tr></table>
-<table width="100%" border="1" class="table" style="table-layout:fixed; font-size:11px; font-family:Tahoma; vertical-align:middle; border-collapse: collapse; margin:0;">
-<thead>
-<tr>
-<th width="5%">SNO</th>
-<th width="35%">Name of the Department</th>
-<th width="10%">New Tickets</th>
-<th width="10%">Assigned</th>
-<th width="10%">In-Progress</th>
-<th width="10%">Tickets on Hold</th>
-<th width="10%">Closed Tickets</th>
-<th width="10%">Total Tickets</th>
+<asp:Repeater ID="rptr_Inventory" runat="server" OnItemCommand="rptr_Inventory_ItemCommand">
+<HeaderTemplate>
+<table id="tb1" width="100%" class="table table-bordered table-hover" border="1" style="table-layout:fixed; font-family:Tahoma; font-size:12px; border-collapse: collapse; vertical-align:middle; border:0px solid #000; margin:0;">
+<thead><tr>
+<td width="5%" align='center'>SNo</td>
+<td width="20%" align='left'>Item Type</td>
+<td  width="15%" align='center' style="color: #E3F705">Active</td>
+<td  width="15%" align='center' style="color: green">Idle</td>
+<td  width="15%" align='center' style="color: blue">Inactive</td>
+<td  width="15%" align='center' style="color: red">Abandoned</td>
+<td  width="15%" align='center'>Total</td>
 </tr>
 </thead>
-</table>
-
-<asp:Repeater ID="rptr_deptTicketsStatus" runat="server">
-<HeaderTemplate>
+<tbody>
 </HeaderTemplate>
 <ItemTemplate>
-<table width="100%" border="1" class="table" style="table-layout:fixed; font-size:11px; font-family:Tahoma; border-collapse: collapse; margin:0;">
-<tbody><tr style="padding:0; margin:0;font-size:1em;">
-<td width="5%" align='center'><%#Container.ItemIndex+1 %></td>
-<td width="35%"><%#Eval("DeptID")%></td>
-<td width="10%" align="center"><asp:Label ID="lbl_NewTickets" runat="server"></asp:Label></td>
-<td width="10%" align="center"><asp:Label ID="lbl_totTickets" runat="server"></asp:Label></td>
-<td width="10%" align="center"><asp:Label ID="lbl_ProgTickets" runat="server"></asp:Label></td>
-<td width="10%" align="center"><asp:Label ID="lbl_HoldTickets" runat="server"></asp:Label></td>
-<td width="10%" align="center"><asp:Label ID="lbl_ClosedTickets" runat="server"></asp:Label></td>
-<td width="10%" align="center"><asp:Label ID="lbl_TotlTickets" runat="server"></asp:Label></td>
+<tr>
+<td width="5%" align='center'><%#Container.ItemIndex+1%></td>
+<td width="20%"  style="padding-left:5px;" align="left"><%#Eval("ItemType")%></td>
+<td  width="15%"  style="padding-right:5px;" align="center"><asp:LinkButton CssClass="h" ID="a" runat="server" CommandName="active" CommandArgument='<%#Eval("ItemType")%>'><asp:Label ID="lbl_active" runat="server"></asp:Label></asp:LinkButton></td>
+<td  width="15%"  style="padding-right:5px;" align="center"><asp:LinkButton CssClass="h" ID="b" runat="server" CommandName="idle" CommandArgument='<%#Eval("ItemType")%>'><asp:Label ID="lbl_idle" runat="server"></asp:Label></asp:LinkButton></td>
+<td  width="15%"  style="padding-right:5px;" align="center"><asp:LinkButton CssClass="h" ID="c" runat="server" CommandName="inactive" CommandArgument='<%#Eval("ItemType")%>'><asp:Label ID="lbl_inactive" runat="server"></asp:Label></asp:LinkButton></td>
+<td  width="15%"  style="padding-right:5px;" align="center"><asp:LinkButton CssClass="h" ID="d" runat="server" CommandName="abandoned" CommandArgument='<%#Eval("ItemType")%>'><asp:Label ID="lbl_abandoned" runat="server"></asp:Label></asp:LinkButton></td>
+<td  width="15%" style="padding-right:5px;" align="center"><asp:LinkButton CssClass="h" ID="e" runat="server" CommandName="total" CommandArgument='<%#Eval("ITID")+ "|" +Eval("ItemType")%>'><asp:Label ID="lbl_total" runat="server"></asp:Label></asp:LinkButton></td>
 </tr>
-</tbody>
-</table>
+
 </ItemTemplate>
 <FooterTemplate>
-<table width="100%" border="1" class="table"  cellpadding="0" cellspacing="0" style="font-size:0.8em; border-width:thin; border-collapse: collapse;  margin-bottom:1px; table-layout:fixed;">
-<tr style="background:#ccc; font-family:Tahoma; font-size:x-large;"><th colspan="2" style="text-align:right; color:#0307AE;">Total : </th>
-<td width="10%" align="center"><asp:Label ID="lbl_gNewTickets" runat="server"></asp:Label></td>
-<td width="10%" align="center"><asp:Label ID="lbl_gtotTickets" runat="server"></asp:Label></td>
-<td width="10%" align="center"><asp:Label ID="lbl_gProgTickets" runat="server"></asp:Label></td>
-<td width="10%" align="center"><asp:Label ID="lbl_gHoldTickets" runat="server"></asp:Label></td>
-<td width="10%" align="center"><asp:Label ID="lbl_gClosedTickets" runat="server"></asp:Label></td>
-<td width="10%" align="center"><asp:Label ID="lbl_gTotlTickets" runat="server"></asp:Label></td>
+    </tbody>
+<%--<table width="100%" class="table" style="table-layout:fixed; font-size:12px; border-collapse: collapse; border:0px solid #000; margin:0;">--%>
+<tbody><tr>
+<td width="25%" align='right' colspan="2"> Total : </td>
+<td  width="15%"  style="padding-right:5px;" align="center"><asp:LinkButton CssClass="h" ID="f" runat="server" CommandName="tstatus" CommandArgument='Active'><asp:Label ID="lbl_tactive" runat="server" CssClass="lblb"></asp:Label></asp:LinkButton></td>
+<td  width="15%"  style="padding-right:5px;" align="center"><asp:LinkButton CssClass="h" ID="g" runat="server" CommandName="tstatus" CommandArgument='Idle'><asp:Label ID="lbl_tidle" runat="server"  CssClass="lblb"></asp:Label></asp:LinkButton></td>
+<td  width="15%"  style="padding-right:5px;" align="center"><asp:LinkButton CssClass="h" ID="h" runat="server" CommandName="tstatus" CommandArgument='Inactive'><asp:Label ID="lbl_tinactive" runat="server"  CssClass="lblb"></asp:Label></asp:LinkButton></td>
+<td  width="15%"  style="padding-right:5px;" align="center"><asp:LinkButton CssClass="h" ID="i" runat="server" CommandName="tstatus" CommandArgument='Abandoned'><asp:Label ID="lbl_tabandoned" runat="server"  CssClass="lblb"></asp:Label></asp:LinkButton></td>
+<td  width="15%"  style="padding-right:5px;" align="center"><asp:LinkButton CssClass="h" ID="j" runat="server" CommandName="tall"><asp:Label ID="lbl_GTotal" runat="server"  CssClass="lblb"></asp:Label></asp:LinkButton></td>
 </tr>
-</table>
+</tbody></table>
 </FooterTemplate>
 </asp:Repeater>
-
+ <!--Modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="width: 70%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><asp:Label runat="server" ID="heading" Font-Bold="true"></asp:Label></h5>
+      </div>
+      <div class="modal-body">
+         <asp:Repeater ID="rptr_list" runat="server">
+            <HeaderTemplate>
+            <table id="tb2" width="100%" class="table table-striped table-hover" border="1" style="table-layout:fixed; font-family:Tahoma; font-size:11px; border-collapse: collapse; vertical-align:middle; margin:0;">
+            <thead><tr>
+            <td width="5%" align='center'>SNo</td>
+            <td width="10%" align='center'>ItemName</td>
+            <td width="15%" align='center'>Model</td>
+            <td width="15%" align='center'>Serial No.</td>
+            <td width="20%" align='center'>Specification</td>
+            <td width="10%" align='center'>Status</td>
+            <td width="10%" align='center'>Date of Purchase</td>
+            <td width="15%" align='center'>Warranty</td>
+            </tr>
+            </thead>
+            <tbody>
+            </HeaderTemplate>
+            <ItemTemplate>
+            <tr>
+            <td width="5%" align='center'><%#Container.ItemIndex+1%></td>
+            <td width="10%" align="center"><%#Eval("ItemName")%></td>
+            <td width="10%" align="center"><%#Eval("Model")%></td>
+            <td width="15%" align="center"><%#Eval("SerialNo")%></td>
+            <td width="20%" align="center"><%#Eval("ComputerNumber")%></td>
+            <td width="10%" align="center"><asp:Label runat="server" CssClass='<%#GetColor(Eval("Status").ToString()) %>'> <%#Eval("Status")%></asp:Label></td>
+            <td width="15%" align="center"><%#Eval("DOP")%></td>
+            <td width="15%" align="center"><%#Eval("Warranty")%></td>
+            </tr>
+            </ItemTemplate>
+            <FooterTemplate>
+                </tbody>
+                </table>
+            </FooterTemplate>
+         </asp:Repeater>
+      </div>
+    </div>
+  </div>
+</div>
 </asp:Panel>
 </div>
 </div>
 </div>
+</div></div>
 </div>
 </div>
 </div>
-</ContentTemplate>
-</asp:UpdatePanel>
+    </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
 

@@ -33,7 +33,7 @@ public partial class Inventory : System.Web.UI.MasterPage
         else
         {
             Session.Abandon();
-            Response.Redirect("~/CICTInventory/Default.aspx");
+            Response.Redirect("~/Admin/Default.aspx");
         }
     }
     protected void dl_Admin_ItemCommand(object source, DataListCommandEventArgs e)

@@ -44,32 +44,6 @@ public partial class Default2 : System.Web.UI.Page
         HttpContext.Current.Response.Cookies.Clear();
         HttpContext.Current.Request.Cookies.Clear();
     }
-    public void getPopUpImage()
-    {
-        objPRReq.Status = "Active";
-        objPRReq.EndDate = DateTime.Parse(DateTime.Today.ToString("MM/dd/yyyy"));
-        PRResp r = objPRIBC.getPopupActiveImage(objPRReq);
-        DataTable dt = r.GetTable;
-        if (dt.Rows.Count > 0)
-        {
-            if (Session["showmessage"].ToString() == "Show")
-            {
-                img_popup.Visible = true;
-                if (File.Exists(Server.MapPath("~/PopupImages/" + dt.Rows[0]["FileName"].ToString()))) //It passes this condition 
-                {
-                    img_popup.ImageUrl = "~/PopupImages/" + dt.Rows[0]["FileName"].ToString();//Here 's the problem ,no image 
-                }
-                string title = dt.Rows[0]["Title"].ToString();
-                ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + title + "');", true);
-                Session["showmessage"] = "Not Show";
-
-            }
-        }
-        else
-        {
-            img_popup.Visible = false;
-        }
-    }
 
     void FillCapctha()
     {
@@ -91,71 +65,6 @@ public partial class Default2 : System.Web.UI.Page
         }
     }
 
-    public void getCirculars()
-    {
-        objPRReq.Status = "Active";
-        objPRReq.CircularType = "Circulars";
-        objPRReq.OID = 1;
-        PRResp r = objPRIBC.DisplayCirculars(objPRReq);
-        DataTable dt = r.GetTable;
-        if (dt.Rows.Count > 0)
-        {
-            dt.DefaultView.Sort = "PCID desc";
-            rptr_Data.DataSource = dt;
-            rptr_Data.DataBind();
-            lbl_Count.Text = dt.Rows.Count.ToString();
-        }
-        else
-        {
-            rptr_Data.DataSource = dt;
-            rptr_Data.DataBind();
-            lbl_Count.Text = dt.Rows.Count.ToString();
-        }
-    }
-
-    public void getOfficeOrders()
-    {
-        objPRReq.Status = "Active";
-        objPRReq.CircularType = "Office Orders";
-        objPRReq.OID = 1;
-        PRResp r = objPRIBC.DisplayCirculars(objPRReq);
-        DataTable dt = r.GetTable;
-        if (dt.Rows.Count > 0)
-        {
-            dt.DefaultView.Sort = "PCID desc";
-            rptr_OO.DataSource = dt;
-            rptr_OO.DataBind();
-            lbl_oocount.Text = dt.Rows.Count.ToString();
-        }
-        else
-        {
-            rptr_OO.DataSource = dt;
-            rptr_OO.DataBind();
-            lbl_oocount.Text = dt.Rows.Count.ToString();
-        }
-    }
-
-    public void getNotifications()
-    {
-        objPRReq.Status = "Active";
-        objPRReq.CircularType = "Notifications";
-        objPRReq.OID = 1;
-        PRResp r = objPRIBC.DisplayCirculars(objPRReq);
-        DataTable dt = r.GetTable;
-        if (dt.Rows.Count > 0)
-        {
-            dt.DefaultView.Sort = "PCID desc";
-            rptr_noti.DataSource = dt;
-            rptr_noti.DataBind();
-            lbl_noticount.Text = dt.Rows.Count.ToString();
-        }
-        else
-        {
-            rptr_noti.DataSource = dt;
-            rptr_noti.DataBind();
-            lbl_noticount.Text = dt.Rows.Count.ToString();
-        }
-    }
 
     // Admin Login
     //protected void ValidateCaptcha(object sender, ServerValidateEventArgs e)
@@ -578,40 +487,6 @@ public partial class Default2 : System.Web.UI.Page
         if (e.CommandName == "download")
         {
             Response.Redirect("~/Files/Download.aspx?st=" + e.CommandArgument.ToString());
-        }
-    }
-
-    public void getTodayBDays()
-    {
-        objPRReq.OID = 1;
-        objPRReq.Status = "Active";
-        objPRReq.DOB = DateTime.Today;
-        PRResp r = objPRIBC.getAllTodaysREmpBDays(objPRReq);
-        DataTable dt = r.GetTable;
-        if (dt.Rows.Count > 0)
-        {
-            rptr_BDays.DataSource = dt;
-            rptr_BDays.DataBind();
-            lbl_BDayWishes.Visible = true;
-            lbl_BDayWishes.Text = " DG, NIRDPR  & NIRDPR Family..." + Environment.NewLine + " Wishing you a wonderful year of good health, happyness and success..";
-        }
-        else
-        {
-            lbl_BDayWishes.Visible = false;
-        }
-
-        lbl_Month.Text = DateTime.Now.ToString("MMMMMMMMMMMMMMMM") + ", " + DateTime.Now.Year.ToString();
-
-        PRResp rr = objPRIBC.getAllMonthlyREmpBDays(objPRReq);
-        DataTable dtr = rr.GetTable;
-        if (dtr.Rows.Count > 0)
-        {
-            DataTable dtt = new DataTable();
-            dtr.DefaultView.Sort = "DOB ASC";
-            dtt = dtr.DefaultView.ToTable();
-
-            rptr_MonthlyBDays.DataSource = dtt;
-            rptr_MonthlyBDays.DataBind();
         }
     }
 

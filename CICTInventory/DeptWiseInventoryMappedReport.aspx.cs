@@ -55,7 +55,7 @@ public partial class CICTInventory_DeptWiseInventoryMappedReport : System.Web.UI
         else
         {
             Session.Abandon();
-            Response.Redirect("~/Default.aspx");
+            Response.Redirect("~/CICTInventory/Default.aspx");
         }
     }
     public void getAllInvItems()

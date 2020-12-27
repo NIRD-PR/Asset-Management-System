@@ -47,7 +47,7 @@ public partial class CICTInventory_UpdateCITInventory_ExcelMapping : System.Web.
         else
         {
             Session.Abandon();
-            Response.Redirect("~/Default.aspx");
+            Response.Redirect("~/CICTInventory/Default.aspx");
         }
     }
 
@@ -71,7 +71,7 @@ public partial class CICTInventory_UpdateCITInventory_ExcelMapping : System.Web.
 
             if (strFileType.Trim() == ".xls")
             {
-                connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + path + ";" + "Extended Properties=Excel 8.0;";
+                connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + path + ";" + "Extended Properties=\"Excel 8.0; HDR=YES\";";
             }
             else if (strFileType.Trim() == ".xlsx")
             {
@@ -86,19 +86,13 @@ public partial class CICTInventory_UpdateCITInventory_ExcelMapping : System.Web.
             da.SelectCommand = objCmdSelect;
             DataSet ds = new DataSet();
             da.Fill(ds, "myExcel");
-
+            int count = 0;
             for (int i = 0; i < ds.Tables["myExcel"].Rows.Count; i++)
             {
                 
-                string empid = ds.Tables["myExcel"].Rows[i][1].ToString();
+                string empid = ds.Tables["myExcel"].Rows[i][0].ToString();
                 objPRReq.EmpID = double.Parse(empid);
-                string itid = ds.Tables["myExcel"].Rows[i][3].ToString();
-                objPRReq.ITID = int.Parse(itid);
-                string serial = ds.Tables["myExcel"].Rows[i][4].ToString();
-                 roomno = ds.Tables["myExcel"].Rows[i][5].ToString();
-                floor= ds.Tables["myExcel"].Rows[i][6].ToString();
-                building = ds.Tables["myExcel"].Rows[i][7].ToString();
-                location = roomno + ", " + floor + ", " + building;
+                string serial = ds.Tables["myExcel"].Rows[i][1].ToString();
                 objPRReq.SerialNo = serial;
                 objPRReq.OID = oid;
                 objPRReq.Status = "Active";
@@ -106,7 +100,7 @@ public partial class CICTInventory_UpdateCITInventory_ExcelMapping : System.Web.
                 objPRReq.UID = int.Parse(hdn_EmpID.Value.Trim());
                 objPRReq.UName = uname;
                 objPRReq.Flag1 = 1;
-                PRResp ir = objPRIBC.getItemInventory_ITID_SerialNo(objPRReq);
+                PRResp ir = objPRIBC.getItemInventorySerialNo(objPRReq);
                 DataTable dtir = ir.GetTable;
                 if(dtir.Rows.Count>0)
                 {
@@ -118,7 +112,10 @@ public partial class CICTInventory_UpdateCITInventory_ExcelMapping : System.Web.
                     objPRReq.ComputerNo = dtir.Rows[0]["ComputerNumber"].ToString();
                     objPRReq.ITID = int.Parse(dtir.Rows[0]["ITID"].ToString());
                     objPRReq.ItemName= dtir.Rows[0]["ItemName"].ToString();
-                    objPRReq.Location = location;
+                }
+                else
+                {
+                    continue;
                 }
 
                 PRResp er = objPRIBC.getEmployee_EmpID_DID(objPRReq);
@@ -132,6 +129,11 @@ public partial class CICTInventory_UpdateCITInventory_ExcelMapping : System.Web.
                     objPRReq.DeptID = dtr.Rows[0]["DeptID"].ToString();
                     objPRReq.Email = dtr.Rows[0]["Email"].ToString();
                     objPRReq.Mobile = double.Parse(dtr.Rows[0]["Mobile"].ToString());
+                    objPRReq.Location = dtr.Rows[0]["RoomNo"].ToString() + ", " + dtr.Rows[0]["Floor"].ToString() + ", " + dtr.Rows[0]["Block"].ToString();
+                }
+                else
+                {
+                    continue;
                 }
 
                 PRResp rr = objPRIBC.getMappedInventory_SerialNo(objPRReq);
@@ -143,13 +145,22 @@ public partial class CICTInventory_UpdateCITInventory_ExcelMapping : System.Web.
                 else
                 {
                     objPRIBC.MapITInventorytoEmp(objPRReq);
+                    count++;
                 }
             }
-            string msg = ds.Tables["myExcel"].Rows.Count.ToString() + " of Records Updated Successfully"; ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('" + msg.ToString() + "');", true);
+            string msg = count + " of Records Updated Successfully. " + (int.Parse(ds.Tables["myExcel"].Rows.Count.ToString())-count).ToString() + " were not updated due to an error. ";
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('" + msg.ToString() + "');", true);
         }
         catch (Exception ex)
         {
             string msg = ex.Message.Replace("'", ""); ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert...!!!", "alert('" + ex.ToString() + "');", true);
         }
+    }
+    protected void download_Click(object sender, EventArgs e)
+    {
+        Response.ContentType = "Application/x-msexcel";
+        Response.AppendHeader("Content-Disposition", "attachment; filename=MapInventoryFormat.xlsx");
+        Response.TransmitFile(Server.MapPath("..\\CICTInventory\\MapInventoryFormat.xlsx"));
+        Response.End();
     }
 }

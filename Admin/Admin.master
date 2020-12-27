@@ -1,0 +1,113 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="Inventory" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title>NIRD CIT-Inventory</title>
+<link rel="shortcut icon" href="../assets/images/favicon.ico" />
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/core.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/icons.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/components.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/pages.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/menu.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/responsive.css" rel="stylesheet" type="text/css" />
+	<link href="../assets/css/ajax-calender-theme.css" rel="stylesheet" />
+    <script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../assets/datatables.min.css"/>
+<script type="text/javascript" src="../assets/datatables.min.js"></script>
+
+    <link href="../assets/select2/css/select2.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="../assets/select2/js/select2.min.js"></script>
+    <link href="../assets/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="../assets/bootstrap-datepicker.min.js"></script>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body class="fixed-left">
+    <form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+<!-- Begin page -->
+<div id="wrapper">
+<!-- Top Bar Start -->
+
+<div class="topbar"><!-- LOGO -->
+<div class="topbar-left">
+<div class="text-center"><a href="" class="logo"><img src="../assets/images/logo.png" width="45" /> <span>NIRDPR : Admin</span></a></div>
+</div><!-- Button mobile view to collapse sidebar menu -->
+<div class="navbar navbar-default" role="navigation">
+<div class="container"><div class=""><div class="pull-left">
+<a class="button-menu-mobile open-left"><i class="fa fa-bars"></i></a>
+<span class="clearfix"></span></div>
+<div class="navbar-form pull-left" role="search">
+<div class="form-group"><input type="text" class="form-control search-bar" placeholder=""><a type="submit" class="btn btn-search"><i class="fa fa-search"></i></a></div>
+</div>
+<ul class="nav navbar-nav navbar-right pull-right"><li class="dropdown hidden-xs">
+<!--<a href="#" class="right-bar-toggle waves-effect waves-light"><i class="md md-group"></i><span class="badge badge-xs badge-danger"><asp:Label id="lbl_Count" runat="server" ToolTip="Online Users"></asp:Label></span></a></li><li class="dropdown hidden-xs"> -->
+<ul class="dropdown-menu dropdown-menu-lg"><li class="text-center notifi-title">Notification</li>
+<li class="list-group"><!-- list item--><a href="javascript:void(0);" class="list-group-item">
+<div class="media"><div class="pull-left"><em class="fa fa-user-plus fa-2x text-info"></em></div>
+<div class="media-body clearfix"><div class="media-heading">New user registered</div>
+<p class="m-0"><small>You have 10 unread messages</small></p></div></div></a><!-- list item-->
+<a href="javascript:void(0);" class="list-group-item"><div class="media"><div class="pull-left"><em class="fa fa-diamond fa-2x text-primary"></em></div>
+<div class="media-body clearfix"><div class="media-heading">New settings</div><p class="m-0"><small>There are new settings available</small></p>
+</div></div></a><!-- list item--> <a href="javascript:void(0);" class="list-group-item">
+<div class="media"><div class="pull-left"><em class="fa fa-bell-o fa-2x text-danger"></em></div>
+<div class="media-body clearfix"><div class="media-heading">Updates</div><p class="m-0"><small>There are <span class="text-primary">2</span> new updates available</small></p></div></div></a><!-- last list item -->
+ <a href="javascript:void(0);" class="list-group-item"><small>See all notifications</small></span></a></li></ul></li>
+ <li class="hidden-xs"><a href="#" id="btn-fullscreen" class="waves-effect waves-light"><asp:Label ID="lbl_Name" runat="server" Text="Hello.." CssClass="label-primary"></asp:Label></a></li>
+ <!-- <li class="hidden-xs"><a href="#" class="right-bar-toggle waves-effect waves-light"><i class="md md-chat"></i></span></a></li> -->
+ <li class="dropdown"><a href="#" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><asp:DataList ID="dl_top" runat="server"><ItemTemplate><img ID="Album_Image" runat="server" class="thumb-md img-circle" src='<%#"http://erp.nirdpr.in/SPhotos/"+Eval("Photo")%>' style="width:60px; height:65px" /></ItemTemplate></asp:DataList></a>
+ <ul class="dropdown-menu"><li><a href="javascript:void(0)"><i class="md md-face-unlock"></i><span>Profile</span></a></li>
+ <li><a href="javascript:void(0)"><i class="md md-settings"></i><span>Settings</span></a></li>
+<%--<li><a href='<%=ResolveUrl("../CITInv_CP/{0}") %>'><i class="md md-lock"></i><span>Change Password</span></a></li>--%>
+<li><a href="javascript:void(0)"><asp:LinkButton ID="lbtn" runat="server"  CausesValidation="false"
+        Text="Logout" onclick="lbtn_Click"><i class="md md-settings-power"></i>Logout</asp:LinkButton></span></a></li></ul></li></ul></div><!--/.nav-collapse --></div></div></div>
+
+<!-- Top Bar End -->
+ 
+ <div class="left side-menu">
+ <div class="sidebar-inner slimscrollleft">
+ <asp:DataList ID="dl_Admin" runat="server" width="100%" onitemcommand="dl_Admin_ItemCommand">
+ <ItemTemplate>
+ <div class="user-details">
+ <div class="pull-left"><img ID="Album_Image" runat="server" class="thumb-md img-circle" src='<%#"http://erp.nirdpr.in/SPhotos/"+Eval("Photo")%>' style="width:50px; height:50px" />  </div>
+ <div class="user-info">
+ <div class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><asp:Label ID="lbl_SessionName" runat="server" style="font-size:12px;" Text='<%#Eval("Name")%>'>&nbsp;</asp:Label> <span class="caret"></span></a>
+ <ul class="dropdown-menu"><li><a href="javascript:void(0)"><i class="md md-face-unlock"></i><span>Profile<div class="ripple-wrapper"></div></span></a></li>
+ <li><a href="javascript:void(0)"><i class="md md-settings"></i><span>Settings</span></a></li>
+ <li><a href=''<%=ResolveUrl("../CITInv_CP/{0}") %>'><i class="md md-lock"></i><span>Change Password</span></a></li>
+ <li><a href="javascript:void(0)"><asp:LinkButton ID="lbtn" runat="server" Text="Logout" CommandName="Logout" CausesValidation="false"><i class="md md-settings-power"></i>Logout</asp:LinkButton></span></a></li>
+ </ul></div><p class="text-muted m-0" style="font-size:0.8em;"><asp:Label ID="Label1" runat="server" Text='<%#Eval("Email")%>'>&nbsp;</asp:Label></p></div></div><!--- Divider -->
+ </ItemTemplate>
+ </asp:DataList>
+ <div id="sidebar-menu"><ul>
+ <li class="has_sub"><a href="#" class="waves-effect"><i class="md md-mail"></i><span> Roles </span><span class="pull-right"><i class="md md-add"></i></span></a>
+ <ul class="list-unstyled">
+    <li><a href='<%=ResolveUrl("../Roles/{0}") %>'><i class="md md-play-circle-fill"></i><span> Assign Roles</span></a></li>
+     <li><a href='<%=ResolveUrl("../AddRole/{0}") %>'><i class="md md-play-circle-fill"></i><span> Add Role</span></a></li>
+ </ul></li>
+ </ul>
+ <div class="clearfix"></div></div>
+ <div class="clearfix"></div></div></div><!-- Left Sidebar End -->
+ 
+ <!-- ============================================================== --><!-- Start right Content here --><!-- ============================================================== -->
+
+  <asp:ContentPlaceHolder id="Content" runat="server">    
+        </asp:ContentPlaceHolder>
+
+ <!-- /Right-bar --></div><!-- END wrapper -->
+  </form>
+   <script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+  <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../assets/js/jquery.app.js"></script>
+
+<script type="text/javascript" src="../assets/datatables.min.js"></script>
+    <script type="text/javascript" src="../assets/select2/js/select2.min.js"></script>
+    <script type="text/javascript" src="../assets/bootstrap-datepicker.min.js"></script>
+</body>
+</html>

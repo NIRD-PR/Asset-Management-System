@@ -44,7 +44,7 @@ public partial class CICTInventory_AbandonedReport : System.Web.UI.Page
         else
         {
             Session.Abandon();
-            Response.Redirect("~/Default.aspx");
+            Response.Redirect("~/CICTInventory/Default.aspx");
         }
     }
     protected void getItems()

@@ -70,6 +70,8 @@
     <Folder Include="aComponents\References\References\obj\Debug\TempPE\" />
     <Folder Include="aspnet_client\system_web\2_0_50727\" />
     <Folder Include="aspnet_client\system_web\4_0_30319\" />
+    <Folder Include="Disposed\" />
+    <Folder Include="Files\" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -122,22 +124,25 @@
     <Content Include="aComponents\References\References\PRReferences.cs" />
     <Content Include="aComponents\References\References\PRReferences.sln" />
     <Content Include="aComponents\References\References\References.sln" />
-    <Content Include="AdminLogin.aspx" />
-    <Content Include="AdminLogin.aspx.cs" />
-    <Content Include="App_Code\ApprovalAlert.cs">
+    <Content Include="Admin\AddRole.aspx" />
+    <Content Include="Admin\AddRole.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="App_Code\AutoSQLBackupMail.cs">
+    <Content Include="Admin\Admin.master.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\AssignRole.aspx" />
+    <Content Include="Admin\AssignRole.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Default.aspx" />
+    <Content Include="Admin\Default.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Site.master.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="App_Code\DelCookie.cs" />
-    <Content Include="App_Code\Education.cs" />
-    <Content Include="App_Code\EmpBirthDayGreetings.cs" />
-    <Content Include="App_Code\EmpLeaveUpdates.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="App_Code\esms_client.cs" />
-    <Content Include="App_Code\OtehrFacilities.cs" />
     <Content Include="App_Code\PrevBrowCache.cs" />
     <Content Include="App_Code\SampleSqlInjectionScreeningModule.cs" />
     <Content Include="App_Code\SampleSqlInjectionScreeningModule1.cs" />
@@ -147,9 +152,6 @@
     <Content Include="App_Code\SplitterBar.cs" />
     <Content Include="App_Code\SqInjection.cs" />
     <Content Include="App_Code\SqInjection1.cs" />
-    <Content Include="App_Code\StoreStockBackup.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
     <Content Include="assets\bootstrap-datepicker.min.css" />
     <Content Include="assets\bootstrap-datepicker.min.js" />
     <Content Include="assets\calender\jquery.datepick.css" />
@@ -536,7 +538,6 @@
     <Content Include="bin\WhatsAppApi.dll" />
     <Content Include="bin\zh-CHS\AjaxControlToolkit.resources.dll" />
     <Content Include="bin\zh-CHT\AjaxControlToolkit.resources.dll" />
-    <Content Include="BirthDayGreetings.htm" />
     <Content Include="CICTInventory\Abandoned_Report.aspx" />
     <Content Include="CICTInventory\Abandoned_Report.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -549,36 +550,20 @@
     <Content Include="CICTInventory\AddinventoryBulk.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="CICTInventory\ChangePassword.aspx" />
-    <Content Include="CICTInventory\ChangePassword.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="CICTInventory\CICTClosedETickets.aspx" />
-    <Content Include="CICTInventory\CICTClosedETickets.aspx.cs" />
-    <Content Include="CICTInventory\CICTETicketsStatus.aspx" />
-    <Content Include="CICTInventory\CICTETicketsStatus.aspx.cs" />
-    <Content Include="CICTInventory\CICTETickets_AllbyDates.aspx" />
-    <Content Include="CICTInventory\CICTETickets_AllbyDates.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="CICTInventory\CICTETickets_AllbyDatesEmp.aspx" />
-    <Content Include="CICTInventory\CICTETickets_AllbyDatesEmp.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="CICTInventory\CICTETickets_HoldStatus.aspx" />
-    <Content Include="CICTInventory\CICTETickets_HoldStatus.aspx.cs" />
     <Content Include="CICTInventory\CITEmp_Inventory.aspx" />
     <Content Include="CICTInventory\CITEmp_Inventory.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="CICTInventory\CITSupportingStaff.aspx" />
-    <Content Include="CICTInventory\CITSupportingStaff.aspx.cs" />
     <Content Include="CICTInventory\ConsolidatedInventory.aspx" />
     <Content Include="CICTInventory\ConsolidatedInventory.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="CICTInventory\ConsoliInventory.aspx" />
     <Content Include="CICTInventory\ConsoliInventory.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="CICTInventory\Default.aspx" />
+    <Content Include="CICTInventory\Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="CICTInventory\DeptDetailedITInventory.aspx" />
@@ -601,31 +586,23 @@
     <Content Include="CICTInventory\DisposeAsset.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="CICTInventory\Emp_Active.aspx" />
-    <Content Include="CICTInventory\Emp_Active.aspx.cs" />
-    <Content Include="CICTInventory\eTicketMapping2Staff.aspx" />
-    <Content Include="CICTInventory\eTicketMapping2Staff.aspx.cs" />
-    <Content Include="CICTInventory\Floors.aspx" />
-    <Content Include="CICTInventory\Floors.aspx.cs" />
-    <Content Include="CICTInventory\Halls.aspx" />
-    <Content Include="CICTInventory\Halls.aspx.cs" />
     <Content Include="CICTInventory\Inventory.master.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="CICTInventory\InventoryHome.aspx" />
-    <Content Include="CICTInventory\InventoryHome.aspx.cs" />
+    <Content Include="CICTInventory\InventoryHome.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="CICTInventory\InventoryHomeDemo.aspx" />
-    <Content Include="CICTInventory\InventoryHomeDemo.aspx.cs" />
+    <Content Include="CICTInventory\InventoryHomeDemo.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="CICTInventory\ItemHistoryReport.aspx" />
     <Content Include="CICTInventory\ItemHistoryReport.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="CICTInventory\ItemType.aspx" />
     <Content Include="CICTInventory\ItemType.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="CICTInventory\Location.aspx" />
-    <Content Include="CICTInventory\Location.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="CICTInventory\MakeWiseAssetReport.aspx" />
@@ -644,51 +621,21 @@
     <Content Include="CICTInventory\Models.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="CICTInventory\Roles.aspx" />
-    <Content Include="CICTInventory\Roles.aspx.cs">
+    <Content Include="CICTInventory\Site.master.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="CICTInventory\RoomNos.aspx" />
-    <Content Include="CICTInventory\RoomNos.aspx.cs" />
     <Content Include="CICTInventory\UpdateCITInventory_ExcelMapping.aspx" />
-    <Content Include="CICTInventory\UpdateCITInventory_ExcelMapping.aspx.cs" />
-    <Content Include="CITStaff\BookATicket.aspx" />
-    <Content Include="CITStaff\BookATicket.aspx.cs" />
-    <Content Include="CITStaff\ChangePassword.aspx" />
-    <Content Include="CITStaff\ChangePassword.aspx.cs" />
-    <Content Include="CITStaff\CICTClosedETickets.aspx" />
-    <Content Include="CITStaff\CICTClosedETickets.aspx.cs" />
-    <Content Include="CITStaff\CICTIniatedETickets.aspx" />
-    <Content Include="CITStaff\CICTIniatedETickets.aspx.cs" />
-    <Content Include="CITStaff\CITSSDatewiseNewTickets.aspx" />
-    <Content Include="CITStaff\CITSSDatewiseNewTickets.aspx.cs" />
-    <Content Include="CITStaff\CITSSHome.aspx" />
-    <Content Include="CITStaff\CITSSHome.aspx.cs" />
-    <Content Include="CITStaff\CITStaff.master.cs" />
-    <Content Include="CITStaff\eTicketMapping2Staff.aspx" />
-    <Content Include="CITStaff\eTicketMapping2Staff.aspx.cs" />
-    <Content Include="CITStaff\NewETickets.aspx" />
-    <Content Include="CITStaff\NewETickets.aspx.cs" />
-    <Content Include="CITStaff\TicketComments.aspx" />
-    <Content Include="CITStaff\TicketComments.aspx.cs" />
-    <Content Include="CITStaff\UserDashboard.aspx" />
-    <Content Include="CITStaff\UserDashboard.aspx.cs" />
-    <Content Include="ComplaintLogin.aspx" />
-    <Content Include="ComplaintLogin.aspx.cs" />
+    <Content Include="CICTInventory\UpdateCITInventory_ExcelMapping.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Default.aspx" />
     <Content Include="Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Default2.aspx" />
-    <Content Include="Default2.aspx.cs" />
-    <Content Include="Default3.aspx" />
-    <Content Include="Default3.aspx.cs" />
-    <Content Include="Default4.aspx" />
-    <Content Include="Default4.aspx.cs" />
-    <Content Include="eEngineeringLogin.aspx" />
-    <Content Include="eEngineeringLogin.aspx.cs" />
     <Content Include="Error.aspx" />
-    <Content Include="Error.aspx.cs" />
+    <Content Include="Error.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="FAQ.aspx" />
     <Content Include="FAQ.aspx.cs" />
     <Content Include="GenerateCaptcha.aspx" />
@@ -696,37 +643,11 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Global.asax" />
-    <Content Include="GovMailRequestForm.aspx" />
-    <Content Include="GovMailRequestForm.aspx.cs" />
-    <Content Include="HostelLogin.aspx" />
-    <Content Include="HostelLogin.aspx.cs" />
     <Content Include="loader.gif" />
-    <Content Include="Login.aspx" />
-    <Content Include="Login.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="NewLogin.aspx" />
-    <Content Include="NewLogin.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="ResetPassword.aspx" />
-    <Content Include="ResetPassword.aspx.cs" />
     <Content Include="Site.master.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="StoreLogin.aspx" />
-    <Content Include="StoreLogin.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="Training.aspx" />
-    <Content Include="Training.aspx.cs" />
     <Content Include="url.vbs" />
-    <Content Include="VehicleLogin.aspx" />
-    <Content Include="VehicleLogin.aspx.cs" />
-    <Content Include="VideoTutorials.aspx" />
-    <Content Include="VideoTutorials.aspx.cs" />
-    <Content Include="VideoTutorials2.aspx" />
-    <Content Include="VideoTutorials2.aspx.cs" />
     <Content Include="Web.config" />
     <Content Include="Website.master.cs" />
     <Content Include="websiteassets\css\animate.css" />
@@ -899,6 +820,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.0.AssemblyAttributes.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -966,7 +888,6 @@
     <Content Include="bin\TimePicker.dll.refresh" />
     <Content Include="bin\WhatsAppApi.dll.refresh" />
     <Content Include="CICTInventory\Inventory.master" />
-    <Content Include="CITStaff\CITStaff.master" />
     <Content Include="aComponents\Connections\.vs\Connections\DesignTimeBuild\.dtbcache" />
     <Content Include="aComponents\Connections\.vs\Connections\v15\.suo" />
     <Content Include="aComponents\Connections\.vs\Connections\v15\Server\sqlite3\db.lock" />
@@ -980,6 +901,9 @@
     <Content Include="aComponents\Connections\Connections\obj\Debug\Connections.csprojAssemblyReference.cache" />
     <Content Include="aComponents\Connections\Connections\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="CICTInventory\AddInventory_Format.xlsx" />
+    <Content Include="Admin\Site.master" />
+    <Content Include="CICTInventory\Site.master" />
+    <Content Include="Admin\Admin.master" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
